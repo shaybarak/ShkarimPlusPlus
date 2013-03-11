@@ -4,9 +4,10 @@
 class memPage_t {
 public:
 	
-	// Constructs with a maximum capacity
+	// Constructs with a given maximum capacity
 	memPage_t(unsigned int capacity) :
 		capacity(capacity), size(0), store(new char[capacity]), pos(0) {}
+	~memPage_t() { delete[] store; }
 
 	// Queries
 	unsigned int get_pos() const { return pos; }
