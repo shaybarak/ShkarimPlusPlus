@@ -2,6 +2,9 @@
 
 void memPage_t::read(void* out, size_t len, unsigned int pos = pos) const {
 	// TODO handle OOB reads
+	// if ((pos > size) || (pos + len > capacity)) {
+	//     kaki
+	// }
 	for (size_t i = 0; i < len; i++) {
 		*((char*)out)++ = store[pos++];
 	}
