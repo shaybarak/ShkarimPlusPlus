@@ -15,7 +15,7 @@ public:
 
 	// Queries
 	unsigned int get_pos() const { return pos; }
-	size_t get_size() const;
+	size_t get_size() const { return size; }
 	size_t get_page_count() const { return pages.size(); }
 	size_t get_capacity() const { return get_page_count() * page_size; }
 	bool is_empty() const { return get_size() == 0; }
@@ -33,8 +33,13 @@ private:
 	// Disallow copy constructor
 	memPool_t(const memPool_t& that);
 
+	// Max capacity per page
 	size_t page_size;
+	// Backing store of pages
 	vector<memPage_t*> pages;
+	// Actual size (spanning over all pages)
+	size_t size;
+	// Cursor
 	size_t pos;
 };
 

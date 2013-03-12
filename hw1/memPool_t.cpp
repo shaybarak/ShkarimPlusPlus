@@ -13,7 +13,3 @@ memPool_t::~memPool_t() {
 		delete *iter;
 	}
 }
-
-size_t memPool_t::get_size() const {
-
-}
