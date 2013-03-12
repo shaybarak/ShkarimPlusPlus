@@ -10,15 +10,16 @@ class memPool_t {
 public:
 
 	// Constructs with a given page size and initial number of allocated pages
-	memPool_t(size_t page_size, unsigned int initial_page_capacity = 1);
+	memPool_t(size_t page_size, size_t initial_page_capacity = 1);
 
 	// Queries
 	unsigned int get_pos() const { return pos; }
-	bool is_empty() const { return size == 0; }
-	bool is_full() const { return size == capacity; }
-	unsigned int get_size() const { return size; }
-	unsigned int get_capacity() const { return capacity; }
-
+	size_t get_size() const;
+	size_t get_page_count() const { return pages.size(); }
+	size_t get_capacity() const { return get_page_count() * page_size; }
+	bool is_empty() const { return get_size() == 0; }
+	bool is_full() const { return get_size() == get_capacity(); }
+	
 	// Mutators
 	void set_pos(unsigned int new_pos) { pos = new_pos; }  // TODO handle OOB index
 
