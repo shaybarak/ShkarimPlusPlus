@@ -24,6 +24,7 @@ public:
 	void write(void* const in, size_t len, size_t pos = pos);
 
 private:
+	
 	// Disallow copy constructor
 	memPage_t(const memPage_t& that);
 
