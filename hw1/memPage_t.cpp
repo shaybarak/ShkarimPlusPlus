@@ -11,9 +11,15 @@ void memPage_t::read(void* out, size_t len, unsigned int pos = pos) const {
 
 void memPage_t::write(void* const in, size_t len, unsigned int pos = pos) {
 	// TODO handle OOB writes
+	// if ((pos > size) || (pos + len > capacity)) {
+	//     kaki
+	// }
 	for (size_t i = 0; i < len; i++) {
 		store[pos++] = *((char*)in)++;
 	}
 	// Update cursor
 	this->pos = pos;
+	if (pos > size) {
+		size = pos;
+	}
 }
