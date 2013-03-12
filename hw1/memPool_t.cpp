@@ -40,10 +40,15 @@ void memPool_t::write(void* const in, size_t len, unsigned int pos = pos) {
 	// if ((pos > size) || (pos + len > capacity)) {
 	//     kaki
 	// }
-	for (size_t i = 0; i < len; i++) {
-		store[pos++] = *((char*)in)++;
+	size_t begin_page = pos / page_size;
+	size_t end_page = (pos + len - 1) / page_size;
+	for (size_t page = begin_page; page <= end_page; page++) {
+		// Write to page
+		size_t to_write = min(len, page_size - (pos % page_size));
+		pages[page]->read(out, to_write, pos % page_size);
+		pos += to_write;
+		len -= to_write;
+		out = ((char*)out) + to_write;
 	}
-	// Update cursor and size
-	this->pos = pos;
 	size = max(size, pos);
 }
