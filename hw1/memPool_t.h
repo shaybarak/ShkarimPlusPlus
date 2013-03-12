@@ -21,7 +21,7 @@ public:
 	bool is_full() const { return get_size() == get_capacity(); }
 	
 	// Mutators
-	void set_pos(unsigned int new_pos) { pos = new_pos; }  // TODO handle OOB index
+	void set_pos(size_t new_pos) { pos = new_pos; }  // TODO handle OOB index
 
 	// Access
 	void read(void* out, size_t len, size_t pos = pos) const;
