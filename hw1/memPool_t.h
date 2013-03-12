@@ -11,6 +11,7 @@ public:
 
 	// Constructs with a given page size and initial number of allocated pages
 	memPool_t(size_t page_size, size_t initial_page_capacity = 1);
+	~memPool_t();
 
 	// Queries
 	unsigned int get_pos() const { return pos; }
@@ -33,7 +34,7 @@ private:
 	memPool_t(const memPool_t& that);
 
 	size_t page_size;
-	vector<memPage_t&> pages;
+	vector<memPage_t*> pages;
 	size_t pos;
 };
 
