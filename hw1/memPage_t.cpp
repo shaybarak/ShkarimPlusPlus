@@ -1,4 +1,7 @@
 #include "memPage_t.h"
+#include <algorithm>
+
+using namespace std;
 
 void memPage_t::read(void* out, size_t len, unsigned int pos = pos) const {
 	// TODO handle OOB reads
@@ -20,9 +23,7 @@ void memPage_t::write(void* const in, size_t len, unsigned int pos = pos) {
 	for (size_t i = 0; i < len; i++) {
 		store[pos++] = *((char*)in)++;
 	}
-	// Update cursor
+	// Update cursor and size
 	this->pos = pos;
-	if (pos > size) {
-		size = pos;
-	}
+	size = max(size, pos);
 }
