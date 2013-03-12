@@ -9,7 +9,7 @@ memPool_t::memPool_t(size_t page_size, size_t initial_page_capacity) : page_size
 
 memPool_t::~memPool_t() {
 	// Memory pool owns the pages so it must delete them on destruction
-	for (vector<memPage_t>::iterator iter = pages.begin(); iter < pages.end(); iter++) {
+	for (vector<memPage_t*>::iterator iter = pages.begin(); iter < pages.end(); iter++) {
 		delete *iter;
 	}
 }
