@@ -35,7 +35,7 @@ void memPool_t::read(void* out, size_t len, unsigned int pos = pos) const {
 	}
 }
 
-void memPool_t::write(const void* in, size_t len, unsigned int pos = pos) {
+void memPool_t::write(const void* in, size_t len, unsigned int pos) {
 	// TODO handle OOB writes
 	// if ((pos > size) || (pos + len > capacity)) {
 	//     kaki
