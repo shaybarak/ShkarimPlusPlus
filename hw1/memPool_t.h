@@ -26,7 +26,7 @@ public:
 
 	// Access
 	void read(void* out, size_t len, size_t pos = pos) const;
-	void write(void* const in, size_t len, size_t pos = pos);
+	void write(const void* in, size_t len, size_t pos = pos);
 
 private:
 
