@@ -31,11 +31,11 @@ void memPool_t::read(void* out, size_t len, unsigned int pos = pos) const {
 		pages[page]->read(out, to_read, pos % page_size);
 		pos += to_read;
 		len -= to_read;
-		out = ((char*)out) + to_read;
+		out = (char*)((char*)out + to_read);
 	}
 }
 
-void memPool_t::write(void* const in, size_t len, unsigned int pos = pos) {
+void memPool_t::write(const void* in, size_t len, unsigned int pos = pos) {
 	// TODO handle OOB writes
 	// if ((pos > size) || (pos + len > capacity)) {
 	//     kaki
@@ -43,12 +43,16 @@ void memPool_t::write(void* const in, size_t len, unsigned int pos = pos) {
 	size_t begin_page = pos / page_size;
 	size_t end_page = (pos + len - 1) / page_size;
 	for (size_t page = begin_page; page <= end_page; page++) {
+		// Extend pool if necessary
+		if (page >= pages.size()) {
+			pages.push_back(new memPage_t(page_size));
+		}
 		// Write to page
 		size_t to_write = min(len, page_size - (pos % page_size));
-		pages[page]->read(out, to_write, pos % page_size);
+		pages[page]->write(in, to_write, pos % page_size);
 		pos += to_write;
 		len -= to_write;
-		out = ((char*)out) + to_write;
+		in = (char*)((char*)in + to_write);
 	}
 	size = max(size, pos);
 }
