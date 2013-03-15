@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void memPage_t::read(void* out, size_t len, unsigned int pos = pos) const {
+void memPage_t::read(void* out, size_t len, unsigned int pos) {
 	// TODO handle OOB reads
 	// if ((pos > size) || (pos + len > capacity)) {
 	//     kaki
@@ -15,7 +15,7 @@ void memPage_t::read(void* out, size_t len, unsigned int pos = pos) const {
 	this->pos = pos;
 }
 
-void memPage_t::write(void* const in, size_t len, unsigned int pos = pos) {
+void memPage_t::write(const void* in, size_t len, unsigned int pos) {
 	// TODO handle OOB writes
 	// if ((pos > size) || (pos + len > capacity)) {
 	//     kaki
