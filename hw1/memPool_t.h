@@ -9,8 +9,8 @@ using namespace std;
 class memPool_t {
 public:
 
-	// Constructs with a given page size and initial number of allocated pages
-	memPool_t(size_t pageCapacity, size_t initialPageCapacity = 1);
+	// Constructs with a given page capacity and initial number of allocated pages
+	memPool_t(size_t pageCapacity, size_t initialPoolCapacity = 1);
 	~memPool_t();
 
 	// Queries

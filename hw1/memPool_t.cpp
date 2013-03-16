@@ -3,9 +3,9 @@
 
 using namespace std;
 
-memPool_t::memPool_t(size_t pageCapacity, size_t initialPageCapacity) : pageCapacity(pageCapacity) {
-	pages.reserve(initialPageCapacity);
-	for (size_t i = 0; i < initialPageCapacity; i++) {
+memPool_t::memPool_t(size_t pageCapacity, size_t initialPoolCapacity) : pageCapacity(pageCapacity) {
+	pages.reserve(initialPoolCapacity);
+	for (size_t i = 0; i < initialPoolCapacity; i++) {
 		pages.push_back(new memPage_t(pageCapacity));
 	}
 }
