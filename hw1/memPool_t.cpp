@@ -17,7 +17,7 @@ memPool_t::~memPool_t() {
 	}
 }
 
-void memPool_t::read(void* out, size_t len, unsigned int pos = pos) const {
+void memPool_t::read(void* out, size_t len, unsigned int pos) {
 	// TODO handle OOB reads
 	// if ((pos > size) || (pos + len > capacity)) {
 	//     kaki

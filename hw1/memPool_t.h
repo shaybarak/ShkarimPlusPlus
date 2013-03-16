@@ -25,8 +25,11 @@ public:
 	void setPos(size_t newPos) { pos = newPos; }  // TODO handle OOB index
 
 	// Access
-	void read(void* out, size_t len, size_t pos = pos) const;
-	void write(const void* in, size_t len, size_t pos = pos);
+	void read(void* out, size_t len) { read(out, len, pos); }
+	void read(void* out, size_t len, size_t pos);
+
+	void write(const void* in, size_t len) { write(in, len, pos); }
+	void write(const void* in, size_t len, size_t pos);
 
 private:
 
