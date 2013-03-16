@@ -11,10 +11,10 @@ public:
 
 	// Queries
 	unsigned int get_pos() const { return pos; }
-	size_t get_size() const { return size; }
-	size_t get_capacity() const { return capacity; }
-	bool is_empty() const { return get_size() == 0; }
-	bool is_full() const { return get_size() == get_capacity(); }
+	size_t getSize() const { return size; }
+	size_t getCapacity() const { return capacity; }
+	bool isEmpty() const { return getSize() == 0; }
+	bool isFull() const { return getSize() == getCapacity(); }
 
 	// Mutators
 	void set_pos(size_t new_pos) { pos = new_pos; }  // TODO handle OOB index

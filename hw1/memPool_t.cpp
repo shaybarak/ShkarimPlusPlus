@@ -3,10 +3,10 @@
 
 using namespace std;
 
-memPool_t::memPool_t(size_t page_size, size_t initial_page_capacity) : page_size(page_size) {
-	pages.reserve(initial_page_capacity);
-	for (size_t i = 0; i < initial_page_capacity; i++) {
-		pages.push_back(new memPage_t(page_size));
+memPool_t::memPool_t(size_t pageSize, size_t initialPageCapacity) : pageSize(pageSize) {
+	pages.reserve(initialPageCapacity);
+	for (size_t i = 0; i < initialPageCapacity; i++) {
+		pages.push_back(new memPage_t(pageSize));
 	}
 }
 
@@ -23,12 +23,12 @@ void memPool_t::read(void* out, size_t len, unsigned int pos = pos) const {
 	//     kaki
 	// }
 	// Find page boundaries
-	size_t begin_page = pos / page_size;
-	size_t end_page = (pos + len - 1) / page_size;
+	size_t begin_page = pos / pageSize;
+	size_t end_page = (pos + len - 1) / pageSize;
 	for (size_t page = begin_page; page <= end_page; page++) {
 		// Read from page
-		size_t to_read = min(len, page_size - (pos % page_size));
-		pages[page]->read(out, to_read, pos % page_size);
+		size_t to_read = min(len, pageSize - (pos % pageSize));
+		pages[page]->read(out, to_read, pos % pageSize);
 		pos += to_read;
 		len -= to_read;
 		out = (char*)((char*)out + to_read);
@@ -40,19 +40,19 @@ void memPool_t::write(const void* in, size_t len, unsigned int pos) {
 	// if ((pos > size) || (pos + len > capacity)) {
 	//     kaki
 	// }
-	size_t begin_page = pos / page_size;
-	size_t end_page = (pos + len - 1) / page_size;
+	size_t begin_page = pos / pageSize;
+	size_t end_page = (pos + len - 1) / pageSize;
 	for (size_t page = begin_page; page <= end_page; page++) {
 		// Extend pool if necessary
 		if (page >= pages.size()) {
-			pages.push_back(new memPage_t(page_size));
+			pages.push_back(new memPage_t(pageSize));
 		}
 		// Write to page
-		size_t to_write = min(len, page_size - (pos % page_size));
-		pages[page]->write(in, to_write, pos % page_size);
-		pos += to_write;
-		len -= to_write;
-		in = (char*)((char*)in + to_write);
+		size_t toWrite = min(len, pageSize - (pos % pageSize));
+		pages[page]->write(in, toWrite, pos % pageSize);
+		pos += toWrite;
+		len -= toWrite;
+		in = (char*)((char*)in + toWrite);
 	}
 	size = max(size, pos);
 }
