@@ -20,6 +20,7 @@ bool memPage_t::read(void* out, size_t len, unsigned int pos) {
 	}
 	// Update cursor
 	this->pos = pos;
+	return true;
 }
 
 bool memPage_t::write(const void* const in, size_t len, unsigned int pos) {
@@ -32,4 +33,5 @@ bool memPage_t::write(const void* const in, size_t len, unsigned int pos) {
 	// Update cursor and size
 	this->pos = pos;
 	size = max(size, pos);
+	return true;
 }
