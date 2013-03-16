@@ -17,11 +17,19 @@ memPool_t::~memPool_t() {
 	}
 }
 
-void memPool_t::read(void* out, size_t len, unsigned int pos) {
-	// TODO handle OOB reads
-	// if ((pos > size) || (pos + len > capacity)) {
-	//     kaki
-	// }
+bool memPool_t::setPos(size_t newPos)  {
+	if (newPos > getSize()) {
+		return false;
+	}
+	pos = newPos;
+	return true;
+}
+
+bool memPool_t::read(void* out, size_t len, unsigned int pos) {
+	//cannot read beyond end of memory
+	if (pos + len > size) {
+		return false;
+	}
 	// Find page boundaries
 	size_t begin_page = pos / pageCapacity;
 	size_t end_page = (pos + len - 1) / pageCapacity;
@@ -33,13 +41,15 @@ void memPool_t::read(void* out, size_t len, unsigned int pos) {
 		len -= to_read;
 		out = (char*)((char*)out + to_read);
 	}
+	return true;
 }
 
-void memPool_t::write(const void* in, size_t len, unsigned int pos) {
-	// TODO handle OOB writes
-	// if ((pos > size) || (pos + len > capacity)) {
-	//     kaki
-	// }
+bool memPool_t::write(const void* in, size_t len, unsigned int pos) {
+
+	//cannot start write beyond size
+	if (pos > size) {
+		return false;
+	}
 	size_t begin_page = pos / pageCapacity;
 	size_t end_page = (pos + len - 1) / pageCapacity;
 	for (size_t page = begin_page; page <= end_page; page++) {
@@ -55,4 +65,5 @@ void memPool_t::write(const void* in, size_t len, unsigned int pos) {
 		in = (char*)((char*)in + toWrite);
 	}
 	size = max(size, pos);
+	return true;
 }

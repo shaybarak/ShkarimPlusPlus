@@ -3,11 +3,18 @@
 
 using namespace std;
 
-void memPage_t::read(void* out, size_t len, unsigned int pos) {
-	// TODO handle OOB reads
-	// if ((pos > size) || (pos + len > capacity)) {
-	//     kaki
-	// }
+bool memPage_t::setPos(size_t newPos) { 
+	if (newPos > getSize()) {
+		return false;
+	}
+	pos = newPos; 
+	return true;
+}  
+
+bool memPage_t::read(void* out, size_t len, unsigned int pos) {
+	if ((pos > size) || (pos + len > capacity)) {
+		return false;
+	}
 	for (size_t i = 0; i < len; i++) {
 		((char*)out)[i] = store[pos++];
 	}
@@ -15,11 +22,10 @@ void memPage_t::read(void* out, size_t len, unsigned int pos) {
 	this->pos = pos;
 }
 
-void memPage_t::write(const void* const in, size_t len, unsigned int pos) {
-	// TODO handle OOB writes
-	// if ((pos > size) || (pos + len > capacity)) {
-	//     kaki
-	// }
+bool memPage_t::write(const void* const in, size_t len, unsigned int pos) {
+	if ((pos > size) || (pos + len > capacity)) {
+		return false;
+	}
 	for (size_t i = 0; i < len; i++) {
 		store[pos++] = ((char*)in)[i];
 	}
