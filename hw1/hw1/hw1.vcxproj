@@ -62,6 +62,7 @@
   <ItemGroup>
     <ClCompile Include="..\memPage_t.cpp" />
     <ClCompile Include="..\memPool_t.cpp" />
+    <ClCompile Include="..\test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\memPage_t.h" />
