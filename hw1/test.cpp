@@ -36,7 +36,7 @@ bool memPage_t_test() {
 	if (myPage.getPos() != 0) {
 		printf("Incorrect position %d!\n", myPage.getPos());
 		return false;
-	}	
+	}
 
 	MyTestType instance1(1, 2, 1.2, 3.4);
 	MyTestType instance2(5, 6, 5.6, 7.8);
@@ -44,6 +44,10 @@ bool memPage_t_test() {
 	// Validate writes
 	if (!myPage.write(&instance1, sizeof(instance1))) {
 		printf("Write #1 failed!\n");
+		return false;
+	}
+	if (myPage.getPos() != sizeof(instance1)) {
+		printf("Incorrect position %d!\n", myPage.getPos());
 		return false;
 	}
 	// Write out of bounds
@@ -87,7 +91,100 @@ bool memPage_t_test() {
 }
 
 bool memPool_t_test() {
-	memPool_t myPool(1024);
+	// Validate init
+	memPool_t myPool(1024, 4);
+	if (myPool.getCapacity() != 1024 * 4) {
+		printf("Incorrect capacity %d!\n", myPool.getCapacity());
+		return false;
+	}
+	if (myPool.getSize() != 0) {
+		printf("Incorrect size %d!\n", myPool.getSize());
+		return false;
+	}
+	if (myPool.getPos() != 0) {
+		printf("Incorrect position %d!\n", myPool.getPos());
+		return false;
+	}
+
+	MyTestType instance1(1, 2, 1.2, 3.4);
+	MyTestType instance2(5, 6, 5.6, 7.8);
+
+	// Validate writes
+	if (!myPool.write(&instance1, sizeof(instance1))) {
+		printf("Write #1 failed!\n");
+		return false;
+	}
+	if (myPool.getPos() != sizeof(instance1)) {
+		printf("Incorrect position %d!\n", myPool.getPos());
+		return false;
+	}
+	// Write out of bounds
+	if (myPool.write(&instance1, sizeof(instance1), -3)) {
+		printf("Write #2 unexpectedly succeeded!\n");
+		return false;
+	}
+	// Write out of bounds
+	if (myPool.write(&instance1, sizeof(instance1), sizeof(instance1) + 5)) {
+		printf("Write #3 unexpectedly succeeded!\n");
+		return false;
+	}
+	// Overwrite
+	if (!myPool.write(&instance2, sizeof(instance2), 0)) {
+		printf("Write #4 failed!\n");
+		return false;
+	}
+
+	// Validate reads
+	if (!myPool.read(&instance1, sizeof(instance1), 0)) {
+		printf("Read #1 failed!\n");
+		return false;
+	}
+	// Wrote instance2 and read into instance1 so expect equality
+	if (instance1 != instance2) {
+		printf("Expected equality!\n");
+		return false;
+	}
+	// Read out of bounds
+	if (myPool.read(&instance1, sizeof(instance1), -3)) {
+		printf("Read #2 unexpectedly succeeded!\n");
+		return false;
+	}
+	// Write out of bounds
+	if (myPool.read(&instance1, sizeof(instance1), sizeof(instance1) + 5)) {
+		printf("Read #3 unexpectedly succeeded!\n");
+		return false;
+	}
+
+	// Write across pages
+	while (myPool.getPos() < 1200) {
+		if (!myPool.write(&instance1, sizeof(instance1))) {
+			printf("Looped write failed at pos=%d!\n", myPool.getPos());
+			return false;
+		}
+	}
+
+	// Write and read objects that span page boundaries
+	if (!myPool.setPos(1023)) {
+		printf("Setting position #1 failed!\n");
+		return false;
+	}
+	if (!myPool.write(&instance1, sizeof(instance1))) {
+		printf("Write across page bounaries failed at pos=%d\n", myPool.getPos());
+		return false;
+	}
+	if (!myPool.setPos(1023)) {
+		printf("Setting position #2 failed!\n");
+		return false;
+	}
+	if (!myPool.read(&instance2, sizeof(instance2))) {
+		printf("Read across page bounaries failed at pos=%d\n", myPool.getPos());
+		return false;
+	}
+	if (instance1 != instance2) {
+		printf("Expected equality!\n");
+		return false;
+	}
+
 	return true;
 }
 
