@@ -3,7 +3,7 @@
 
 using namespace std;
 
-memPool_t::memPool_t(size_t pageCapacity, size_t initialPoolCapacity) : pageCapacity(pageCapacity), size(0) {
+memPool_t::memPool_t(size_t pageCapacity, size_t initialPoolCapacity) : pageCapacity(pageCapacity), size(0), pos(0) {
 	pages.reserve(initialPoolCapacity);
 	for (size_t i = 0; i < initialPoolCapacity; i++) {
 		pages.push_back(new memPage_t(pageCapacity));
@@ -44,12 +44,13 @@ bool memPool_t::read(void* out, size_t len, unsigned int pos) {
 	return true;
 }
 
-bool memPool_t::write(const void* in, size_t len, unsigned int pos) {
+bool memPool_t::write(const void* in, size_t len, unsigned int usrPos) {
 
 	//cannot start write beyond size
-	if (pos > size) {
+	if (usrPos > size) {
 		return false;
 	}
+	pos = usrPos;
 	size_t begin_page = pos / pageCapacity;
 	size_t end_page = (pos + len - 1) / pageCapacity;
 	for (size_t page = begin_page; page <= end_page; page++) {
