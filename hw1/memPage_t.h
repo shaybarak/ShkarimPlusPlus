@@ -10,14 +10,14 @@ public:
 	~memPage_t() { delete[] store; }
 
 	// Queries
-	unsigned int get_pos() const { return pos; }
+	unsigned int getPos() const { return pos; }
 	size_t getSize() const { return size; }
 	size_t getCapacity() const { return capacity; }
 	bool isEmpty() const { return getSize() == 0; }
 	bool isFull() const { return getSize() == getCapacity(); }
 
 	// Mutators
-	void set_pos(size_t new_pos) { pos = new_pos; }  // TODO handle OOB index
+	void setPos(size_t newPos) { pos = newPos; }  // TODO handle OOB index
 
 	// Access
 	void read(void* out, size_t len) { read(out, len, pos); }
