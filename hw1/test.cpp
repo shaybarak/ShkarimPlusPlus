@@ -144,14 +144,10 @@ bool memPool_t_test() {
 		printf("Expected pools equality!\n");
 		return false;
 	}
-	// Read out of bounds
-	if (myPool.read(&instance1, sizeof(instance1), -3)) {
-		printf("Read pool #2 unexpectedly succeeded!\n");
-		return false;
-	}
+
 	// Write out of bounds
 	if (myPool.read(&instance1, sizeof(instance1), sizeof(instance1) + 5)) {
-		printf("Read pool #3 unexpectedly succeeded!\n");
+		printf("Read pool #2 unexpectedly succeeded!\n");
 		return false;
 	}
 
