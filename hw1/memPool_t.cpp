@@ -3,10 +3,10 @@
 
 using namespace std;
 
-memPool_t::memPool_t(size_t pageSize, size_t initialPageCapacity) : pageSize(pageSize) {
+memPool_t::memPool_t(size_t pageCapacity, size_t initialPageCapacity) : pageCapacity(pageCapacity) {
 	pages.reserve(initialPageCapacity);
 	for (size_t i = 0; i < initialPageCapacity; i++) {
-		pages.push_back(new memPage_t(pageSize));
+		pages.push_back(new memPage_t(pageCapacity));
 	}
 }
 
@@ -23,12 +23,12 @@ void memPool_t::read(void* out, size_t len, unsigned int pos) {
 	//     kaki
 	// }
 	// Find page boundaries
-	size_t begin_page = pos / pageSize;
-	size_t end_page = (pos + len - 1) / pageSize;
+	size_t begin_page = pos / pageCapacity;
+	size_t end_page = (pos + len - 1) / pageCapacity;
 	for (size_t page = begin_page; page <= end_page; page++) {
 		// Read from page
-		size_t to_read = min(len, pageSize - (pos % pageSize));
-		pages[page]->read(out, to_read, pos % pageSize);
+		size_t to_read = min(len, pageCapacity - (pos % pageCapacity));
+		pages[page]->read(out, to_read, pos % pageCapacity);
 		pos += to_read;
 		len -= to_read;
 		out = (char*)((char*)out + to_read);
@@ -40,16 +40,16 @@ void memPool_t::write(const void* in, size_t len, unsigned int pos) {
 	// if ((pos > size) || (pos + len > capacity)) {
 	//     kaki
 	// }
-	size_t begin_page = pos / pageSize;
-	size_t end_page = (pos + len - 1) / pageSize;
+	size_t begin_page = pos / pageCapacity;
+	size_t end_page = (pos + len - 1) / pageCapacity;
 	for (size_t page = begin_page; page <= end_page; page++) {
 		// Extend pool if necessary
 		if (page >= pages.size()) {
-			pages.push_back(new memPage_t(pageSize));
+			pages.push_back(new memPage_t(pageCapacity));
 		}
 		// Write to page
-		size_t toWrite = min(len, pageSize - (pos % pageSize));
-		pages[page]->write(in, toWrite, pos % pageSize);
+		size_t toWrite = min(len, pageCapacity - (pos % pageCapacity));
+		pages[page]->write(in, toWrite, pos % pageCapacity);
 		pos += toWrite;
 		len -= toWrite;
 		in = (char*)((char*)in + toWrite);
