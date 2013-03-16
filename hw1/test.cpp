@@ -6,7 +6,7 @@ bool memPage_t_test() {
 }
 
 bool memPool_t_test() {
-	memPool_t myPool();
+	memPool_t myPool(1024);
 }
 
 int main() {
