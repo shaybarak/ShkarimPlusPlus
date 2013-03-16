@@ -26,10 +26,10 @@ public:
 
 	// Access
 	bool read(void* out, size_t len) { return read(out, len, pos); }
-	bool read(void* out, size_t len, size_t pos);
+	bool read(void* out, size_t len, size_t usrPos);
 
 	bool write(const void* in, size_t len) { return write(in, len, pos); }
-	bool write(const void* in, size_t len, size_t extPos);
+	bool write(const void* in, size_t len, size_t usrPos);
 
 private:
 

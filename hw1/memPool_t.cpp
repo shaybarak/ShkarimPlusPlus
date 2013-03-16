@@ -25,11 +25,12 @@ bool memPool_t::setPos(size_t newPos)  {
 	return true;
 }
 
-bool memPool_t::read(void* out, size_t len, unsigned int pos) {
+bool memPool_t::read(void* out, size_t len, unsigned int usrPos) {
 	//cannot read beyond end of memory
 	if (pos + len > size) {
 		return false;
 	}
+	pos = usrPos;
 	// Find page boundaries
 	size_t begin_page = pos / pageCapacity;
 	size_t end_page = (pos + len - 1) / pageCapacity;
