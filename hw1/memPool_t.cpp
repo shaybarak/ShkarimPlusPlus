@@ -27,7 +27,7 @@ bool memPool_t::setPos(size_t newPos)  {
 
 bool memPool_t::read(void* out, size_t len, unsigned int usrPos) {
 	//cannot read beyond end of memory
-	if (pos + len > size) {
+	if (usrPos + len > size) {
 		return false;
 	}
 	pos = usrPos;
