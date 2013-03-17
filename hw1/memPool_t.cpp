@@ -26,7 +26,7 @@ bool memPool_t::setPos(size_t newPos)  {
 }
 
 bool memPool_t::read(void* out, size_t len, unsigned int usrPos) {
-	//cannot read beyond end of memory
+	// Cannot read out of bounds
 	if (usrPos + len > size) {
 		return false;
 	}
@@ -46,9 +46,12 @@ bool memPool_t::read(void* out, size_t len, unsigned int usrPos) {
 }
 
 bool memPool_t::write(const void* in, size_t len, unsigned int usrPos) {
-
-	//cannot start write beyond size
+	// Cannot allow holes in memory
 	if (usrPos > size) {
+		return false;
+	}
+	// Cannot end write beyond capacity
+	if (usrPos + len > getCapacity()) {
 		return false;
 	}
 	pos = usrPos;

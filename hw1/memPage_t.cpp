@@ -12,6 +12,7 @@ bool memPage_t::setPos(size_t newPos) {
 }  
 
 bool memPage_t::read(void* out, size_t len, unsigned int pos) {
+	// Cannot read out of bounds
 	if ((pos > size) || (pos + len > capacity)) {
 		return false;
 	}
@@ -24,6 +25,7 @@ bool memPage_t::read(void* out, size_t len, unsigned int pos) {
 }
 
 bool memPage_t::write(const void* const in, size_t len, unsigned int pos) {
+	// Cannot write out of bounds
 	if ((pos > size) || (pos + len > capacity)) {
 		return false;
 	}
