@@ -18,6 +18,7 @@ public:
 	size_t getSize() const { return size; }
 	size_t getPageCount() const { return pages.size(); }
 	size_t getCapacity() const { return getPageCount() * pageCapacity; }
+	size_t getPageCapacity() const { return pageCapacity; }
 	bool isEmpty() const { return getSize() == 0; }
 	bool isFull() const { return getSize() == getCapacity(); }
 	
