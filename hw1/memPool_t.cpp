@@ -50,10 +50,6 @@ bool memPool_t::write(const void* in, size_t len, unsigned int usrPos) {
 	if (usrPos > size) {
 		return false;
 	}
-	// Cannot end write beyond capacity
-	if (usrPos + len > getCapacity()) {
-		return false;
-	}
 	pos = usrPos;
 	size_t begin_page = pos / pageCapacity;
 	size_t end_page = (pos + len - 1) / pageCapacity;
