@@ -191,19 +191,58 @@ bool memPool_t_test() {
 }
 
 // Interactive test for memPage_t
-void memPool_t_interactive() {
+bool memPool_t_interactive() {
+	cout << "Enter positive capacity for pool pages: ";
+	size_t pageCapacity;
+	pageCapacity << cin;
+	if (pageCapacity == 0) {
+		cerr << "Invalid page capacity!"; << endl;
+		return false;
+	}
+	cout << "Enter initial pages count: ";
+	size_t initialPageCount;
+	initialPageCount << cin;
+	memPool_t pool(pageCapacity, initialPageCount);
+	
+	cout << "Your input will be written into the pool as a stream of ASCII characters." << endl;
+	cout << "Enter your input below, hit ENTER to finish:" << endl;
+	char input;
+	while ((input << cin) != '\n') {
+		if (!pool.write(&input, sizeof(input))) {
+			cerr << "Error writing to pool!" << endl;
+			return false;
+		}
+	}
 
+	cout << "Your input has been written to the pool." << endl;
+	cout << "Reading it back produced the following:" << endl;
+	size_t pos = 0;
+	if (!pool.setPos(pos)) {
+		cerr << "Error setting pool position!" << endl;
+	}
+	char output;
+	while (pos < pool.getSize()) {
+		if (!pool.read(&output, sizeof(output))) {
+			cerr << "Error reading from pool!" << endl;
+		}
+		cout << output;
+	}
+	cout << endl;
+	return true;
 }
 
 int main() {
 	if (!memPage_t_test()) {
-		printf("Error in memPage_t test!\n");
+		cerr << "Error in memPage_t test!" << endl;
 		return 1;
 	}
 	if (!memPool_t_test()) {
-		printf("Error in memPool_t test!\n");
+		cerr << "Error in memPool_t test!" << endl;
 		return 1;
 	}
-	memPool_t_interactive();
+	if (!memPool_t_interactive()) {
+		cerr << "Error in interactive test!" << endl;
+		return 1;
+	}
 	return 0;
 }
