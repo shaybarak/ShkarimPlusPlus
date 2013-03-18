@@ -1,6 +1,10 @@
 #include "memPage_t.h"
 #include "memPool_t.h"
+#include <iostream.h>
 
+using namespace std;
+
+// A dumb data type used for testing purposes
 class MyTestType {
 public:
 	MyTestType(int int1, int int2, double double1, double double2)
@@ -22,19 +26,20 @@ public:
 	double double1, double2;
 };
 
+// Automatic test for memPage_t
 bool memPage_t_test() {
 	// Validate init
 	memPage_t myPage(1024);
 	if (myPage.getCapacity() != 1024) {
-		printf("Incorrect page capacity %d!\n", myPage.getCapacity());
+		cerr << "Incorrect page capacity " << myPage.getCapacity() << "!" << endl;
 		return false;
 	}
 	if (myPage.getSize() != 0) {
-		printf("Incorrect page size %d!\n", myPage.getSize());
+		cerr << "Incorrect page size " << myPage.getSize() << "!" << endl;
 		return false;
 	}
 	if (myPage.getPos() != 0) {
-		printf("Incorrect page position %d!\n", myPage.getPos());
+		cerr << "Incorrect page position " << myPage.getPos() << "!" << endl;
 		return false;
 	}
 
@@ -43,66 +48,67 @@ bool memPage_t_test() {
 
 	// Validate writes
 	if (!myPage.write(&instance1, sizeof(instance1))) {
-		printf("Write page #1 failed!\n");
+		cerr << "Write page #1 failed!" << endl;
 		return false;
 	}
 	if (myPage.getPos() != sizeof(instance1)) {
-		printf("Incorrect page position afcter write%d!\n", myPage.getPos());
+		cerr << "Incorrect page position after write " << myPage.getPos << "!" << endl;
 		return false;
 	}
 	// Write out of bounds
 	if (myPage.write(&instance1, sizeof(instance1), -3)) {
-		printf("Write page #2 unexpectedly succeeded!\n");
+		cerr << "Write page #2 unexpectedly succeeded!" << endl;
 		return false;
 	}
 	// Write out of bounds
 	if (myPage.write(&instance1, sizeof(instance1), sizeof(instance1) + 5)) {
-		printf("Write page #3 unexpectedly succeeded!\n");
+		cerr << "Write page #3 unexpectedly succeeded!" << endl;
 		return false;
 	}
 	// Overwrite
 	if (!myPage.write(&instance2, sizeof(instance2), 0)) {
-		printf("Write page #4 failed!\n");
+		cerr << "Write page #4 failed!" << endl;
 		return false;
 	}
 
 	// Validate reads
 	if (!myPage.read(&instance1, sizeof(instance1), 0)) {
-		printf("Read page #1 failed!\n");
+		cerr << "Read page #1 failed!" << endl;
 		return false;
 	}
 	// Wrote instance2 and read into instance1 so expect equality
 	if (instance1 != instance2) {
-		printf("Expected page equality!\n");
+		cerr << "Expected page equality!" << endl;
 		return false;
 	}
 	// Read out of bounds
 	if (myPage.read(&instance1, sizeof(instance1), -3)) {
-		printf("Read page #2 unexpectedly succeeded!\n");
+		cerr << "Read page #2 unexpectedly succeeded!" << endl
 		return false;
 	}
 	// Write out of bounds
 	if (myPage.read(&instance1, sizeof(instance1), sizeof(instance1) + 5)) {
-		printf("Read page #3 unexpectedly succeeded!\n");
+		cerr << "Read page #3 unexpectedly succeeded!" << endl;
 		return false;
 	}
 
 	return true;
 }
 
+// Automatic test for memPool_t
 bool memPool_t_test() {
 	// Validate init
 	memPool_t myPool(1024, 4);
 	if (myPool.getCapacity() != 1024 * 4) {
-		printf("Incorrect pool capacity %d!\n", myPool.getCapacity());
+		cerr << "Incorrect pool capacity " << myPool.getCapacity() << endl;
 		return false;
 	}
 	if (myPool.getSize() != 0) {
-		printf("Incorrect pool size %d!\n", myPool.getSize());
+		cerr << "Incorrect pool size " << myPool.getSize() << "!" << endl;
 		return false;
 	}
 	if (myPool.getPos() != 0) {
-		printf("Incorrect pool position %d!\n", myPool.getPos());
+		cerr << "Incorrect pool position " << myPool.getPos() << "!" << endl;
 		return false;
 	}
 
@@ -111,85 +117,93 @@ bool memPool_t_test() {
 
 	// Validate writes
 	if (!myPool.write(&instance1, sizeof(instance1))) {
-		printf("Write pool #1 failed!\n");
+		cerr << "Write pool #1 failed!" << endl;
 		return false;
 	}
 	if (myPool.getPos() != sizeof(instance1)) {
-		printf("Incorrect pool position %d!\n", myPool.getPos());
+		cerr << "Incorrect pool position " << myPool.getPos() << "!" << endl;
 		return false;
 	}
 	// Write out of bounds
 	if (myPool.write(&instance1, sizeof(instance1), -3)) {
-		printf("Write pool #2 unexpectedly succeeded!\n");
+		cerr << "Write pool #2 unexpectedly succeeded!" << endl;
 		return false;
 	}
 	// Write out of bounds
 	if (myPool.write(&instance1, sizeof(instance1), sizeof(instance1) + 5)) {
-		printf("Write pool #3 unexpectedly succeeded!\n");
+		cerr << "Write pool #3 unexpectedly succeeded!" << endl;
 		return false;
 	}
 	// Overwrite
 	if (!myPool.write(&instance2, sizeof(instance2), 0)) {
-		printf("Write pool #4 failed!\n");
+		cerr << "Write pool #4 failed!" << endl;
 		return false;
 	}
 
 	// Validate reads
 	if (!myPool.read(&instance1, sizeof(instance1), 0)) {
-		printf("Read pool #1 failed!\n");
+		cerr << "Read pool #1 failed!" << endl;
 		return false;
 	}
 	// Wrote instance2 and read into instance1 so expect equality
 	if (instance1 != instance2) {
-		printf("Expected pools equality!\n");
+		cerr << "Expected pools equality!" << endl;
 		return false;
 	}
 
 	// Write out of bounds
 	if (myPool.read(&instance1, sizeof(instance1), sizeof(instance1) + 5)) {
-		printf("Read pool #2 unexpectedly succeeded!\n");
+		cerr << "Read pool #2 unexpectedly succeeded!" << endl;
 		return false;
 	}
 
 	// Write across pages
 	while (myPool.getPos() < 1200) {
 		if (!myPool.write(&instance1, sizeof(instance1))) {
-			printf("Looped write failed at pos=%d!\n", myPool.getPos());
+			cerr << "Looped write failed at position " << myPool.getPos() << "!" << endl;
 			return false;
 		}
 	}
 
 	// Write and read objects that span page boundaries
 	if (!myPool.setPos(1023)) {
-		printf("Setting pool position #1 failed!\n");
+		cerr << "Setting pool position #1 failed!" << endl;
 		return false;
 	}
 	if (!myPool.write(&instance1, sizeof(instance1))) {
-		printf("Write pool across page bounaries failed at pos=%d\n", myPool.getPos());
+		cerr << "Write pool across page bounaries failed at position " << myPool.getPos() << "!" << endl;
 		return false;
 	}
 	if (!myPool.setPos(1023)) {
-		printf("Setting pool position #2 failed!\n");
+		cerr << "Setting pool position #2 failed!" << endl;
 		return false;
 	}
 	if (!myPool.read(&instance2, sizeof(instance2))) {
-		printf("Read pool across page bounaries failed at pos=%d\n", myPool.getPos());
+		cerr << "Read pool across page bounaries failed at position " << myPool.getPos() << "!" << endl;
 		return false;
 	}
 	if (instance1 != instance2) {
-		printf("Expected pools equality!\n");
+		cerr << "Expected equality!" << endl;
 		return false;
 	}
 
 	return true;
 }
 
+// Interactive test for memPage_t
+void memPool_t_interactive() {
+
+}
+
 int main() {
 	if (!memPage_t_test()) {
+		printf("Error in memPage_t test!\n");
 		return 1;
 	}
 	if (!memPool_t_test()) {
+		printf("Error in memPool_t test!\n");
 		return 1;
 	}
+	memPool_t_interactive();
 	return 0;
 }
