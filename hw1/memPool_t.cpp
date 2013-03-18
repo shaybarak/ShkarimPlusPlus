@@ -75,7 +75,7 @@ bool memPool_t::write(const void* in, size_t len, unsigned int usrPos) {
 	}
 	pos = usrPos;
 
-	if (pos == size) {
+	if (pos == getCapacity()) {
 		addNewPage();
 	}
 	size_t pageNum = findPage(pos);
