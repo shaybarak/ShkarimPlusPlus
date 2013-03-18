@@ -1,6 +1,7 @@
 #include "memPage_t.h"
 #include "memPool_t.h"
-#include <iostream.h>
+#include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -52,7 +53,7 @@ bool memPage_t_test() {
 		return false;
 	}
 	if (myPage.getPos() != sizeof(instance1)) {
-		cerr << "Incorrect page position after write " << myPage.getPos << "!" << endl;
+		cerr << "Incorrect page position after write " << myPage.getPos() << "!" << endl;
 		return false;
 	}
 	// Write out of bounds
@@ -83,7 +84,7 @@ bool memPage_t_test() {
 	}
 	// Read out of bounds
 	if (myPage.read(&instance1, sizeof(instance1), -3)) {
-		cerr << "Read page #2 unexpectedly succeeded!" << endl
+		cerr << "Read page #2 unexpectedly succeeded!" << endl;
 		return false;
 	}
 	// Write out of bounds
@@ -194,22 +195,26 @@ bool memPool_t_test() {
 bool memPool_t_interactive() {
 	cout << "Enter positive capacity for pool pages: ";
 	size_t pageCapacity;
-	pageCapacity << cin;
+	cin >> pageCapacity;
 	if (pageCapacity == 0) {
-		cerr << "Invalid page capacity!"; << endl;
+		cerr << "Invalid page capacity!" << endl;
 		return false;
 	}
 	cout << "Enter initial pages count: ";
 	size_t initialPageCount;
-	initialPageCount << cin;
+	cin >> initialPageCount;
 	memPool_t pool(pageCapacity, initialPageCount);
 	cout << "Initialized pool with current capacity of " << pool.getCapacity() << endl;
 	
 	cout << "Your input will be written into the pool as a stream of ASCII characters." << endl;
 	cout << "Enter your input below, hit ENTER to finish:" << endl;
-	char input;
-	while ((input << cin) != '\n') {
-		if (!pool.write(&input, sizeof(input))) {
+	char* in;
+	string input;
+	
+	cin.ignore();
+	getline(cin, input);
+	for (string::iterator it = input.begin(); it != input.end(); it++) {
+		if (!pool.write(&(*it), sizeof(char))) {
 			cerr << "Error writing to pool!" << endl;
 			return false;
 		}
@@ -227,10 +232,11 @@ bool memPool_t_interactive() {
 			cerr << "Error reading from pool!" << endl;
 		}
 		cout << output;
+		pos++;
 	}
 	cout << endl;
 	cout << "Your input was of size " << pool.getSize() << " spanning " << pool.getPageCount() << " pages." << endl;
-	cout << "Total pool capacity is now " << pool.getCapacity(); << endl;
+	cout << "Total pool capacity is now " << pool.getCapacity() << endl;
 	return true;
 }
 
