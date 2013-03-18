@@ -3,10 +3,10 @@
 
 using namespace std;
 
-memPool_t::memPool_t(size_t pageCapacity, size_t initialPoolCapacity) : pageCapacity(pageCapacity), size(0), pos(0) {
-	pages.reserve(initialPoolCapacity);
-	for (size_t i = 0; i < initialPoolCapacity; i++) {
-		pages.push_back(new memPage_t(pageCapacity));
+memPool_t::memPool_t(size_t newPageCapacity, size_t initalPageCount) : newPageCapacity(newPageCapacity), size(0), pos(0), poolCapacity(0) {
+	pages.reserve(initalPageCount);
+	for (size_t i = 0; i < initalPageCount; i++) {
+		addNewPage();
 	}
 }
 
@@ -25,6 +25,29 @@ bool memPool_t::setPos(size_t newPos)  {
 	return true;
 }
 
+bool memPool_t::setNewPageCapacity(size_t newNewPageCapacity) {
+	if (newNewPageCapacity <= 0) {
+		return false;
+	}
+	newPageCapacity = newNewPageCapacity;
+	return true;
+}
+
+void memPool_t::addNewPage() {
+	pages.push_back(new memPage_t(newPageCapacity));
+	poolCapacity += newPageCapacity;
+}
+
+size_t memPool_t::findPage(size_t pos) {
+	int posLeft = pos;
+	size_t pageNum = -1;
+	while (posLeft >= 0) {
+		pageNum++;
+		posLeft -= pages[pageNum]->getCapacity();		
+	}
+	return pageNum;
+}
+
 bool memPool_t::read(void* out, size_t len, unsigned int usrPos) {
 	// Cannot read out of bounds
 	if (usrPos + len > size) {
@@ -32,12 +55,12 @@ bool memPool_t::read(void* out, size_t len, unsigned int usrPos) {
 	}
 	pos = usrPos;
 	// Find page boundaries
-	size_t begin_page = pos / pageCapacity;
-	size_t end_page = (pos + len - 1) / pageCapacity;
-	for (size_t page = begin_page; page <= end_page; page++) {
+	size_t beginPage = findPage(pos);
+	size_t endPage = findPage(pos + len - 1);
+	for (size_t pageNum = beginPage; pageNum <= endPage; pageNum++) {
 		// Read from page
-		size_t to_read = min(len, pageCapacity - (pos % pageCapacity));
-		pages[page]->read(out, to_read, pos % pageCapacity);
+		size_t to_read = min(len, pages[pageNum]->getCapacity() - (pos % pages[pageNum]->getCapacity()));
+		pages[pageNum]->read(out, to_read, pos % pages[pageNum]->getCapacity());
 		pos += to_read;
 		len -= to_read;
 		out = (char*)((char*)out + to_read);
@@ -51,19 +74,18 @@ bool memPool_t::write(const void* in, size_t len, unsigned int usrPos) {
 		return false;
 	}
 	pos = usrPos;
-	size_t begin_page = pos / pageCapacity;
-	size_t end_page = (pos + len - 1) / pageCapacity;
-	for (size_t page = begin_page; page <= end_page; page++) {
-		// Extend pool if necessary
-		if (page >= pages.size()) {
-			pages.push_back(new memPage_t(pageCapacity));
+	size_t pageNum = findPage(pos);
+	while (len > 0) {
+		if (pageNum >= pages.size()) {
+			addNewPage();
 		}
 		// Write to page
-		size_t toWrite = min(len, pageCapacity - (pos % pageCapacity));
-		pages[page]->write(in, toWrite, pos % pageCapacity);
+		size_t toWrite = min(len, pages[pageNum]->getCapacity() - (pos % pages[pageNum]->getCapacity()));
+		pages[pageNum]->write(in, toWrite, pos % pages[pageNum]->getCapacity());
 		pos += toWrite;
 		len -= toWrite;
 		in = (char*)((char*)in + toWrite);
+		pageNum++;
 	}
 	size = max(size, pos);
 	return true;

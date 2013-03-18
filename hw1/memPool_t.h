@@ -10,20 +10,20 @@ class memPool_t {
 public:
 
 	// Constructs with a given page capacity and initial number of allocated pages
-	memPool_t(size_t pageCapacity, size_t initialPoolCapacity = 1);
+	memPool_t(size_t newPageCapacity, size_t initialPageCount = 1);
 	~memPool_t();
 
 	// Queries
 	unsigned int getPos() const { return pos; }
 	size_t getSize() const { return size; }
 	size_t getPageCount() const { return pages.size(); }
-	size_t getCapacity() const { return getPageCount() * pageCapacity; }
-	size_t getPageCapacity() const { return pageCapacity; }
+	size_t getCapacity() const { return poolCapacity; }
 	bool isEmpty() const { return getSize() == 0; }
 	bool isFull() const { return getSize() == getCapacity(); }
 	
 	// Mutators
 	bool setPos(size_t newPos);
+	bool setNewPageCapacity(size_t newNewPageCapacity);
 
 	// Access
 	bool read(void* out, size_t len) { return read(out, len, pos); }
@@ -37,8 +37,15 @@ private:
 	// Disallow copy constructor
 	memPool_t(const memPool_t& that);
 
-	// Max capacity per page
-	size_t pageCapacity;
+	// Adds new page to the pool
+	void addNewPage();
+
+	unsigned int findPage(size_t pos);
+
+	// Capacity for new pages
+	size_t newPageCapacity;
+	// Total capacity of all pages in the pool
+	size_t poolCapacity;
 	// Backing store of pages
 	vector<memPage_t*> pages;
 	// Actual size (spanning over all pages)
