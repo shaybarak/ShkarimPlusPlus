@@ -203,6 +203,7 @@ bool memPool_t_interactive() {
 	size_t initialPageCount;
 	initialPageCount << cin;
 	memPool_t pool(pageCapacity, initialPageCount);
+	cout << "Initialized pool with current capacity of " << pool.getCapacity() << endl;
 	
 	cout << "Your input will be written into the pool as a stream of ASCII characters." << endl;
 	cout << "Enter your input below, hit ENTER to finish:" << endl;
@@ -228,6 +229,8 @@ bool memPool_t_interactive() {
 		cout << output;
 	}
 	cout << endl;
+	cout << "Your input was of size " << pool.getSize() << " spanning " << pool.getPageCount() << " pages." << endl;
+	cout << "Total pool capacity is now " << pool.getCapacity(); << endl;
 	return true;
 }
 
