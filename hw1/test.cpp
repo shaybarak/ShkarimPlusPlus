@@ -188,6 +188,53 @@ bool memPool_t_test() {
 		return false;
 	}
 
+	//write and read from pool with pages of different length
+	memPool_t myPoolVar(2, 4);
+	MyTestType instance3(11, 12, 11.2, 13.4);
+	MyTestType instance4(15, 16, 15.6, 17.8);
+	MyTestType instance5(0, 0, 0, 0);
+	MyTestType instance6(1, 1, 1, 1);
+	//write to pool
+	if (!myPoolVar.write(&instance3, sizeof(instance3))) {
+		cerr << "Write instance3 to myPoolVar failed!" << endl;
+		return false;
+	}
+	myPoolVar.setNewPageCapacity(23);
+	if (!myPoolVar.write(&instance4, sizeof(instance4))) {
+		cerr << "Write instance4 to myPoolVar failed!" << endl;
+		return false;
+	}
+
+	if (myPoolVar.getPageCount() != 14) {
+		cerr << "myPoolVar wrong number of pages, expected 14, found " << myPoolVar.getPageCount() << endl;
+		return false;
+	}
+
+	if (!myPoolVar.setPos(0)) {
+		cerr << "Setting myPoolVar position to 0 failed!" << endl;
+		return false;
+	}
+	if (!myPoolVar.read(&instance5, sizeof(instance5))) {
+		cerr << "Read #1 from myPoolVar failed!" << endl;
+		return false;
+	}
+
+	if (!myPoolVar.read(&instance6, sizeof(instance5))) {
+		cerr << "Read #2 from myPoolVar failed!" << endl;
+		return false;
+	}
+
+	if (instance3 != instance5) {
+		cerr << "Expected instance3 and instance5 equality!" << endl;
+		return false;
+	}
+
+	if (instance4 != instance6) {
+		cerr << "Expected instance4 and instance6 equality!" << endl;
+		return false;
+	}
+
+
 	return true;
 }
 
