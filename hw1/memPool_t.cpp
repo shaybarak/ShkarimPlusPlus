@@ -56,7 +56,7 @@ bool memPool_t::read(void* out, size_t len, unsigned int usrPos) {
 	pos = usrPos;
 	// Find offset within first page
 	size_t offset = pos;
-	size_t pageNum = findPage(offset);
+	size_t pageNum = findPage(&offset);
 	// Iterate over pages spanning range
 	while (len > 0) {
 		size_t toRead = min(len, pages[pageNum]->getCapacity() - offset);
@@ -82,7 +82,7 @@ bool memPool_t::write(const void* in, size_t len, unsigned int usrPos) {
 	}
 	// Find offset within first page
 	size_t offset = pos;
-	size_t pageNum = findPage(offset);
+	size_t pageNum = findPage(&offset);
 	// Iterate over pages spanning range
 	while (len > 0) {
 		// Expand pool if necessary
