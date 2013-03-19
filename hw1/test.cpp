@@ -244,13 +244,16 @@ int main() {
 		cerr << "Error in memPage_t test!" << endl;
 		return 1;
 	}
+	cout << "Automatic tests for memPage_t completed successfully." << endl;
 	if (!memPool_t_test()) {
 		cerr << "Error in memPool_t test!" << endl;
 		return 1;
 	}
+	cout << "Automatic tests for memPool_t completed successfully." << endl;
 	if (!memPool_t_interactive()) {
 		cerr << "Error in interactive test!" << endl;
 		return 1;
 	}
+	cout << "Interactive test for memPool_t completed successfully." << endl;
 	return 0;
 }
