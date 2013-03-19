@@ -42,7 +42,7 @@ private:
 
 	// Translates an allocated pool position to in-page position
 	// Returns the page's index in the pool
-	size_t findPage(size_t* pos);
+	size_t findPage(size_t* pos) const;
 
 	// Capacity for new pages
 	size_t newPageCapacity;

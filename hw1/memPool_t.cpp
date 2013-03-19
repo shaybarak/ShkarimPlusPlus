@@ -63,6 +63,7 @@ bool memPool_t::read(void* out, size_t len, unsigned int usrPos) {
 			return false;
 		}
 		pos += toRead;
+		out += toRead;
 		len -= toRead;
 		pageNum++;
 		offset = 0;
@@ -94,6 +95,7 @@ bool memPool_t::write(const void* in, size_t len, unsigned int usrPos) {
 			return false;
 		}
 		pos += toWrite;
+		in += toWrite;
 		size = max(size, pos);
 		len -= toWrite;
 		pageNum++;
