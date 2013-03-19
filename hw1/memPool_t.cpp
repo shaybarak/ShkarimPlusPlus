@@ -38,13 +38,13 @@ void memPool_t::addNewPage() {
 	poolCapacity += newPageCapacity;
 }
 
-size_t memPool_t::findPage(size_t pos) {
-	int posLeft = pos;
+size_t memPool_t::findPage(size_t* pos) {
 	size_t pageNum = -1;
-	while (posLeft >= 0) {
+	while (*pos >= 0) {
 		pageNum++;
-		posLeft -= pages[pageNum]->getCapacity();		
+		pos -= pages[pageNum]->getCapacity();		
 	}
+	*pos += pages[pageNum]->getCapacity();
 	return pageNum;
 }
 
@@ -54,16 +54,19 @@ bool memPool_t::read(void* out, size_t len, unsigned int usrPos) {
 		return false;
 	}
 	pos = usrPos;
-	// Find page boundaries
-	size_t beginPage = findPage(pos);
-	size_t endPage = findPage(pos + len - 1);
-	for (size_t pageNum = beginPage; pageNum <= endPage; pageNum++) {
-		// Read from page
-		size_t to_read = min(len, pages[pageNum]->getCapacity() - (pos % pages[pageNum]->getCapacity()));
-		pages[pageNum]->read(out, to_read, pos % pages[pageNum]->getCapacity());
-		pos += to_read;
-		len -= to_read;
-		out = (char*)((char*)out + to_read);
+	// Find offset within first page
+	size_t offset = pos;
+	size_t pageNum = findPage(offset);
+	// Iterate over pages spanning range
+	while (len > 0) {
+		size_t toRead = min(len, pages[pageNum]->getCapacity() - offset);
+		if (!pages[pageNum]->read(out, toRead, offset)) {
+			return false;
+		}
+		pos += toRead;
+		len -= toRead;
+		pageNum++;
+		offset = 0;
 	}
 	return true;
 }
@@ -73,24 +76,28 @@ bool memPool_t::write(const void* in, size_t len, unsigned int usrPos) {
 	if (usrPos > size) {
 		return false;
 	}
-	pos = usrPos;
-
+	// Special handling for write to end of pool on page boundary
 	if (pos == getCapacity()) {
 		addNewPage();
 	}
-	size_t pageNum = findPage(pos);
+	// Find offset within first page
+	size_t offset = pos;
+	size_t pageNum = findPage(offset);
+	// Iterate over pages spanning range
 	while (len > 0) {
+		// Expand pool if necessary
 		if (pageNum >= pages.size()) {
 			addNewPage();
 		}
-		// Write to page
-		size_t toWrite = min(len, pages[pageNum]->getCapacity() - (pos % pages[pageNum]->getCapacity()));
-		pages[pageNum]->write(in, toWrite, pos % pages[pageNum]->getCapacity());
+		size_t toWrite = min(len, pages[pageNum]->getCapacity() - offset);
+		if (!pages[pageNum]->write(in, toWrite, offset)) {
+			return false;
+		}
 		pos += toWrite;
+		size = max(size, pos);
 		len -= toWrite;
-		in = (char*)((char*)in + toWrite);
 		pageNum++;
+		offset = 0;
 	}
-	size = max(size, pos);
 	return true;
 }

@@ -40,7 +40,9 @@ private:
 	// Adds new page to the pool
 	void addNewPage();
 
-	unsigned int findPage(size_t pos);
+	// Translates an allocated pool position to in-page position
+	// Returns the page's index in the pool
+	size_t findPage(size_t* pos);
 
 	// Capacity for new pages
 	size_t newPageCapacity;
