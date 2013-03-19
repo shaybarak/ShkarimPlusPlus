@@ -77,7 +77,7 @@ bool memPool_t::write(const void* in, size_t len, unsigned int usrPos) {
 		return false;
 	}
 	// Special handling for write to end of pool on page boundary
-	if (pos == getCapacity()) {
+	if (usrPos == getCapacity()) {
 		addNewPage();
 	}
 	// Find offset within first page
