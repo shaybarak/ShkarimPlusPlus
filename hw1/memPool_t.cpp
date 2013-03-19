@@ -39,12 +39,11 @@ void memPool_t::addNewPage() {
 }
 
 size_t memPool_t::findPage(size_t* pos) {
-	size_t pageNum = -1;
-	while (*pos >= 0) {
+	size_t pageNum = 0;
+	while (*pos >= pages[pageNum]->getCapacity()) {
 		pageNum++;
-		pos -= pages[pageNum]->getCapacity();		
+		*pos -= pages[pageNum]->getCapacity();		
 	}
-	*pos += pages[pageNum]->getCapacity();
 	return pageNum;
 }
 
@@ -80,6 +79,7 @@ bool memPool_t::write(const void* in, size_t len, unsigned int usrPos) {
 	if (usrPos == getCapacity()) {
 		addNewPage();
 	}
+	pos = usrPos;
 	// Find offset within first page
 	size_t offset = pos;
 	size_t pageNum = findPage(&offset);
