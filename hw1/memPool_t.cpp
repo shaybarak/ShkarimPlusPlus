@@ -38,7 +38,7 @@ void memPool_t::addNewPage() {
 	poolCapacity += newPageCapacity;
 }
 
-size_t memPool_t::findPage(size_t* pos) {
+size_t memPool_t::findPage(size_t* pos) const{
 	size_t pageNum = 0;
 	while (*pos >= pages[pageNum]->getCapacity()) {
 		pageNum++;
@@ -63,7 +63,7 @@ bool memPool_t::read(void* out, size_t len, unsigned int usrPos) {
 			return false;
 		}
 		pos += toRead;
-		out += toRead;
+		out = (char*)((char*)out + toRead);
 		len -= toRead;
 		pageNum++;
 		offset = 0;
@@ -95,7 +95,7 @@ bool memPool_t::write(const void* in, size_t len, unsigned int usrPos) {
 			return false;
 		}
 		pos += toWrite;
-		in += toWrite;
+		in = (char*)((char*)in + toWrite);
 		size = max(size, pos);
 		len -= toWrite;
 		pageNum++;
