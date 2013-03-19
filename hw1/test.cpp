@@ -12,15 +12,15 @@ public:
 	  : int1(int1), int2(int2), double1(double1), double2(double2) {}
 
 	bool operator== (MyTestType &right) {
-    return (
-    	int1 == right.int1 &&
-    	int2 == right.int2 &&
-    	double1 == right.double1 &&
-    	double2 == right.double2);
+	return (
+		int1 == right.int1 &&
+		int2 == right.int2 &&
+		double1 == right.double1 &&
+		double2 == right.double2);
 	}
  
 	bool operator!= (MyTestType &right) {
-    	return !(*this == right);
+		return !(*this == right);
 	}
 
 	int int1, int2;
@@ -208,7 +208,6 @@ bool memPool_t_interactive() {
 	
 	cout << "Your input will be written into the pool as a stream of ASCII characters." << endl;
 	cout << "Enter your input below, hit ENTER to finish:" << endl;
-	char* in;
 	string input;
 	
 	cin.ignore();
