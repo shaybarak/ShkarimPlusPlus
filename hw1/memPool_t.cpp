@@ -40,9 +40,12 @@ void memPool_t::addNewPage() {
 
 size_t memPool_t::findPage(size_t* pos) const{
 	size_t pageNum = 0;
-	while (*pos >= pages[pageNum]->getCapacity()) {
+	while ((int)*pos >= (int)pages[pageNum]->getCapacity()) {
 		pageNum++;
-		*pos -= pages[pageNum]->getCapacity();		
+		*pos -= pages[pageNum]->getCapacity();
+	}
+	if ((int)*pos < 0) {
+		*pos = 0;
 	}
 	return pageNum;
 }
