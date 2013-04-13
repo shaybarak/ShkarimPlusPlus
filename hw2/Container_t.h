@@ -1,6 +1,6 @@
 #pragma once
 
-template <T> class Container_t {
+template <class T> class Container_t {
 public:
 
 	Container_t(): size(0) {}
