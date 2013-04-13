@@ -3,6 +3,8 @@
 template <T> class Container_t {
 public:
 
+	Container_t(): size(0) {}
+
 	int count() const { return size; }
 	virtual T* find(const T& element) const;
 	
@@ -15,4 +17,8 @@ public:
 
 	virtual void removeAll() = 0;
 	virtual void removeAndDeleteAll() = 0;
-}
+
+private:
+	int size;
+
+};
