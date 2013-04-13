@@ -1,39 +1,47 @@
 #pragma once
 
-template <typename T> class Dlist_t : public Container_t<T> {
+template <class T> class Dlist_t : public Container_t<T> {
 public:
 
 	Dlist_t() : Container_t(), head(null), tail(null) {}
 
 	Dlist_t(const Dlist_t<T>& rhs) {
-		removeAll();
-		node* cursor = rhs.head;
-		if (cursor != null) {
-			// Special handling for copying first element
-			head = new node;
-			head->element = cursor->element;
-			head->next = head->prev = null;
-			tail = head;
-			cursor = cursor->next;
-		}
-		while (cursor != null) {
-
-		}
-		size = rhs.size;
+		operator=(rhs);
 	}
 
 	~Array_t() { removeAll(); }
 
 	Dlist_t<T>& operator=(Dlist_t<T>& rhs) {
-		// TODO
-		return this;
+		removeAll();
+		node* cursor = rhs.head;
+		// Copy all elements
+		while (cursor != null) {
+			insert(cursor->element);
+			cursor = cursor->next;
+		}
+		return *this;
 	}
 
 	virtual T* find(const T& element) const {
 		return findNode(element)->element;
 	}
 	
-	virtual void insert(const T& element);
+	virtual void insert(const T& element) {
+		if (head == null) {
+			// List is empty, need to initialize first
+			head = new node;
+			head->element = element;
+			head->next = head->prev = null;
+			tail = head;
+		} else {
+			node* newNode = new node;
+			newNode->element = element;
+			newNode->prev = tail;
+			newNode->next = null;
+			tail->next = newNode;
+			tail = newNode;
+		}
+	}
 
 	virtual void append(const T& element, size_t index) {
 		if (index >= size) {
