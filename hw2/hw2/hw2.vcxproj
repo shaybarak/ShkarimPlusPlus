@@ -60,6 +60,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\Array_t.h" />
+    <ClInclude Include="..\Container_t.h" />
+    <ClInclude Include="..\Dlist_t.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\ContainerTest.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
