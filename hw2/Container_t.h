@@ -18,7 +18,7 @@ public:
 	virtual void removeAll() = 0;
 	virtual void removeAndDeleteAll() = 0;
 
-private:
+protected:
 	size_t size;
 
 };
