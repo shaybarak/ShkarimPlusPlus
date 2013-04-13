@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdio.h>
+
 template <class T> class Array_t : public Container_t<T> {
 public:
 
@@ -15,7 +17,7 @@ public:
 				return arr[i];
 			}
 		}
-		return null;
+		return NULL;
 	}
 	
 	virtual void insert(const T& element) {
@@ -111,7 +113,7 @@ private:
 		capacity += EXTRA_CAPACITY;
 	}
 
-	T* arr[];
+	T** arr;
 	static const size_t INITIAL_CAPACITY = 4;
 	static const size_t EXTRA_CAPACITY = 4;
 	size_t capacity;
