@@ -6,7 +6,7 @@ public:
 	Container_t(): size(0) {}
 
 	size_t count() const { return size; }
-	virtual T* find(const T& element) const;
+	virtual T* find(const T& element) const = 0;
 	
 	virtual void insert(T& element) = 0;
 	virtual void append(T& element, size_t index) = 0;
