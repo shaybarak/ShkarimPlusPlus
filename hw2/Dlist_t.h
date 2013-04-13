@@ -1,11 +1,12 @@
 #pragma once
 
 #include "Container_t.h"
+#include <stdio.h>
 
 template <class T> class Dlist_t : public Container_t<T> {
 public:
 
-	Dlist_t() : Container_t(), head(null), tail(null) {}
+	Dlist_t() : Container_t(), head(NULL), tail(NULL) {}
 
 	Dlist_t(const Dlist_t<T>& rhs) {
 		operator=(rhs);
@@ -17,7 +18,7 @@ public:
 		removeAll();
 		node* cursor = rhs.head;
 		// Copy all elements
-		while (cursor != null) {
+		while (cursor != NULL) {
 			insert(cursor->element);
 			cursor = cursor->next;
 		}
@@ -29,17 +30,17 @@ public:
 	}
 	
 	virtual void insert(const T& element) {
-		if (head == null) {
+		if (head == NULL) {
 			// List is empty, need to initialize first
 			head = new node;
 			head->element = element;
-			head->next = head->prev = null;
+			head->next = head->prev = NULL;
 			tail = head;
 		} else {
 			node* newNode = new node;
 			newNode->element = element;
 			newNode->prev = tail;
-			newNode->next = null;
+			newNode->next = NULL;
 			tail->next = newNode;
 			tail = newNode;
 		}
@@ -60,7 +61,7 @@ public:
 		newNode->prev = cursor;
 		newNode->next = cursor->next;
 		newNode->prev->next = newNode;
-		if (newNode->next == null) {
+		if (newNode->next == NULL) {
 			// New tail
 			tail = newNode;
 		} else {
@@ -83,7 +84,7 @@ public:
 		newNode->next = cursor;
 		newNode->prev = cursor->prev;
 		newNode->next->prev = newNode;
-		if (newNode->prev == null) {
+		if (newNode->prev == NULL) {
 			// New head
 			head = newNode;
 		} else {
@@ -94,8 +95,8 @@ public:
 	virtual T* remove(const T& element) {
 		// Find
 		node* cursor = findNode(element);
-		if (cursor == null) {
-			return null;
+		if (cursor == NULL) {
+			return NULL;
 		}
 		// Update head or tail if necessary
 		if (head == cursor) {
@@ -105,10 +106,10 @@ public:
 			tail = cursor->prev;
 		}
 		// Unlink and delete
-		if (cursor->prev != null) {
+		if (cursor->prev != NULL) {
 			cursor->prev->next = cursor;
 		}
-		if (cursor->next != null) {
+		if (cursor->next != NULL) {
 			cursor->next->prev = cursor;
 		}
 		T* found = cursor->element;
@@ -118,23 +119,23 @@ public:
 	}
 
 	virtual void removeAll() {
-		while (head != null) {
+		while (head != NULL) {
 			node* next = head->next;
 			delete head;
 			head = next;
 		}
-		head = tail = null;
+		head = tail = NULL;
 		size = 0;
 	}
 
 	virtual void removeAndDeleteAll() {
-		while (head != null) {
+		while (head != NULL) {
 			node* next = head->next;
 			delete head->element;
 			delete head;
 			head = next;
 		}
-		head = tail = null;
+		head = tail = NULL;
 		size = 0;
 	}
 
@@ -147,12 +148,12 @@ private:
 
 	private node* findNode(const T& element) {
 		node* cursor = head;
-		while (cursor != null) {
+		while (cursor != NULL) {
 			if (*cursor->element == element) {
 				return cursor;
 			}
 		}
-		return null;
+		return NULL;
 	}
 
 	node* head;
