@@ -49,11 +49,45 @@ public:
 		if (index >= size) {
 			// TODO exception
 		}
+		// Seek node by index
+		node* cursor = head;
+		for (int i = 1; i < index; i++) {
+			cursor = cursor->next;
+		}
+		// Append
+		node* newNode = new node;
+		newNode->element = element;
+		newNode->prev = cursor;
+		newNode->next = cursor->next;
+		newNode->prev->next = newNode;
+		if (newNode->next == null) {
+			// New tail
+			tail = newNode;
+		} else {
+			newNode->next->prev = newNode;
+		}
 	}
 
 	virtual void prepend(const T& element, size_t index) {
 		if (index >= size) {
 			// TODO exception
+		}
+		// Seek node by index
+		node* cursor = head;
+		for (int i = 1; i < index; i++) {
+			cursor = cursor->next;
+		}
+		// Prepend
+		node* newNode = new node;
+		newNode->element = element;
+		newNode->next = cursor;
+		newNode->prev = cursor->prev;
+		newNode->next->prev = newNode;
+		if (newNode->prev == null) {
+			// New head
+			head = newNode;
+		} else {
+			newNode->prev->next = newNode;
 		}
 	}
 
