@@ -12,7 +12,7 @@ public:
 		operator=(rhs);
 	}
 
-	~Array_t() { removeAll(); }
+	~Dlist_t() { removeAll(); }
 
 	Dlist_t<T>& operator=(Dlist_t<T>& rhs) {
 		removeAll();
