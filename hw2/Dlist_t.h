@@ -6,7 +6,7 @@
 template <class T> class Dlist_t : public Container_t<T> {
 public:
 
-	Dlist_t() : Container_t(), head(NULL), tail(NULL) {}
+	Dlist_t() : Container_t(), head(NULL), tail(NULL), cursor(NULL) {}
 
 	Dlist_t(const Dlist_t<T>& rhs) {
 		operator=(rhs);
@@ -22,6 +22,8 @@ public:
 			insert(cursor->element);
 			cursor = cursor->next;
 		}
+		size = rhs.size;
+		reset();
 		return *this;
 	}
 
@@ -44,6 +46,7 @@ public:
 			tail->next = newNode;
 			tail = newNode;
 		}
+		reset();
 	}
 
 	virtual void append(const T& element, size_t index) {
@@ -67,6 +70,7 @@ public:
 		} else {
 			newNode->next->prev = newNode;
 		}
+		reset();
 	}
 
 	virtual void prepend(const T& element, size_t index) {
@@ -90,6 +94,7 @@ public:
 		} else {
 			newNode->prev->next = newNode;
 		}
+		reset();
 	}
 
 	virtual T* remove(const T& element) {
@@ -115,6 +120,7 @@ public:
 		T* found = cursor->element;
 		delete cursor;
 		size -= 1;
+		reset();
 		return found;
 	}
 
@@ -126,6 +132,7 @@ public:
 		}
 		head = tail = NULL;
 		size = 0;
+		reset();
 	}
 
 	virtual void removeAndDeleteAll() {
@@ -137,6 +144,28 @@ public:
 		}
 		head = tail = NULL;
 		size = 0;
+		reset();
+	}
+
+	T* reset() {
+		cursor = head;
+		return cursor == NULL ? NULL : cursor->element;
+	}
+
+	T* next() {
+		if (cursor == NULL) {
+			// TODO exception
+		}
+		cursor = cursor->next;
+		return cursor == NULL ? NULL : cursor->element;
+	}
+
+	T* prev() {
+		if (cursor == NULL) {
+			// TODO exception
+		}
+		cursor = cursor->prev;
+		return cursor == NULL ? NULL : cursor->element;
 	}
 
 private:
@@ -158,4 +187,5 @@ private:
 
 	node* head;
 	node* tail;
+	node* cursor;
 };
