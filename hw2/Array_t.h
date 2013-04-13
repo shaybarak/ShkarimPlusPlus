@@ -20,54 +20,55 @@ public:
 		return NULL;
 	}
 	
-	virtual void insert(const T& element) {
+	virtual void insert(T& element) {
 		if (size == capacity) { 
 			extend();  
 		}
-		arr[size] = &element;
-		size++;
+		arr[size++] = &element;
 	}
 
-	virtual void append(const T& element, size_t index) {
+	virtual void append(T& element, size_t index) {
 		if (index >= size) {
 			//TODO illegeal indices -> expcetion, neew explanations
 		}
 		if (size == capacity) {
 			extend();
 		}
-		for (int i = size; i > index + 1; i--) {
+		for (unsigned int i = size; i > index + 1; i--) {
 			arr[i] = arr[i-1];
 		}
-		arr[index] = element;
+		arr[index] = &element;
 	}
 	
-	virtual void prepend(const T& element, size_t index) {
+	virtual void prepend(T& element, size_t index) {
 		if (index >= size) {
 			//TODO illegeal indices -> expcetion, neew explanations
 		}
 		if (index == capacity) {
 			extend();
 		}
-		for (int i = size; i > index; i--) {
+		for (unsigned int i = size; i > index; i--) {
 			arr[i] = arr[i-1];
 		}
-		arr[index] = element;
+		arr[index] = &element;
 	}
 
 	virtual T* remove(const T& element) {
-		int removeIndex = 0;
+		unsigned int removeIndex = 0;
 		for (; removeIndex < size; removeIndex++) {
-			if (arr[removeIndex] = element) {
+			if (*arr[removeIndex] == element) {
 				break;
 			}
 		}
 		if (removeIndex == size) {
-			return null;
+			return NULL;
 		}
-		for (int i = removeIndex; i < size - 1; i--) {
+		T* result = arr[removeIndex];
+		for (unsigned int i = removeIndex; i < size - 1; i--) {
 			arr[i] = arr[i+1];
 		}
-
+		size--;
+		return result;
 	}
 
 	virtual void removeAll() {
@@ -77,7 +78,7 @@ public:
 	}
 
 	virtual void removeAndDeleteAll() {
-		for (int i = 0; i < size; i++) {
+		for (unsigned int i = 0; i < size; i++) {
 			delete arr[i];
 		}
 		removeAll();
@@ -104,7 +105,7 @@ public:
 private:
 
 	void extend() {
-		T* newArr = new T*[capacity + EXTRA_CAPACITY];
+		T** newArr = new T*[capacity + EXTRA_CAPACITY];
 		for (size_t i = 0; i < size; i++) {
 			newArr[i] = arr[i];
 		}
