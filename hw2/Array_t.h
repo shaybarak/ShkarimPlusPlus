@@ -1,6 +1,6 @@
 #pragma once
 
-template <T> class Array_t {
+template <class T> class Array_t : public Container_t<T> {
 public:
 
 	Array_t() : Container_t(), arr(new T*[INITIAL_CAPACITY]), capacity(INITIAL_CAPACITY) {}
@@ -28,29 +28,76 @@ public:
 
 	virtual void append(const T& element, size_t index) {
 		if (index >= size) {
-			//TODO illegeal indices
+			//TODO illegeal indices -> expcetion, neew explanations
 		}
-		
-		//appent to last value
-		if ((index == size - 1) && (size < capacity - 1)) {
-			arr[index] = element;
-		} else if ((index == size - 1) && (size == capacity - 1)) {
+		if (size == capacity) {
 			extend();
-			arr[index] = element;
-		} else if (size == capacity - 1) {
-			for (int i = size - 1; i >= index; ) {
+		}
+		for (int i = size; i > index + 1; i--) {
+			arr[i] = arr[i-1];
+		}
+		arr[index] = element;
+	}
+	
+	virtual void prepend(const T& element, size_t index) {
+		if (index >= size) {
+			//TODO illegeal indices -> expcetion, neew explanations
+		}
+		if (index == capacity) {
+			extend();
+		}
+		for (int i = size; i > index; i--) {
+			arr[i] = arr[i-1];
+		}
+		arr[index] = element;
+	}
+
+	virtual T* remove(const T& element) {
+		int removeIndex = 0;
+		for (; removeIndex < size; removeIndex++) {
+			if (arr[removeIndex] = element) {
+				break;
 			}
 		}
-		
+		if (removeIndex == size) {
+			return null;
+		}
+		for (int i = removeIndex; i < size - 1; i--) {
+			arr[i] = arr[i+1];
+		}
 
 	}
-	virtual void prepend(const T& element, size_t index) = 0;
 
-	virtual T* remove(const T& element) = 0;
-	void removeAndDelete(const T& element) { delete remove(element); }
+	virtual void removeAll() {
+		delete[] arr;
+		size = 0;
+		capacity = 0;
+	}
 
-	virtual void removeAll() = 0;
-	virtual void removeAndDeleteAll() = 0;
+	virtual void removeAndDeleteAll() {
+		for (int i = 0; i < size; i++) {
+			delete arr[i];
+		}
+		removeAll();
+	}
+
+	Array_t& operator= (const Array_t<T>& rhs) {
+		removeAll();
+		arr = new T*[rhs.capacity];
+		size = rhs.size;
+		capacity = rhs.capacity;
+		for (int i = 0; i < size; i++) {
+			arr[i] = rhs.add[i];
+		}
+		return this;
+	}
+
+	T* operator[] (size_t index) {
+		if (index >= size) {
+			//throw new 
+		}
+		return arr[i];
+	}
 
 private:
 
@@ -69,4 +116,4 @@ private:
 	static const size_t EXTRA_CAPACITY = 4;
 	size_t capacity;
 
-}
+};
