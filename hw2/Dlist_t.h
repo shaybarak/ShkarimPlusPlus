@@ -46,6 +46,7 @@ public:
 			tail->next = newNode;
 			tail = newNode;
 		}
+		size++;
 		reset();
 	}
 
@@ -70,6 +71,7 @@ public:
 		} else {
 			newNode->next->prev = newNode;
 		}
+		size++;
 		reset();
 	}
 
@@ -94,6 +96,7 @@ public:
 		} else {
 			newNode->prev->next = newNode;
 		}
+		size++;
 		reset();
 	}
 
@@ -119,7 +122,7 @@ public:
 		}
 		T* found = cursor->element;
 		delete cursor;
-		size -= 1;
+		size--;
 		reset();
 		return found;
 	}
