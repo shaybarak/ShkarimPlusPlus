@@ -21,8 +21,8 @@ bool Array_t_test() {
 }
 
 int main() {
-	if (!memPage_t_test()) {
-		cerr << "Error in memPage_t test!" << endl;
+	if (!Array_t_test()) {
+		cerr << "Error in Array_t test!" << endl;
 		return 1;
 	}
 }
