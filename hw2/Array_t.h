@@ -2,6 +2,7 @@
 #define ARRAY_T_H
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "Container_t.h"
 
 template <class T>
