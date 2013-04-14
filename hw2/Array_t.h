@@ -1,11 +1,14 @@
-#pragma once
+#ifndef ARRAY_T_H
+#define ARRAY_T_H
 
 #include <stdio.h>
+#include "Container_t.h"
 
-template <class T> class Array_t : public Container_t<T> {
+template <class T>
+class Array_t : protected Container_t<T> {
 public:
 
-	Array_t() : Container_t(), arr(new T*[INITIAL_CAPACITY]), capacity(INITIAL_CAPACITY) {}
+	Array_t() : Container_t<T>(), arr(new T*[INITIAL_CAPACITY]), capacity(INITIAL_CAPACITY) {}
 
 	~Array_t() {
 		removeAll();
@@ -99,7 +102,7 @@ public:
 		if (index >= size) {
 			//throw new 
 		}
-		return arr[i];
+		return arr[index];
 	}
 
 private:
@@ -120,3 +123,5 @@ private:
 	size_t capacity;
 
 };
+
+#endif

@@ -1,12 +1,14 @@
-#pragma once
+#ifndef DLIST_T_H
+#define DLIST_T_H
 
-#include "Container_t.h"
 #include <stdio.h>
+#include "Container_t.h"
 
-template <class T> class Dlist_t : public Container_t<T> {
+template <class T>
+class Dlist_t : protected Container_t<T> {
 public:
 
-	Dlist_t() : Container_t(), head(NULL), tail(NULL), cursor(NULL) {}
+	Dlist_t() : Container_t<T>(), head(NULL), tail(NULL), cursor(NULL) {}
 
 	Dlist_t(const Dlist_t<T>& rhs) {
 		operator=(rhs);
@@ -178,7 +180,7 @@ private:
 		struct node* next;
 	} node;
 
-	private node* findNode(const T& element) {
+	node* findNode(const T& element) {
 		node* cursor = head;
 		while (cursor != NULL) {
 			if (*cursor->element == element) {
@@ -192,3 +194,5 @@ private:
 	node* tail;
 	node* cursor;
 };
+
+#endif

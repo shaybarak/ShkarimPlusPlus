@@ -1,9 +1,11 @@
-#pragma once
+#ifndef CONTAINER_T_H
+#define CONTAINER_T_H
 
-template <class T> class Container_t {
+template <class T>
+class Container_t {
 public:
 
-	Container_t(): size(0) {}
+	Container_t() : size(0) {}
 
 	size_t count() const { return size; }
 	virtual T* find(const T& element) const = 0;
@@ -22,3 +24,5 @@ protected:
 	size_t size;
 
 };
+
+#endif
