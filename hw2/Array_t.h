@@ -11,11 +11,6 @@ public:
 
 	Array_t() : Container_t<T>(), arr(new T*[INITIAL_CAPACITY]), capacity(INITIAL_CAPACITY) {}
 
-	~Array_t() { 
-		removeAll(); 
-	}
-
-
 	//copy-constructor
 	Array_t(const Array_t<T>& rhs) {
 		operator=(rhs);
