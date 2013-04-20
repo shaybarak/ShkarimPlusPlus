@@ -15,7 +15,7 @@ public:
 		operator=(rhs);
 	}
 
-	virtual T* find(const T& element) const {
+	virtual T* find(const T& element) {
 		for (size_t i = 0; i < size; i++) {
 			if (*arr[i] == element) {
 				return arr[i];

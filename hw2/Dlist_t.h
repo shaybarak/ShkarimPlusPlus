@@ -28,7 +28,7 @@ public:
 		return *this;
 	}
 
-	virtual T* find(const T& element) const {
+	virtual T* find(const T& element) {
 		return findNode(element)->element;
 	}
 	
@@ -36,12 +36,12 @@ public:
 		if (head == NULL) {
 			// List is empty, need to initialize first
 			head = new node;
-			head->element = element;
+			head->element = &element;
 			head->next = head->prev = NULL;
 			tail = head;
 		} else {
 			node* newNode = new node;
-			newNode->element = element;
+			newNode->element = &element;
 			newNode->prev = tail;
 			newNode->next = NULL;
 			tail->next = newNode;
@@ -57,12 +57,12 @@ public:
 		}
 		// Seek node by index
 		node* cursor = head;
-		for (int i = 1; i < index; i++) {
+		for (unsigned int i = 1; i < index; i++) {
 			cursor = cursor->next;
 		}
 		// Append
 		node* newNode = new node;
-		newNode->element = element;
+		newNode->element = &element;
 		newNode->prev = cursor;
 		newNode->next = cursor->next;
 		newNode->prev->next = newNode;
@@ -82,12 +82,12 @@ public:
 		}
 		// Seek node by index
 		node* cursor = head;
-		for (int i = 1; i < index; i++) {
+		for (unsigned int i = 1; i < index; i++) {
 			cursor = cursor->next;
 		}
 		// Prepend
 		node* newNode = new node;
-		newNode->element = element;
+		newNode->element = &element;
 		newNode->next = cursor;
 		newNode->prev = cursor->prev;
 		newNode->next->prev = newNode;
