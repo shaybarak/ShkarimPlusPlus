@@ -55,7 +55,7 @@ public:
 
 	virtual void append(const T& element, size_t index) {
 		if (index >= size) {
-			// TODO exception
+			throw "Index out of bounds!";
 		}
 		// Seek node by index
 		node* cursor = head;
@@ -80,7 +80,7 @@ public:
 
 	virtual void prepend(const T& element, size_t index) {
 		if (index >= size) {
-			// TODO exception
+			throw "Index out of bounds!";
 		}
 		// Seek node by index
 		node* cursor = head;
@@ -160,7 +160,7 @@ public:
 
 	T* next() {
 		if (cursor == NULL) {
-			// TODO exception
+			throw "Iterator out of bounds!";
 		}
 		cursor = cursor->next;
 		return cursor == NULL ? NULL : cursor->element;
@@ -168,7 +168,7 @@ public:
 
 	T* prev() {
 		if (cursor == NULL) {
-			// TODO exception
+			throw "Iterator out of bounds!";
 		}
 		cursor = cursor->prev;
 		return cursor == NULL ? NULL : cursor->element;
