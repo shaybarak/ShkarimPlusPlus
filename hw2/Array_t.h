@@ -103,9 +103,9 @@ public:
 	Array_t& operator= (const Array_t<T>& rhs) {
 		removeAll();
 		arr = new T*[rhs.capacity];
-		size = rhs.size;
+		size = 0;
 		capacity = rhs.capacity;
-		for (unsigned int i = 0; i < size; i++) {
+		for (unsigned int i = 0; i < rhs.size; i++) {
 			insert(rhs[i]);
 		}
 		return *this;
