@@ -43,7 +43,7 @@ public:
 		for (unsigned int i = size; i > index + 1; i--) {
 			arr[i] = arr[i-1];
 		}
-		arr[index] = &element;
+		arr[index+1] = &element;
 		size++;
 	}
 	
@@ -72,7 +72,7 @@ public:
 			return NULL;
 		}
 		T* result = arr[removeIndex];
-		for (unsigned int i = removeIndex; i < size - 1; i--) {
+		for (unsigned int i = removeIndex; i < size - 1; i++) {
 			arr[i] = arr[i+1];
 		}
 		size--;
@@ -81,6 +81,7 @@ public:
 
 	virtual void removeAll() {
 		delete[] arr;
+		arr = NULL;
 		size = 0;
 		capacity = 0;
 	}
