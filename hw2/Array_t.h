@@ -41,7 +41,7 @@ public:
 		for (unsigned int i = size; i > index + 1; i--) {
 			arr[i] = arr[i-1];
 		}
-		arr[index] = &element;
+		arr[index] = new T(element);
 	}
 	
 	virtual void prepend(const T& element, size_t index) {
@@ -54,7 +54,7 @@ public:
 		for (unsigned int i = size; i > index; i--) {
 			arr[i] = arr[i-1];
 		}
-		arr[index] = &element;
+		arr[index] = new T(element);
 	}
 
 	virtual T* remove(const T& element) {
@@ -88,22 +88,22 @@ public:
 		removeAll();
 	}
 
+	T& operator[](size_t index) const {
+		if (index >= size) {
+			throw "Index out of bounds!";
+		}
+		return *arr[index];
+	}
+	
 	Array_t& operator= (const Array_t<T>& rhs) {
 		removeAll();
 		arr = new T*[rhs.capacity];
 		size = rhs.size;
 		capacity = rhs.capacity;
-		for (int i = 0; i < size; i++) {
-			insert(rhs[i]);
+		for (unsigned int i = 0; i < size; i++) {
+			insert(*rhs[i]);
 		}
-		return this;
-	}
-
-	T* operator[] (size_t index) {
-		if (index >= size) {
-			throw "Index out of bounds!";
-		}
-		return arr[index];
+		return *this;
 	}
 
 private:
