@@ -13,9 +13,9 @@ public:
 	size_t count() const { return size; }
 	virtual T* find(const T& element) const = 0;
 	
-	virtual void insert(T& element) = 0;
-	virtual void append(T& element, size_t index) = 0;
-	virtual void prepend(T& element, size_t index) = 0;
+	virtual void insert(const T& element) = 0;
+	virtual void append(const T& element, size_t index) = 0;
+	virtual void prepend(const T& element, size_t index) = 0;
 
 	virtual T* remove(const T& element) = 0;
 	void removeAndDelete(const T& element) { delete remove(element); }
