@@ -44,6 +44,7 @@ public:
 			arr[i] = arr[i-1];
 		}
 		arr[index] = &element;
+		size++;
 	}
 	
 	virtual void prepend(T& element, size_t index) {
@@ -57,6 +58,7 @@ public:
 			arr[i] = arr[i-1];
 		}
 		arr[index] = &element;
+		size++;
 	}
 
 	virtual T* remove(const T& element) {
