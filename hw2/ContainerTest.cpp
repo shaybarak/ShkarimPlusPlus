@@ -48,42 +48,48 @@ bool Container_t_test(Container_t<int>* container) {
 }
 
 // Tests specific Array_t methods
-bool Array_t_test(Array_t<int>* array) {
+bool Array_t_test(Array_t<int>* arrayT) {
 
 	//insert 0,5,...,45
 	for (int i = 0; i < 10; i++) {
-		array->insert(*new int(5 * i));
+		arrayT->insert(*new int(5 * i));
 	}
 
 	//check insertion with subscript operator
 	for (int i = 0; i < 10; i++) {
-		if ((*array)[i] != (5*i)) {
+		if ((*arrayT)[i] != (5*i)) {
 			cerr << "Incorrect value on intCountArray[" << i 
-				<< "] expected " << 5*i << " got " << (*array)[i] << endl;
+				<< "] expected " << 5*i << " got " << (*arrayT)[i] << endl;
 			return false;
 		}
 	}
 
 	//check "=" operator
 	Array_t<int> intContArrayAssigned;
-	intContArrayAssigned = *array;
-	if (array->count() != intContArrayAssigned.count()) {
-		cerr << "Incorrect operator= functionallity! exected count=" << array->count() 
+	intContArrayAssigned = *arrayT;
+	if (arrayT->count() != intContArrayAssigned.count()) {
+		cerr << "Incorrect operator= functionallity! exected count=" << arrayT->count() 
 			<< "found count=" << intContArrayAssigned.count();
 		return false;
 	}
 	for (int i = 0; i < 10; i++) {
-		if ((*array)[i] != intContArrayAssigned[i]) {
+		if ((*arrayT)[i] != intContArrayAssigned[i]) {
 			cerr << "Incorrect operator= functionallity! expected value on intCountArray[" << i 
-				<< "] expected " << 5*i << " got " << (*array)[i] << endl;
-	intContArrayAssigned = *array;
-	if (array->count() != intContArrayAssigned.count()) {
-		
+				<< "] expected " << 5*i << " got " << (*arrayT)[i] << endl;
+		}
+	}
+	
+	intContArrayAssigned = *arrayT;
+	if (arrayT->count() != intContArrayAssigned.count()) {
+			cerr << "Incorrect operator= functionallity! exected count=" << arrayT->count() 
+				<< "found count=" << intContArrayAssigned.count();
+		return false;
+
 	}
 	for (int i = 0; i < 10; i++) {
-		if ((*array)[i] != intContArrayAssigned[i]) {
+		if ((*arrayT)[i] != intContArrayAssigned[i]) {
 			cerr << "Incorrect value on intCountArray[" << i 
-				<< "] expected " << 5*i << " got " << (*array)[i] << endl;
+				<< "] expected " << 5*i << " got " << (*arrayT)[i] << endl;
 			return false;
 		}
 	}
