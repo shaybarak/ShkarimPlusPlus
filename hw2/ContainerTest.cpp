@@ -13,12 +13,30 @@ bool Container_t_test(Container_t<int>* container) {
 
 // Tests specific Array_t methods
 bool Array_t_test() {
+
+	//insert 0,5,...,45
 	Array_t<int>* intContArray = new Array_t<int>();
 	for (int i = 0; i < 10; i++) {
 		intContArray->insert(*new int(5 * i));
 	}
+
+	//check insertion with subscript operator
 	for (int i = 0; i < 10; i++) {
 		if (*(*intContArray)[i] != (5*i)) {
+			cerr << "Incorrect value on intCountArray[" << i 
+				<< "] expected " << 5*i << " got " << *(*intContArray)[i] << endl;
+			return false;
+		}
+	}
+
+	//check "=" operator
+	Array_t<int> intContArrayAssigned;
+	intContArrayAssigned = *intContArray;
+	if (intContArray->count() != intContArrayAssigned.count()) {
+
+	}
+	for (int i = 0; i < 10; i++) {
+		if ((*intContArray)[i] != intContArrayAssigned[i]) {
 			cerr << "Incorrect value on intCountArray[" << i 
 				<< "] expected " << 5*i << " got " << *(*intContArray)[i] << endl;
 			return false;

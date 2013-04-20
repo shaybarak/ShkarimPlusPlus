@@ -11,8 +11,14 @@ public:
 
 	Array_t() : Container_t<T>(), arr(new T*[INITIAL_CAPACITY]), capacity(INITIAL_CAPACITY) {}
 
-	~Array_t() {
-		removeAll();
+	~Array_t() { 
+		removeAll(); 
+	}
+
+
+	//copy-constructor
+	Array_t(const Array_t<T>& rhs) {
+		operator=(rhs);
 	}
 
 	virtual T* find(const T& element) const {
@@ -28,7 +34,7 @@ public:
 		if (size == capacity) { 
 			extend();  
 		}
-		arr[size++] = &element;
+		arr[size++] = new T(element);
 	}
 
 	virtual void append(T& element, size_t index) {
@@ -94,7 +100,7 @@ public:
 		size = rhs.size;
 		capacity = rhs.capacity;
 		for (int i = 0; i < size; i++) {
-			arr[i] = rhs.add[i];
+			insert(rhs[i]);
 		}
 		return this;
 	}
