@@ -6,60 +6,97 @@
 
 using namespace std;
 
-// Tests Container_t methods
-bool Container_t_test(Container_t<int>* container) {
-	// Populate container
+// Populate container for test
+void populate(Container_t<int>* container) {
 	for (int i = 0; i < 10; i++) {
 		container->insert(*new int(i));
+		if (i == 4 || i == 7) {
+			continue;
+		}
+		container->insert(new int(i);
 	}
+	container->append(new int(4), 3);
+	container->prepend(new int(7), 7);
+}
+
+// Tests Container_t methods
+bool Container_t_test(Container_t<int>* container) {
+	populate(container);
+
+	if (container->count() != 10) {
+		cerr << "Failed count test!" << endl;
+		return false;
+	}
+
+	if (*(container->find(7)) != 7) {
+		cerr << "Failed find test!" << endl;
+		return false;
+	}
+	int* removed = container->remove(7);
+	if (*removed != 7) {
+		cerr << "Failed remove test!" << endl;
+		return false;
+	}
+	delete removed;
+
+	if (container->count() != 9) {
+		cerr << "Failed count after removal test!" << endl;
+		return false;
+	}
+
+	return true;
 }
 
 // Tests specific Array_t methods
-bool Array_t_test() {
+bool Array_t_test(Array_t<int>* array) {
 
 	//insert 0,5,...,45
-	Array_t<int>* intContArray = new Array_t<int>();
 	for (int i = 0; i < 10; i++) {
-		intContArray->insert(*new int(5 * i));
+		array->insert(*new int(5 * i));
 	}
 
 	//check insertion with subscript operator
 	for (int i = 0; i < 10; i++) {
-		if ((*intContArray)[i] != (5*i)) {
+		if ((*array)[i] != (5*i)) {
 			cerr << "Incorrect value on intCountArray[" << i 
-				<< "] expected " << 5*i << " got " << (*intContArray)[i] << endl;
+				<< "] expected " << 5*i << " got " << (*array)[i] << endl;
 			return false;
 		}
 	}
 
 	//check "=" operator
 	Array_t<int> intContArrayAssigned;
-	intContArrayAssigned = *intContArray;
-	if (intContArray->count() != intContArrayAssigned.count()) {
-		cerr << "Incorrect operator= functionallity! exected count=" << intContArray->count() 
+	intContArrayAssigned = *array;
+	if (array->count() != intContArrayAssigned.count()) {
+		cerr << "Incorrect operator= functionallity! exected count=" << array->count() 
 			<< "found count=" << intContArrayAssigned.count();
 		return false;
 	}
 	for (int i = 0; i < 10; i++) {
-		if ((*intContArray)[i] != intContArrayAssigned[i]) {
+		if ((*array)[i] != intContArrayAssigned[i]) {
 			cerr << "Incorrect operator= functionallity! expected value on intCountArray[" << i 
-				<< "] expected " << 5*i << " got " << (*intContArray)[i] << endl;
+				<< "] expected " << 5*i << " got " << (*array)[i] << endl;
+	intContArrayAssigned = *array;
+	if (array->count() != intContArrayAssigned.count()) {
+		
+	}
+	for (int i = 0; i < 10; i++) {
+		if ((*array)[i] != intContArrayAssigned[i]) {
+			cerr << "Incorrect value on intCountArray[" << i 
+				<< "] expected " << 5*i << " got " << (*array)[i] << endl;
 			return false;
 		}
 	}
+
 	return true;
 }
 
 // Tests specific Dlist_t methods
-bool Dlist_t_test() {
-	Dlist_t<int>* dlist = new Dlist_t<int>();
-	// Populate container
-	for (int i = 0; i < 10; i++) {
-		dlist->insert(*new int(i));
-	}
+bool Dlist_t_test(Dlist_t<int>* dlist) {
+	populate(dlist);
 
 	// Check basic iteration
-	if (*dlist->reset() != 0) {
+	if (*(dlist->reset()) != 0) {
 		cerr << "Failed iterator reset test!" << endl;
 		return false;
 	}
@@ -84,15 +121,15 @@ bool Dlist_t_test() {
 	}
 
 	// Check assignment
-	Dlist_t<int>* other = new Dlist_t<int>();
-	*other = *dlist;
-	if (*(dlist->reset()) != *(other->reset())) {
+	Dlist_t<int> other;
+	other = *dlist;
+	if (*(dlist->reset()) != *(other.reset())) {
 		cerr << "Reset mismatch in copy!" << endl;
 		return false;
 	}
 	int* cursor;
 	while ((cursor = dlist->next()) != NULL) {
-		if (*cursor != *(other->next())) {
+		if (*cursor != *(other.next())) {
 			cerr << "Mismatch in iteration over copy!" << endl;
 			return false;
 		}
@@ -105,22 +142,42 @@ int main() {
 	Array_t<int>* testArray = new Array_t<int>();
 	if (!Container_t_test(testArray)) {
 		cerr << "Error in Container_t test for Array_t!" << endl;
+		testArray->removeAndDeleteAll();
+		delete testArray;
 		return 1;
 	}
+	testArray->removeAndDeleteAll();
 	delete testArray;
+
 	Dlist_t<int>* testDlist = new Dlist_t<int>();
 	if (!Container_t_test(testDlist)) {
 		cerr << "Error in Container_t test for Dlist_t!" << endl;
+		testDlist->removeAndDeleteAll();
+		delete testDlist;
 		return 1;
 	}
+	testDlist->removeAndDeleteAll();
 	delete testDlist;
-	if (!Array_t_test()) {
+
+	testArray = new Array_t<int>();
+	if (!Array_t_test(testArray)) {
 		cerr << "Error in Array_t test!" << endl;
+		testArray->removeAndDeleteAll();
+		delete testArray;
 		return 1;
 	}
-	if (!Dlist_t_test()) {
+	testArray->removeAndDeleteAll();
+	delete testArray;
+
+	testDlist = new Dlist_t<int>();
+	if (!Dlist_t_test(testDlist)) {
 		cerr << "Error in Dlist_t test!" << endl;
 		return 1;
+		testDlist->removeAndDeleteAll();
+		delete testDlist;
 	}
+	testDlist->removeAndDeleteAll();
+	delete testDlist;
+	
 	return 0;
 }
