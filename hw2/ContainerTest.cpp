@@ -10,7 +10,7 @@ using namespace std;
 bool Container_t_test(Container_t<int>* container) {
 	// Populate container
 	for (int i = 0; i < 10; i++) {
-		container->insert(new int(i);
+		container->insert(*new int(i));
 	}
 }
 
@@ -36,11 +36,13 @@ bool Array_t_test() {
 	Array_t<int> intContArrayAssigned;
 	intContArrayAssigned = *intContArray;
 	if (intContArray->count() != intContArrayAssigned.count()) {
-		
+		cerr << "Incorrect operator= functionallity! exected count=" << intContArray->count() 
+			<< "found count=" << intContArrayAssigned.count();
+		return false;
 	}
 	for (int i = 0; i < 10; i++) {
 		if ((*intContArray)[i] != intContArrayAssigned[i]) {
-			cerr << "Incorrect value on intCountArray[" << i 
+			cerr << "Incorrect operator= functionallity! expected value on intCountArray[" << i 
 				<< "] expected " << 5*i << " got " << (*intContArray)[i] << endl;
 			return false;
 		}
@@ -53,7 +55,7 @@ bool Dlist_t_test() {
 	Dlist_t<int>* dlist = new Dlist_t<int>();
 	// Populate container
 	for (int i = 0; i < 10; i++) {
-		dlist->insert(new int(i);
+		dlist->insert(*new int(i));
 	}
 
 	// Check basic iteration
