@@ -28,7 +28,7 @@ public:
 		if (size == capacity) { 
 			extend();  
 		}
-		arr[size++] = new T(element);
+		arr[size++] = &element;
 	}
 
 	virtual void append(T& element, size_t index) {
@@ -41,7 +41,7 @@ public:
 		for (unsigned int i = size; i > index + 1; i--) {
 			arr[i] = arr[i-1];
 		}
-		arr[index] = new T(element);
+		arr[index] = &element;
 	}
 	
 	virtual void prepend(T& element, size_t index) {
@@ -54,7 +54,7 @@ public:
 		for (unsigned int i = size; i > index; i--) {
 			arr[i] = arr[i-1];
 		}
-		arr[index] = new T(element);
+		arr[index] = &element;
 	}
 
 	virtual T* remove(const T& element) {

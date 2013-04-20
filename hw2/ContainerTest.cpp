@@ -22,9 +22,9 @@ bool Array_t_test() {
 
 	//check insertion with subscript operator
 	for (int i = 0; i < 10; i++) {
-		if (*(*intContArray)[i] != (5*i)) {
+		if ((*intContArray)[i] != (5*i)) {
 			cerr << "Incorrect value on intCountArray[" << i 
-				<< "] expected " << 5*i << " got " << *(*intContArray)[i] << endl;
+				<< "] expected " << 5*i << " got " << (*intContArray)[i] << endl;
 			return false;
 		}
 	}
@@ -38,7 +38,7 @@ bool Array_t_test() {
 	for (int i = 0; i < 10; i++) {
 		if ((*intContArray)[i] != intContArrayAssigned[i]) {
 			cerr << "Incorrect value on intCountArray[" << i 
-				<< "] expected " << 5*i << " got " << *(*intContArray)[i] << endl;
+				<< "] expected " << 5*i << " got " << (*intContArray)[i] << endl;
 			return false;
 		}
 	}
