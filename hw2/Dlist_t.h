@@ -136,7 +136,7 @@ public:
 			delete head;
 			head = next;
 		}
-		head = tail = NULL;
+		tail = NULL;
 		size = 0;
 		reset();
 	}
@@ -148,7 +148,7 @@ public:
 			delete head;
 			head = next;
 		}
-		head = tail = NULL;
+		tail = NULL;
 		size = 0;
 		reset();
 	}
