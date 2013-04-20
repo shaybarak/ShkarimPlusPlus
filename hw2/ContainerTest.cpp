@@ -72,25 +72,10 @@ bool Array_t_test(Array_t<int>* arrayT) {
 			<< "found count=" << intContArrayAssigned.count();
 		return false;
 	}
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < intContArrayAssigned.count(); i++) {
 		if ((*arrayT)[i] != intContArrayAssigned[i]) {
 			cerr << "Incorrect operator= functionallity! expected value on intCountArray[" << i 
 				<< "] expected " << 5*i << " got " << (*arrayT)[i] << endl;
-		}
-	}
-	
-	intContArrayAssigned = *arrayT;
-	if (arrayT->count() != intContArrayAssigned.count()) {
-			cerr << "Incorrect operator= functionallity! exected count=" << arrayT->count() 
-				<< "found count=" << intContArrayAssigned.count();
-		return false;
-
-	}
-	for (int i = 0; i < 10; i++) {
-		if ((*arrayT)[i] != intContArrayAssigned[i]) {
-			cerr << "Incorrect value on intCountArray[" << i 
-				<< "] expected " << 5*i << " got " << (*arrayT)[i] << endl;
-			return false;
 		}
 	}
 
