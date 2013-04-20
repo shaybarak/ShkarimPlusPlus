@@ -118,10 +118,10 @@ public:
 		}
 		// Unlink and delete
 		if (found->prev != NULL) {
-			found->prev->next = found;
+			found->prev->next = found->next;
 		}
 		if (found->next != NULL) {
-			found->next->prev = found;
+			found->next->prev = found->prev;
 		}
 		T* toReturn = found->element;
 		delete found;
