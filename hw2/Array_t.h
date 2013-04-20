@@ -15,10 +15,6 @@ public:
 		operator=(rhs);
 	}
 
-	~Array_t() {
-		removeAll();
-	}
-
 	virtual T* find(const T& element) const {
 		for (size_t i = 0; i < size; i++) {
 			if (*arr[i] == element) {
