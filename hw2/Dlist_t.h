@@ -15,8 +15,6 @@ public:
 		operator=(rhs);
 	}
 
-	~Dlist_t() { removeAll(); }
-
 	Dlist_t<T>& operator=(Dlist_t<T>& rhs) {
 		removeAll();
 		node* cursor = rhs.head;
@@ -38,12 +36,12 @@ public:
 		if (head == NULL) {
 			// List is empty, need to initialize first
 			head = new node;
-			head->element = element;
+			head->element = new T(element);
 			head->next = head->prev = NULL;
 			tail = head;
 		} else {
 			node* newNode = new node;
-			newNode->element = element;
+			newNode->element = new T(element);
 			newNode->prev = tail;
 			newNode->next = NULL;
 			tail->next = newNode;
@@ -64,7 +62,7 @@ public:
 		}
 		// Append
 		node* newNode = new node;
-		newNode->element = element;
+		newNode->element = new T(element);
 		newNode->prev = cursor;
 		newNode->next = cursor->next;
 		newNode->prev->next = newNode;
@@ -89,7 +87,7 @@ public:
 		}
 		// Prepend
 		node* newNode = new node;
-		newNode->element = element;
+		newNode->element = new T(element);
 		newNode->next = cursor;
 		newNode->prev = cursor->prev;
 		newNode->next->prev = newNode;
