@@ -8,7 +8,6 @@ class Container_t {
 public:
 
 	Container_t() : size(0) {}
-	~Container_t() { removeAll(); }
 
 	size_t count() const { return size; }
 	virtual T* find(const T& element) = 0;

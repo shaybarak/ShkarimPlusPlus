@@ -15,6 +15,8 @@ public:
 		operator=(rhs);
 	}
 
+	~Dlist_t() { removeAll(); }
+
 	Dlist_t<T>& operator=(Dlist_t<T>& rhs) {
 		removeAll();
 		node* cursor = rhs.head;
