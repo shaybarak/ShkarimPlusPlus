@@ -8,7 +8,10 @@ using namespace std;
 
 // Tests Container_t methods
 bool Container_t_test(Container_t<int>* container) {
-	
+	// Populate container
+	for (int i = 0; i < 10; i++) {
+		container->insert(new int(i);
+	}
 }
 
 // Tests specific Array_t methods
@@ -48,6 +51,7 @@ bool Array_t_test() {
 // Tests specific Dlist_t methods
 bool Dlist_t_test() {
 	Dlist_t<int>* dlist = new Dlist_t<int>();
+	// Populate container
 	for (int i = 0; i < 10; i++) {
 		dlist->insert(new int(i);
 	}
