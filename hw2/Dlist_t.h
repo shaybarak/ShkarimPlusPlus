@@ -20,7 +20,7 @@ public:
 		node* cursor = rhs.head;
 		// Copy all elements
 		while (cursor != NULL) {
-			insert(cursor->element);
+			insert(*cursor->element);
 			cursor = cursor->next;
 		}
 		size = rhs.size;
