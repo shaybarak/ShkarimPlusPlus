@@ -33,7 +33,7 @@ public:
 
 	virtual void append(T& element, size_t index) {
 		if (index >= size) {
-			//TODO illegeal indices -> expcetion, neew explanations
+			throw "Index out of bounds!";
 		}
 		if (size == capacity) {
 			extend();
@@ -46,7 +46,7 @@ public:
 	
 	virtual void prepend(T& element, size_t index) {
 		if (index >= size) {
-			//TODO illegeal indices -> expcetion, neew explanations
+			throw "Index out of bounds!";
 		}
 		if (index == capacity) {
 			extend();
@@ -101,7 +101,7 @@ public:
 
 	T* operator[] (size_t index) {
 		if (index >= size) {
-			//throw new 
+			throw "Index out of bounds!";
 		}
 		return arr[index];
 	}
