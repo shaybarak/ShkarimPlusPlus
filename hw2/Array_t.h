@@ -11,9 +11,12 @@ public:
 
 	Array_t() : Container_t<T>(), arr(new T*[INITIAL_CAPACITY]), capacity(INITIAL_CAPACITY) {}
 
-	//copy-constructor
 	Array_t(const Array_t<T>& rhs) {
 		operator=(rhs);
+	}
+
+	~Array_t() {
+		removeAll();
 	}
 
 	virtual T* find(const T& element) const {
