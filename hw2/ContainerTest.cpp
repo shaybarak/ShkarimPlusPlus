@@ -33,7 +33,7 @@ bool Array_t_test() {
 	Array_t<int> intContArrayAssigned;
 	intContArrayAssigned = *intContArray;
 	if (intContArray->count() != intContArrayAssigned.count()) {
-
+		
 	}
 	for (int i = 0; i < 10; i++) {
 		if ((*intContArray)[i] != intContArrayAssigned[i]) {
@@ -52,7 +52,7 @@ bool Dlist_t_test() {
 
 int main() {
 	Array_t<int>* testArray = new Array_t<int>();
-	if (!Container_t_test(testArray) {
+	if (!Container_t_test(testArray)) {
 		cerr << "Error in Container_t test for Array_t!" << endl;
 		return 1;
 	}
