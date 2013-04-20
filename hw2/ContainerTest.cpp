@@ -21,9 +21,16 @@ bool Array_t_test() {
 	return true;
 }
 
+bool Array_t_test() {
+}
+
 int main() {
 	if (!Array_t_test()) {
 		cerr << "Error in Array_t test!" << endl;
+		return 1;
+	}
+	if (!Dlist_t_test()) {
+		cerr << "Error in Dlist_t test!" << endl;
 		return 1;
 	}
 	return 0;
