@@ -29,7 +29,7 @@ public:
 	}
 
 	virtual T* find(const T& element) {
-		return findNode(element);
+		return findNode(element)->element;
 	}
 	
 	virtual void insert(T& element) {
@@ -179,12 +179,12 @@ private:
 		struct node* next;
 	} node;
 
-	T* findNode(const T& element) {
+	node* findNode(const T& element) {
 		T* seek;
 		reset();
 		while ((seek = next()) != NULL) {
 			if (*seek == element) {
-				return seek;
+				return cursor;
 			}
 		}
 		return NULL;
