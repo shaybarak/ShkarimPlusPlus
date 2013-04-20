@@ -103,7 +103,7 @@ int main() {
 	}
 	delete testArray;
 	Dlist_t<int>* testDlist = new Dlist_t<int>();
-	if (!Container_t_test(testDlist) {
+	if (!Container_t_test(testDlist)) {
 		cerr << "Error in Container_t test for Dlist_t!" << endl;
 		return 1;
 	}
