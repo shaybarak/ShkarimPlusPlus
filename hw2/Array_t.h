@@ -101,7 +101,7 @@ public:
 		size = rhs.size;
 		capacity = rhs.capacity;
 		for (unsigned int i = 0; i < size; i++) {
-			insert(*rhs[i]);
+			insert(rhs[i]);
 		}
 		return *this;
 	}
