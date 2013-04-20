@@ -6,7 +6,7 @@
 #include "Container_t.h"
 
 template <class T>
-class Dlist_t : protected Container_t<T> {
+class Dlist_t : public Container_t<T> {
 public:
 
 	Dlist_t() : Container_t<T>(), head(NULL), tail(NULL), cursor(NULL) {}
