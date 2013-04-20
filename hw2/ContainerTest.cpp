@@ -6,6 +6,12 @@
 
 using namespace std;
 
+// Tests Container_t methods
+bool Container_t_test(Container_t<int>* container) {
+
+}
+
+// Tests specific Array_t methods
 bool Array_t_test() {
 	Array_t<int>* intContArray = new Array_t<int>();
 	for (int i = 0; i < 10; i++) {
@@ -21,7 +27,8 @@ bool Array_t_test() {
 	return true;
 }
 
-bool Array_t_test() {
+// Tests specific Dlist_t methods
+bool Dlist_t_test() {
 }
 
 int main() {
