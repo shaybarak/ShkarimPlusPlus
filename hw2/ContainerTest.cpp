@@ -29,9 +29,22 @@ bool Array_t_test() {
 
 // Tests specific Dlist_t methods
 bool Dlist_t_test() {
+
 }
 
 int main() {
+	Array_t<int>* testArray = new Array_t<int>();
+	if (!Container_t_test(testArray) {
+		cerr << "Error in Container_t test for Array_t!" << endl;
+		return 1;
+	}
+	delete testArray;
+	Dlist_t<int>* testDlist = new Dlist_t<int>();
+	if (!Container_t_test(testDlist) {
+		cerr << "Error in Container_t test for Dlist_t!" << endl;
+		return 1;
+	}
+	delete testDlist;
 	if (!Array_t_test()) {
 		cerr << "Error in Array_t test!" << endl;
 		return 1;
