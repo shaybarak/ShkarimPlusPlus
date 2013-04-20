@@ -180,11 +180,11 @@ private:
 	} node;
 
 	node* findNode(const T& element) {
-		T* toCompare;
+		T* seek;
 		reset();
-		while ((toCompare = next()) != NULL) {
-			if (*toCompare == element) {
-				return toCompare;
+		while ((seek = next()) != NULL) {
+			if (*(seek->element) == element) {
+				return seek;
 			}
 		}
 		return NULL;
