@@ -9,7 +9,6 @@ using namespace std;
 // Populate container for test
 void populate(Container_t<int>* container) {
 	for (int i = 0; i < 10; i++) {
-		container->insert(*new int(i));
 		if (i == 4 || i == 7) {
 			continue;
 		}
@@ -17,6 +16,7 @@ void populate(Container_t<int>* container) {
 	}
 	container->append(*new int(4), 3);
 	container->prepend(*new int(7), 7);
+	// Container contents should now be [0..9]
 }
 
 // Tests Container_t methods
