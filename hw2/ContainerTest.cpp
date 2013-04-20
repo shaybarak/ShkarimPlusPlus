@@ -12,12 +12,13 @@ bool Array_t_test() {
 		intContArray->insert(*new int(5 * i));
 	}
 	for (int i = 0; i < 10; i++) {
-		if (*intContArray[i] != (5*i)) {
+		if (*(*intContArray)[i] != (5*i)) {
 			cerr << "Incorrect value on intCountArray[" << i 
-				<< "] expected " << 5*i << " got " << *intContArray[i] << endl;
+				<< "] expected " << 5*i << " got " << *(*intContArray)[i] << endl;
 			return false;
 		}
 	}
+	return true;
 }
 
 int main() {
@@ -25,4 +26,5 @@ int main() {
 		cerr << "Error in Array_t test!" << endl;
 		return 1;
 	}
+	return 0;
 }
