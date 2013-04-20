@@ -49,7 +49,7 @@ bool Array_t_test() {
 bool Dlist_t_test() {
 	Dlist_t<int>* dlist = new Dlist_t<int>();
 	for (int i = 0; i < 10; i++) {
-		dlist->insert(i);
+		dlist->insert(new int(i);
 	}
 
 	// Check basic iteration

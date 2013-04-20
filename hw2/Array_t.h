@@ -24,14 +24,14 @@ public:
 		return NULL;
 	}
 	
-	virtual void insert(const T& element) {
+	virtual void insert(T& element) {
 		if (size == capacity) { 
 			extend();  
 		}
 		arr[size++] = new T(element);
 	}
 
-	virtual void append(const T& element, size_t index) {
+	virtual void append(T& element, size_t index) {
 		if (index >= size) {
 			throw "Index out of bounds!";
 		}
@@ -44,7 +44,7 @@ public:
 		arr[index] = new T(element);
 	}
 	
-	virtual void prepend(const T& element, size_t index) {
+	virtual void prepend(T& element, size_t index) {
 		if (index >= size) {
 			throw "Index out of bounds!";
 		}

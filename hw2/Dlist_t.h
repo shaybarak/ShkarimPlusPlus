@@ -32,7 +32,7 @@ public:
 		return findNode(element)->element;
 	}
 	
-	virtual void insert(const T& element) {
+	virtual void insert(T& element) {
 		if (head == NULL) {
 			// List is empty, need to initialize first
 			head = new node;
@@ -51,7 +51,7 @@ public:
 		reset();
 	}
 
-	virtual void append(const T& element, size_t index) {
+	virtual void append(T& element, size_t index) {
 		if (index >= size) {
 			throw "Index out of bounds!";
 		}
@@ -76,7 +76,7 @@ public:
 		reset();
 	}
 
-	virtual void prepend(const T& element, size_t index) {
+	virtual void prepend(T& element, size_t index) {
 		if (index >= size) {
 			throw "Index out of bounds!";
 		}
