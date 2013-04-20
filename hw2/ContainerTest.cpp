@@ -13,10 +13,10 @@ void populate(Container_t<int>* container) {
 		if (i == 4 || i == 7) {
 			continue;
 		}
-		container->insert(new int(i);
+		container->insert(*new int(i));
 	}
-	container->append(new int(4), 3);
-	container->prepend(new int(7), 7);
+	container->append(*new int(4), 3);
+	container->prepend(*new int(7), 7);
 }
 
 // Tests Container_t methods
