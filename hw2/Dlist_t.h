@@ -105,29 +105,29 @@ public:
 
 	virtual T* remove(const T& element) {
 		// Find
-		node* cursor = findNode(element);
-		if (cursor == NULL) {
+		node* found = findNode(element);
+		if (found == NULL) {
 			return NULL;
 		}
 		// Update head or tail if necessary
-		if (head == cursor) {
-			head = cursor->next;
+		if (head == found) {
+			head = found->next;
 		}
-		if (tail == cursor) {
-			tail = cursor->prev;
+		if (tail == found) {
+			tail = found->prev;
 		}
 		// Unlink and delete
-		if (cursor->prev != NULL) {
-			cursor->prev->next = cursor;
+		if (found->prev != NULL) {
+			found->prev->next = found;
 		}
-		if (cursor->next != NULL) {
-			cursor->next->prev = cursor;
+		if (found->next != NULL) {
+			found->next->prev = found;
 		}
-		T* found = cursor->element;
-		delete cursor;
+		T* toReturn = found->element;
+		delete found;
 		size--;
 		reset();
-		return found;
+		return toReturn;
 	}
 
 	virtual void removeAll() {
@@ -182,10 +182,11 @@ private:
 	} node;
 
 	node* findNode(const T& element) {
-		node* cursor = head;
-		while (cursor != NULL) {
-			if (*cursor->element == element) {
-				return cursor;
+		T* toCompare;
+		reset();
+		while ((toCompare = next()) != NULL) {
+			if (*toCompare == element) {
+				return toCompare;
 			}
 		}
 		return NULL;
