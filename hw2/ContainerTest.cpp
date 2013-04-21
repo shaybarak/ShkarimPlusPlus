@@ -72,7 +72,7 @@ bool Array_t_test(Array_t<int>* arrayT) {
 			<< "found count=" << intContArrayAssigned.count();
 		return false;
 	}
-	for (int i = 0; i < intContArrayAssigned.count(); i++) {
+	for (size_t i = 0; i < intContArrayAssigned.count(); i++) {
 		if ((*arrayT)[i] != intContArrayAssigned[i]) {
 			cerr << "Incorrect operator= functionallity! expected value on intCountArray[" << i 
 				<< "] expected " << 5*i << " got " << (*arrayT)[i] << endl;
@@ -169,6 +169,8 @@ int main() {
 	}
 	testDlist->removeAndDeleteAll();
 	delete testDlist;
+
+	cout << "All tests have passed and everything is quite awesome!" << endl;
 	
 	return 0;
 }
