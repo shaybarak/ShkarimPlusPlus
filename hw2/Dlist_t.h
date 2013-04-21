@@ -11,7 +11,7 @@ public:
 
 	Dlist_t() : Container_t<T>(), head(NULL), tail(NULL), cursor(NULL) {}
 
-	Dlist_t(const Dlist_t<T>& rhs) {
+	Dlist_t(const Dlist_t<T>& rhs) : head(NULL) {
 		operator=(rhs);
 	}
 

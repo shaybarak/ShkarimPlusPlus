@@ -11,7 +11,7 @@ public:
 
 	Array_t() : Container_t<T>(), arr(new T*[INITIAL_CAPACITY]), capacity(INITIAL_CAPACITY) {}
 
-	Array_t(const Array_t<T>& rhs) {
+	Array_t(const Array_t<T>& rhs) : arr(NULL) {
 		operator=(rhs);
 	}
 
