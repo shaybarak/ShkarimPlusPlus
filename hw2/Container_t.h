@@ -8,6 +8,7 @@ class Container_t {
 public:
 
 	Container_t() : size(0) {}
+	virtual ~Container_t() = 0;
 
 	size_t count() const { return size; }
 	virtual T* find(const T& element) = 0;
