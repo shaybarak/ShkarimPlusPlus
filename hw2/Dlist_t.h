@@ -59,7 +59,7 @@ public:
 		}
 		// Seek node by index
 		node* cursor = head;
-		for (size_t i = 1; i < index; i++) {
+		for (size_t i = 0; i < index; i++) {
 			cursor = cursor->next;
 		}
 		// Append
@@ -84,7 +84,7 @@ public:
 		}
 		// Seek node by index
 		node* cursor = head;
-		for (size_t i = 1; i < index; i++) {
+		for (size_t i = 0; i < index; i++) {
 			cursor = cursor->next;
 		}
 		// Prepend
