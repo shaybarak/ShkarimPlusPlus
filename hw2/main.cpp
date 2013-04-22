@@ -40,7 +40,8 @@ int main() {
 			 << "	6: removeAndDelete" 	<< endl
 			 << "	7: removeAll"			<< endl
 			 << "	8: removeAndDeleteAll"	<< endl
-			 << "Enter your choice : ";
+			 << "	9: type-specific"		<< endl
+			 << "Enter your choice: ";
 		cin >> c;
 
 		switch (c) {
@@ -62,7 +63,42 @@ int main() {
 			case 5:
 				test.size();	// add parameters if needed
 				break;
-			default : cont = false;
+			
+			case 9:
+				if (isArray) {
+					cout << "Retrieve at subscript: ";
+					cin >> c;
+					cout << (*(Array_t<int>*)container)[c] << endl;
+				} else {
+					cout << "	0: reset"	<< endl
+					     << "	1: next"	<< endl
+						 << "	2: prev"	<< endl
+						 << "Enter your choice: ";
+					cin >> c;
+					
+					switch (c) {
+						case 0:
+							cout << *(((Dlist_t<int>*)container)->reset()) << endl;
+							break;
+
+						case 1:
+							cout << *(((Dlist_t<int>*)container)->next()) << endl;
+							break;
+						
+						case 2:
+							cout << *(((Dlist_t<int>*)container)->prev()) << endl;
+							break;
+						
+						case default:
+							cont = false;
+							break;
+					}
+				}
+				break;
+
+			default:
+				cont = false;
+				break;
 		}
 	}
 
