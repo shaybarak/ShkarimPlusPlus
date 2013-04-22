@@ -31,7 +31,7 @@ int main() {
 	}
 
 	while (cont) {
-		cout << "	0: insert" 	<< endl
+		cout << "	0: count" 	<< endl
 			 << "	1: find" 	<< endl
 			 << "	2: remove" 	<< endl
 			 << "	3: print" 	<< endl
