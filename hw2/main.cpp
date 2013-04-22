@@ -53,7 +53,9 @@ int main() {
 				cout << "Container contains " << container->count() << " elements" << endl;
 				break;
 			case 1:
-				cout << "Element " << element << " is " << (container->find(element) == NULL ? "found" : "not found") 
+				cout << "Enter element to find: " << endl;
+				cin >> element;
+				cout << "Element " << element << " is " << (container->find(element) != NULL ? "found" : "not found") 
 					<< " in container" << endl;
 				break;
 			case 2:
@@ -70,7 +72,7 @@ int main() {
 				cout << "Enter position to append: " << endl;
 				cin >> position;
 				container->append(*newElement, position);
-				cout << "Appended element " << (*newElement) << "after position " << position << endl;
+				cout << "Appended element " << (*newElement) << " after position " << position << endl;
 				break;
 			case 4:
 				newElement = new int();
