@@ -31,7 +31,12 @@ public:
 	}
 
 	virtual T* find(const T& element) {
-		return findNode(element)->element;
+		node* found = findNode(element);
+		if (found != NULL) {
+			return found->element;
+		} else {
+			return NULL;
+		}
 	}
 	
 	virtual void insert(T& element) {
@@ -182,12 +187,12 @@ private:
 	} node;
 
 	node* findNode(const T& element) {
-		T* seek;
-		reset();
-		while ((seek = next()) != NULL) {
+		T* seek = reset();
+		while (seek != NULL) {
 			if (*seek == element) {
 				return cursor;
 			}
+			seek = next();
 		}
 		return NULL;
 	}
