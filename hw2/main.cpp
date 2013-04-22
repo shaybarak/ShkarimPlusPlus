@@ -139,5 +139,6 @@ int main() {
 		}
 	}
 
+	container->removeAndDeleteAll();
 	return 0;
 }
