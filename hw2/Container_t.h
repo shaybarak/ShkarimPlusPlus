@@ -28,4 +28,7 @@ protected:
 
 };
 
+template <class T> 
+Container_t<T>::~Container_t() {}
+
 #endif
