@@ -116,21 +116,31 @@ int main() {
 					cin >> c;
 					
 					switch (c) {
+						int* element;
+
 						case 0:
-							cout << *(((Dlist_t<int>*)container)->reset()) << endl;
+							element = ((Dlist_t<int>*)container)->reset();
 							break;
 
 						case 1:
-							cout << *(((Dlist_t<int>*)container)->next()) << endl;
+							element = ((Dlist_t<int>*)container)->next();
 							break;
 						
 						case 2:
-							cout << *(((Dlist_t<int>*)container)->prev()) << endl;
+							element = ((Dlist_t<int>*)container)->prev();
 							break;
 						
 						default:
 							cont = false;
 							break;
+
+						if (cont) {
+							if (element != NULL) {
+								cout << "Cursor at " << *element << endl;
+							} else {
+								cout << "Cursor out of bounds" << endl;
+							}
+						}
 					}
 				}
 				break;
