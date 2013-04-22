@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Container_t.h"
 #include "Array_t.h"
 #include "Dlist_t.h"
 using namespace std;
@@ -8,6 +9,9 @@ int main() {
 	bool cont	= true;			// trigger to stop loop
 	unsigned int c;
 	bool isArray;
+	int element;
+	int* newElement;
+	int position;
 
 	Container_t<int>* container;
 
@@ -27,7 +31,7 @@ int main() {
 			break;
 		default:
 			cerr << "Unexpected input " << c << endl;
-			return;
+			return 1;
 	}
 
 	while (cont) {
@@ -46,24 +50,57 @@ int main() {
 
 		switch (c) {
 			case 0:
-				test.insert();	// add parameters if needed
+				cout << "Container contains " << container->count() << " elements" << endl;
 				break;
 			case 1:
-				test.find();	// add parameters if needed
+				cout << "Element " << element << " is " << (container->find(element) == NULL ? "found" : "not found") 
+					<< " in container" << endl;
 				break;
 			case 2:
-				test.remove();	// add parameters if needed
+				newElement = new int();
+				cout << "Enter element to insert: " << endl;
+				cin >> (*newElement);
+				container->insert(*newElement);
+				cout << "Inserted element " << (*newElement) << endl;
 				break;
 			case 3:
-				test.print();	// add parameters if needed
+				newElement = new int();
+				cout << "Enter element to insert: " << endl;
+				cin >> (*newElement);
+				cout << "Enter position to append: " << endl;
+				cin >> position;
+				container->append(*newElement, position);
+				cout << "Appended element " << (*newElement) << "after position " << position << endl;
 				break;
 			case 4:
-				test.write();	// add parameters if needed
+				newElement = new int();
+				cout << "Enter element to insert: " << endl;
+				cin >> (*newElement);
+				cout << "Enter position to preppend: " << endl;
+				cin >> position;
+				container->prepend(*newElement, position);
+				cout << "Preppended element " << (*newElement) << "before position " << position << endl;
 				break;
 			case 5:
-				test.size();	// add parameters if needed
+				cout << "Enter element to remove: " << endl;
+				cin >> element;
+				cout << "Element " << element
+					<< (container->remove(element) != NULL ? " was removed" : " was not found") << endl;
+				break;			
+			case 6:
+				cout << "Enter element to remove and delete: " << endl;
+				cin >> element;
+				container->removeAndDelete(element);
+				cout << "Element " << element << " was removed and deleted" << endl;
 				break;
-			
+			case 7:
+				container->removeAll();
+				cout << "All elements on container were removed" << endl;
+				break;			
+			case 8:
+				container->removeAndDeleteAll();
+				cout << "All elements on container were removed and deleted" << endl;
+				break;
 			case 9:
 				if (isArray) {
 					cout << "Retrieve at subscript: ";
@@ -89,7 +126,7 @@ int main() {
 							cout << *(((Dlist_t<int>*)container)->prev()) << endl;
 							break;
 						
-						case default:
+						default:
 							cont = false;
 							break;
 					}
