@@ -65,7 +65,7 @@
     <ClInclude Include="..\Dlist_t.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\ContainerTest.cpp" />
+    <ClCompile Include="..\main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
