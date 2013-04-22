@@ -11,9 +11,9 @@ int main() {
 
 	Container_t<int>* container;
 
-	cout << "Choose container type:" << endl;
-	cout << "1: Array_t<int>" << endl;
-	cout << "1: Dlist_t<int>" << endl;
+	cout << "Choose container type:" << endl
+	     << "	1: Array_t<int>" << endl
+	     << "	2: Dlist_t<int>" << endl;
 	cin >> c;
 
 	switch (c) {
