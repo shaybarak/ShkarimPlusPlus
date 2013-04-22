@@ -31,12 +31,15 @@ int main() {
 	}
 
 	while (cont) {
-		cout << "	0: count" 	<< endl
-			 << "	1: find" 	<< endl
-			 << "	2: remove" 	<< endl
-			 << "	3: print" 	<< endl
-			 << "	4: write" 	<< endl
-			 << "	5: size" 	<< endl
+		cout << "	0: count"	 			<< endl
+			 << "	1: find" 				<< endl
+			 << "	2: insert" 				<< endl
+			 << "	3: append" 				<< endl
+			 << "	4: prepend" 			<< endl
+			 << "	5: remove" 				<< endl
+			 << "	6: removeAndDelete" 	<< endl
+			 << "	7: removeAll"			<< endl
+			 << "	8: removeAndDeleteAll"	<< endl
 			 << "Enter your choice : ";
 		cin >> c;
 
