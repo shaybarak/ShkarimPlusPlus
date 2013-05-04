@@ -14,7 +14,7 @@ Day::~Day() {
 }
 
 void Day::addAppointment(const Appointment& appointment) {
-	for (Appointments::iterator it = appointments.begin(); it != appointments.end(); it++) {
+	for (Appointments::const_iterator it = appointments.begin(); it != appointments.end(); it++) {
 		if (*(it->second) == appointment) {
 			throw "New appointment conflicts with existing appointment!";
 		}

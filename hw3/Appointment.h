@@ -12,7 +12,7 @@ public:
 
 	Appointment(const string& subject, const DayTime& startTime, const DayTime& endTime);
 	// Equality is defined by the exercise instructions as having intersecting times
-	bool operator==(const Appointment& rhs);
+	bool operator==(const Appointment& rhs) const;
 	void destroy() const { delete this; }
 
 	const string& getSubject() const { return subject; }

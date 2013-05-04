@@ -7,7 +7,7 @@ Appointment::Appointment(const string& subject, const DayTime& startTime, const 
 		}
 }
 
-bool Appointment::operator==(const Appointment& rhs) {
+bool Appointment::operator==(const Appointment& rhs) const {
 	// Appointments intersect if the span of one appointment contains the start time
 	// or the end time of the other appointment.
 	// Note that the span is defined as [start, end) to support back-to-back meetings.
