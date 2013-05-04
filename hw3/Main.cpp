@@ -14,13 +14,27 @@ int main() {
 	Calendar* calendar = new Calendar();
 	bool cont = true;			// trigger to stop loop
 	//unsigned int weekDay;
-	Day::WeekDay weekDay;
+	unsigned char weekDay;
 	Appointment* app;
 	Appointment::DayTime startTime, endTime;
 	string subject;
 	unsigned int c;
 
 	cout << "Welcome to appinment dairy! Got milk?" << endl; //TODO remove
+	cout <<	"	                           ____       " << endl
+		 <<	"	.        .                / ._ \      " << endl
+		 <<	"   |\_,--._/|               / /  \OOO    " << endl
+		 <<	"    \_/..\_/      *MOOOW*   | |  _OOO_   " << endl
+		 <<	"      )oo(                  | | / | | \  " << endl
+		 <<	"      \\//                  | | |     |  " << endl
+		 <<	"		||__________        / /  +-30  |  " << endl
+		 <<	"		|          \`.     / /   |     |  " << endl
+		 <<	"		\  )        ) \   / /    +-20  |  " << endl
+		 <<	"        ||`---(  || /|\ / /     |     |  " << endl
+		 <<	"        ||     OO||----' /      +-10  |  " << endl
+		 <<	"        ||     '.||-----'      /       \ " << endl
+		 <<	"       /__\     /__\           \._____./ " << endl;
+
 
 	while (cont) {
 		cout << "	What you want to do?"	<< endl //TODO re-phrase
@@ -46,7 +60,7 @@ int main() {
 				cout << "Enter subject for appointment" << endl;
 				cin >> subject;
 				app = new Appointment(subject, startTime, endTime);
-				calendar->addAppointment((Day::WeekDay)weekDay, app);
+				calendar->addAppointment(weekDay, app);
 				break;
 			case 1:
 				
