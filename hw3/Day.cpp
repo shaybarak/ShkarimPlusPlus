@@ -7,9 +7,15 @@ Day::Day(const Day& rhs) {
 	}
 }
 
+Day::~Day() {
+	for (Appointments::iterator it = appointments.begin(); it != appointments.end(); it++) {
+		it->second->destroy();
+	}
+}
+
 void Day::addAppointment(const Appointment& appointment) {
 	for (Appointments::iterator it = appointments.begin(); it != appointments.end(); it++) {
-		if (it->second == appointment) {
+		if (*(it->second) == appointment) {
 			throw "New appointment conflicts with existing appointment!";
 		}
 	}
@@ -22,10 +28,10 @@ void Day::removeAppointment(const Appointment::DayTime& startTime) {
 		throw "Appointment not found!";
 	}
 	appointments.erase(it);
-	delete it->second;
+	it->second->destroy();
 }
 
-Appointment* const Day::findAppointment(const Appointment::DayTime& startTime) {
+const Appointment* Day::findAppointment(const Appointment::DayTime& startTime) {
 	Appointments::iterator it = appointments.find(startTime);
 	if (it == appointments.end()) {
 		return NULL;

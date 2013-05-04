@@ -17,13 +17,14 @@ public:
 		SATURDAY,
 	};
 
-	typedef map<Appointment::DayTime, Appointment* const> Appointments;
+	typedef map<Appointment::DayTime, const Appointment*> Appointments;
 
 	Day() {}
 	Day(const Day& rhs);
+	~Day();
 	void addAppointment(const Appointment& appointment);  // Takes ownership of appointment
 	void removeAppointment(const Appointment::DayTime& startTime);
-	Appointment* const findAppointment(const Appointment::DayTime& startTime) const;
+	const Appointment* findAppointment(const Appointment::DayTime& startTime) const;
 	const Appointments& getAllAppointments() const { return appointments; }
 
 private:
