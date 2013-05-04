@@ -1,3 +1,6 @@
+#ifndef DAY_H
+#define DAY_H
+
 #include "Appointment.h"
 #include <map>
 using namespace std;
@@ -14,18 +17,18 @@ public:
 		SATURDAY,
 	};
 
-	typedef map<Appointment::DayTime, Appointment*> AppMap;
+	typedef map<Appointment::DayTime, Appointment* const> Appointments;
 
 	Day() {}
-	void addAppointment(const Appointment& appointment);
+	Day(const Day& rhs);
+	void addAppointment(const Appointment& appointment);  // Takes ownership of appointment
 	void removeAppointment(const Appointment::DayTime& startTime);
-	const Appointment* findAppointment(const Appointment::DayTime& startTime) const;
-	const map<Appointment::DayTime, Appointment*>& getAppMap() const;
+	Appointment* const findAppointment(const Appointment::DayTime& startTime) const;
+	const Appointments& getAllAppointments() const { return appointments; }
 
 private:
-	// Disallow copy constructor
-	Day(Day& rhs) {}
-
 	// Maps appointment start time to appointment
-	AppMap appointments;
+	Appointments appointments;
 };
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef APPOINTMENT_H
+#define APPOINTMENT_H
+
 #include <string>
 #include <vector>
 
@@ -7,8 +10,8 @@ class Appointment {
 public:
 	typedef pair<int, int> DayTime;
 
-	Appointment(const string& subject, const DayTime& start, const DayTime& end);
-	Appointment(const Appointment& rhs);
+	Appointment(const string& subject, const DayTime& startTime, const DayTime& endTime);
+	// Equality is defined by the exercise instructions as having intersecting times
 	bool operator==(const Appointment& rhs);
 	void destroy() const { delete this; }
 
@@ -25,3 +28,5 @@ private:
 	const DayTime startTime;
 	const DayTime endTime;
 };
+
+#endif

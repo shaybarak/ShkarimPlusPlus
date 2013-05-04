@@ -1,3 +1,6 @@
+#ifndef CALENDAR_H
+#define CALENDAR_H
+
 #include "Day.h"
 using namespace std;
 
@@ -13,3 +16,5 @@ private:
 	Day days[7];
 	ostream& printLine(ostream& os, int subjectLen);
 };
+
+#endif

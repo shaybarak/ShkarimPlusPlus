@@ -74,9 +74,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Appointment.h" />
-    <ClInclude Include="Calendar.h" />
-    <ClInclude Include="Day.h" />
+    <ClInclude Include="..\Appointment.h" />
+    <ClInclude Include="..\Calendar.h" />
+    <ClInclude Include="..\Day.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Appointment.cpp" />

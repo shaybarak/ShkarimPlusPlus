@@ -9,7 +9,8 @@ void Calendar::print() {
 
 	//find all appointments times
 	for (int i = 0; i < 7; i++) {
-		const Day::AppMap& appMap = days[i].getAppMap();
+		//TODO decide on modifiers here, as appointments is private...
+		const Day::AppMap& appMap = days[i].getAllAppointments();
 		for (Day::AppMap::iterator iter = appMap.begin(); iter != appMap.end(); iter++) {
 			allTimes.insert(iter->first);
 			maxSubjectLen = max(maxSubjectLen, iter->second.getSubject().len());

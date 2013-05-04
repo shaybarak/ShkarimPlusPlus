@@ -15,13 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Calendar.h">
+    <ClInclude Include="..\Appointment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Appointment.h">
+    <ClInclude Include="..\Day.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Day.h">
+    <ClInclude Include="..\Calendar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
