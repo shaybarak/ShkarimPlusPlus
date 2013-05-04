@@ -2,7 +2,7 @@
 
 Appointment::Appointment(const string& subject, const DayTime& startTime, const DayTime& endTime)
 	: subject(subject), startTime(startTime), endTime(endTime) {
-		if (end < start) {
+		if (endTime < startTime) {
 			throw "Appointments cannot end before they start";
 		}
 }
