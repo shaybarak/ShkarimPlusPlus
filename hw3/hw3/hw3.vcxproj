@@ -78,6 +78,11 @@
     <ClInclude Include="Calendar.h" />
     <ClInclude Include="Day.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Appointment.cpp" />
+    <ClCompile Include="..\Calendar.cpp" />
+    <ClCompile Include="..\Day.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
