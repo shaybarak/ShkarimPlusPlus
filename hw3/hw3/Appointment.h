@@ -8,7 +8,7 @@ public:
 	typedef pair<int, int> DayTime;
 
 	Appointment(const string& subject, const DayTime& start, const DayTime& end);
-	Appointment(const Appointment& rhs);
+	// Equality is defined by the exercise instructions as having intersecting times
 	bool operator==(const Appointment& rhs);
 	void destroy() const { delete this; }
 

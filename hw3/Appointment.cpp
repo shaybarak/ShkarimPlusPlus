@@ -1,8 +1,16 @@
 #include "Appointment.h"
 
-Appointment::Appointment(const string& subject, const DayTime& start, const DayTime& end)
-	: subject(subject), start(start), end(end) {
+Appointment::Appointment(const string& subject, const DayTime& startTime, const DayTime& endTime)
+	: subject(subject), startTime(startTime), endTime(endTime) {
 		if (end < start) {
 			throw "Appointments cannot end before they start";
 		}
+}
+
+bool Appointment::operator==(const Appointment& rhs) {
+	// Appointments intersect if the span of one appointment contains the start time
+	// or the end time of the other appointment.
+	// Note that the span is defined as [start, end) to support back-to-back meetings.
+	return ((startTime <= rhs.startTime && endTime > rhs.startTime)
+		||  (startTime <= rhs.endTime && endTime > rhs.endTime));
 }
