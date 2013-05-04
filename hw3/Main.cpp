@@ -1,11 +1,20 @@
 #include "Calendar.h"
 #include <iostream>
 
+//reading from standard output the numbers 1-7, getting in return weekday SUNDAY-SATURDAY
+istream& operator>>(istream& in, Day::WeekDay& weekDay) {
+	int tmp;
+	in >> tmp;
+	weekDay = (Day::WeekDay)(--tmp);
+	return in;
+}
+
 int main() {
 	
-	Calendar calendar();
-	bool cont	= true;			// trigger to stop loop
-	unsigned int weekDay;
+	Calendar* calendar = new Calendar();
+	bool cont = true;			// trigger to stop loop
+	//unsigned int weekDay;
+	Day::WeekDay weekDay;
 	Appointment* app;
 	Appointment::DayTime startTime, endTime;
 	string subject;
@@ -26,7 +35,6 @@ int main() {
 			case 0:
 				cout << "Enter day for appointment, 1=Sunday...7-saturday" << endl;
 				cin >> weekDay;
-				weekDay--;
 				cout << "Enter start hour for appointment [0-23]" << endl;
 				cin >> startTime.first;
 				cout << "Enter start minute for appointment [0-59]" << endl;
@@ -38,6 +46,8 @@ int main() {
 				cout << "Enter subject for appointment" << endl;
 				cin >> subject;
 				app = new Appointment(subject, startTime, endTime);
+				calendar->addAppointment((Day::WeekDay)weekDay, app);
+				break;
 			case 1:
 				
 				break;
