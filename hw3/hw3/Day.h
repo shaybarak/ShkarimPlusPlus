@@ -14,13 +14,15 @@ public:
 		SATURDAY,
 	};
 
+	typedef map<Appointment::DayTime, Appointment*> Appointments;
+
 	Day() {}
-	Day(Day& rhs);
+	Day(const Day& rhs);
 	void addAppointment(const Appointment& appointment);
 	void removeAppointment(const Appointment::DayTime& startTime);
-	const Appointment& findAppointment(const Appointment::DayTime& startTime) const;
+	Appointment* const findAppointment(const Appointment::DayTime& startTime) const;
 
 private:
 	// Maps appointment start time to appointment
-	map<Appointment::DayTime, Appointment*> appointments;
+	Appointments appointments;
 };
