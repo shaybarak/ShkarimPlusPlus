@@ -6,7 +6,7 @@ int main() {
 	Calendar* calendar = new Calendar();
 	bool cont = true;			// trigger to stop loop
 	//unsigned int weekDay;
-	unsigned char weekDay, newWeekDay;
+	int weekDay, newWeekDay;
 	const Appointment* app;
 	const Appointment* newApp;
 	Appointment::DayTime startTime, endTime;
@@ -110,6 +110,10 @@ int main() {
 				// Replace existing appointment with new appointment
 				calendar->removeAppointment(weekDay, app->getStartTime());
 				calendar->addAppointment(newWeekDay, newApp);
+				break;
+
+			case 4:
+				calendar->print();
 				break;
 
 			default:
