@@ -12,7 +12,7 @@ int main() {
 	string subject;
 	unsigned int c;
 
-	cout << "Welcome to appinment dairy! Got milk?" << endl; //TODO remove
+	cout << "Welcome to appointent dairy! Got milk?   " << endl; //TODO remove, maybe
 	cout <<	"	                           ____       " << endl
 		 <<	"	.        .                / ._ \      " << endl
 		 <<	"   |\_,--._/|               / /  \OOO    " << endl
