@@ -66,10 +66,6 @@ int main() {
 				calendar->addAppointment(weekDay, app);
 				break;
 
-//noam hear!
-///////////////////////////////////////////////////////////////////////////////////////////////////
-//shay hear!
-
 			case 2:
 				// Find appointment
 				cout << "Enter day for appointment, 1=Sunday...7-saturday" << endl;
