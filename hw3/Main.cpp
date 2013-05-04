@@ -34,6 +34,7 @@ int main() {
 			 << "	1: Remove Appointment"	<< endl
 			 << "	2: Find Appointment"	<< endl
 			 << "   3: Move appointment"	<< endl
+			 << "   4: Print Calendar"		<< endl
 			 << "Enter your choice: ";
 		cin >> c;
 
