@@ -21,8 +21,8 @@ void Calendar::print() const{
 	for (set<Appointment::DayTime>::iterator iter = allTimes.begin(); iter != allTimes.end(); iter++) {
 		cout << setw(7 * (maxSubjectLen + 2)) << setfill('-') << "" << endl;
 		cout << setw(maxSubjectLen) << setfill(' ');
-		for (Day::WeekDay weekDay = Day::SUNDAY; weekDay <= Day::SATURDAY; weekDay++) {
-			const Appointment* app = days[weekDay].findAppointment(*iter);
+		for (int i = Day::SUNDAY; i < 7; i++) {
+			const Appointment* app = days[i].findAppointment(*iter);
 			subject = (app == NULL ? "" : app->getSubject());
 			cout << left << "|" << subject << "|" << endl;
 		}

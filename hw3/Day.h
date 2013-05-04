@@ -7,16 +7,6 @@ using namespace std;
 
 class Day {
 public:
-	enum WeekDay {
-		SUNDAY = 0,
-		MONDAY,
-		TUESDAY,
-		WEDNESDAY,
-		THURSDAY,
-		FRIDAY,
-		SATURDAY,
-	};
-
 	typedef map<Appointment::DayTime, const Appointment*> Appointments;
 
 	Day() {}
