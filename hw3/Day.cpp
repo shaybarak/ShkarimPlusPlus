@@ -31,8 +31,8 @@ void Day::removeAppointment(const Appointment::DayTime& startTime) {
 	it->second->destroy();
 }
 
-const Appointment* Day::findAppointment(const Appointment::DayTime& startTime) {
-	Appointments::iterator it = appointments.find(startTime);
+const Appointment* Day::findAppointment(const Appointment::DayTime& startTime) const {
+	Appointments::const_iterator it = appointments.find(startTime);
 	if (it == appointments.end()) {
 		return NULL;
 	}
