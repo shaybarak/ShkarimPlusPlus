@@ -11,4 +11,5 @@ public:
 
 private:
 	Day days[7];
+	ostream& printLine(ostream& os, int subjectLen);
 };
