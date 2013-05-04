@@ -12,7 +12,7 @@ public:
 	Day() {}
 	Day(const Day& rhs);
 	~Day();
-	void addAppointment(const Appointment& appointment);  // Takes ownership of appointment
+	void addAppointment(const Appointment* appointment);  // Takes ownership of appointment
 	void removeAppointment(const Appointment::DayTime& startTime);
 	const Appointment* findAppointment(const Appointment::DayTime& startTime) const;
 	const Appointments& getAllAppointments() const { return appointments; }

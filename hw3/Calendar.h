@@ -7,9 +7,10 @@ using namespace std;
 class Calendar {
 public:
 	Calendar() {}
-	void addAppointment(Day::WeekDay weekDay, const Appointment* appointment);
-	void removeAppointment(Day::WeekDay weekDay, const Appointment::DayTime& startTime);
-	const Appointment& findAppointment(Day::WeekDay weekDay, const Appointment::DayTime& startTime) const;
+	// Parameter weekDay is 1..7 for Sunday..Saturday
+	void addAppointment(int weekDay, const Appointment* appointment);
+	void removeAppointment(int weekDay, const Appointment::DayTime& startTime);
+	const Appointment* findAppointment(int weekDay, const Appointment::DayTime& startTime) const;
 	void print() const;
 
 private:
