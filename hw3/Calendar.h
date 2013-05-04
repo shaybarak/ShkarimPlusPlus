@@ -6,7 +6,6 @@ using namespace std;
 
 class Calendar {
 public:
-	Calendar() {}
 	// Parameter weekDay is 1..7 for Sunday..Saturday
 	void addAppointment(int weekDay, const Appointment* appointment);
 	void removeAppointment(int weekDay, const Appointment::DayTime& startTime);
