@@ -1,14 +1,6 @@
 #include "Calendar.h"
 #include <iostream>
 
-//reading from standard output the numbers 1-7, getting in return weekday SUNDAY-SATURDAY
-istream& operator>>(istream& in, Day::WeekDay& weekDay) {
-	int tmp;
-	in >> tmp;
-	weekDay = (Day::WeekDay)(--tmp);
-	return in;
-}
-
 int main() {
 	
 	Calendar* calendar = new Calendar();
