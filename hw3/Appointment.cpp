@@ -3,7 +3,7 @@
 Appointment::Appointment(const string& subject, const DayTime& startTime, const DayTime& endTime)
 	: subject(subject), startTime(startTime), endTime(endTime) {
 		if (endTime < startTime) {
-			throw "Appointments cannot end before they start";
+			throw "Appointments must have a positive duration";
 		}
 }
 
