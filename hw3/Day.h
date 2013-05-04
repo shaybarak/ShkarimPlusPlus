@@ -28,4 +28,4 @@ private:
 
 	// Maps appointment start time to appointment
 	AppMap appointments;
-}
+};
