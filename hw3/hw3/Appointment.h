@@ -1,3 +1,6 @@
+#ifndef APPOINTMENT_H
+#define APPOINTMENT_H
+
 #include <string>
 #include <vector>
 
@@ -25,3 +28,5 @@ private:
 	const DayTime start;
 	const DayTime end;
 };
+
+#endif

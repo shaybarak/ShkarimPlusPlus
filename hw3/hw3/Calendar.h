@@ -1,3 +1,6 @@
+#ifndef CALENDAR_H
+#define CALENDAR_H
+
 #include "Day.h"
 using namespace std;
 
@@ -12,3 +15,5 @@ public:
 private:
 	Day days[7];
 };
+
+#endif

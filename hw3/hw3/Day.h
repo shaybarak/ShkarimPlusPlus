@@ -1,3 +1,6 @@
+#ifndef DAY_H
+#define DAY_H
+
 #include "Appointment.h"
 #include <map>
 using namespace std;
@@ -26,3 +29,5 @@ private:
 	// Maps appointment start time to appointment
 	Appointments appointments;
 };
+
+#endif
