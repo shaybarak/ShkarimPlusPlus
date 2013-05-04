@@ -14,19 +14,19 @@ int main() {
 	unsigned int c;
 
 	cout << "Welcome to appinment dairy! Got milk?    " << endl; //TODO remove, maybe
-	cout <<	"                               ____       " << endl
-		 <<	"   .        .                 / ._ \\      " << endl
-		 <<	"   |\\_,--._/|                / /  \\OOO    " << endl
-		 <<	"    \\_/..\\_/      *MOOOW*   | |   _OOO_   " << endl
-		 <<	"      )oo(                  | |  / | | \\    " << endl
-		 <<	"      \\\///                  | |  |     |   " << endl
-		 <<	"       ||__________        / /   +-30  |  " << endl
-		 <<	"       |          \`.      / /    |     |  " << endl
-		 <<	"       \\  )        ) \\   / /     +-20  |  " << endl
-		 <<	"        ||`---(  || /|\\ / /      |     |  " << endl
-		 <<	"        ||     OO||----' /       +-10  |  " << endl
-		 <<	"        ||     '.||-----'       /       \\ " << endl
-		 <<	"       /__\\     /__\\            \\._____./ " << endl;
+	cout <<	"                                   ____      " << endl;
+	cout <<	"        .        .                / ._ \\     " << endl;
+	cout <<	"        |\\_,--._/|               / /  \\OOO   " << endl;
+	cout <<	"         \\_/..\\_/      *MOOOW*   | |  _OOO_  " << endl;
+	cout <<	"           )oo(                  | | / | | \\ " << endl;
+	cout <<	"           \\\\//                  | | |     | " << endl;
+	cout <<	"            ||__________        / /  +-30  | " << endl;
+	cout <<	"            |          \\`.     / /   |     | " << endl;
+	cout <<	"            \\  )        ) \\   / /    +-20  | " << endl;
+	cout <<	"             ||`---(  || /|\\ / /     |     | " << endl;
+	cout <<	"             ||     OO||----' /      +-10  | " << endl;
+	cout <<	"             ||     '.||-----'      /       \\" << endl;
+	cout <<	"            /__\\     /__\\           \\._____./" << endl;
 
 
 	while (cont) {
