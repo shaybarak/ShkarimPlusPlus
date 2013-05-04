@@ -7,7 +7,7 @@ int main() {
 	bool cont = true;			// trigger to stop loop
 	//unsigned int weekDay;
 	unsigned char weekDay;
-	Appointment* app;
+	const Appointment* app;
 	Appointment::DayTime startTime, endTime;
 	string subject;
 	unsigned int c;
@@ -62,6 +62,21 @@ int main() {
 //noam hear!
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //shay hear!
+
+			case 2:
+				cout << "Enter day for appointment, 1=Sunday...7-saturday" << endl;
+				cin >> weekDay;
+				cout << "Enter start hour for appointment [0-23]" << endl;
+				cin >> startTime.first;
+				cout << "Enter start minute for appointment [0-59]" << endl;
+				cin >> startTime.second;
+				app = calendar->findAppointment(weekDay, startTime);
+				if (app != NULL) {
+					cout << app << endl;
+				} else {
+					cout << "Appointment not found!" << endl;
+				}
+				break;
 
 			default:
 				cont = false;

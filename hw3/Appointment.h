@@ -11,9 +11,10 @@ public:
 	typedef pair<int, int> DayTime;
 
 	Appointment(const string& subject, const DayTime& startTime, const DayTime& endTime);
+	void destroy() const { delete this; }
+	
 	// Equality is defined by the exercise instructions as having intersecting times
 	bool operator==(const Appointment& rhs) const;
-	void destroy() const { delete this; }
 
 	const string& getSubject() const { return subject; }
 	DayTime getStartTime() const { return startTime; }
