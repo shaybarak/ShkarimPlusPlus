@@ -20,7 +20,7 @@ public:
 	void addAppointment(const Appointment& appointment);
 	void removeAppointment(const Appointment::DayTime& startTime);
 	const Appointment& findAppointment(const Appointment::DayTime& startTime) const;
-	const map<Appointment::DayTime, Appointment*>::iterator getAppointmentIter() const;
+	const map<Appointment::DayTime, Appointment*>& getAppMap() const;
 
 private:
 	// Disallow copy constructor
