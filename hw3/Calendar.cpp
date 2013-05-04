@@ -14,8 +14,8 @@ void Calendar::print() {
 
 	//now print all lines
 	for (set<Appointment::DayTime>::iterator iter = allTimes.begin(); iter != allTimes.end(); iter++) {
-		for (int i = 0; i < 7; i++) {
-			const Appointment& app = days[i].findAppointment(*iter);
+		for (Day::WeekDay weekDay = Day::SUNDAY; weekDay <= Day::SATURDAY; i++) {
+			Appointment* const app = days[weekDay].findAppointment(*iter);
 		}
 	}
 }
