@@ -24,4 +24,4 @@ private:
 	const string subject;
 	const DayTime startTime;
 	const DayTime endTime;
-}
+};
