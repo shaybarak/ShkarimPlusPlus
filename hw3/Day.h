@@ -14,7 +14,7 @@ public:
 		SATURDAY,
 	};
 
-	typedef map<Appointment::DayTime, Appointment*> appMap;
+	typedef map<Appointment::DayTime, Appointment*> AppMap;
 
 	Day() {}
 	void addAppointment(const Appointment& appointment);
@@ -27,5 +27,5 @@ private:
 	Day(Day& rhs) {}
 
 	// Maps appointment start time to appointment
-	map<Appointment::DayTime, Appointment*> appointments;
+	AppMap appointments;
 }
