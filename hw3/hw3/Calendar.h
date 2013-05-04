@@ -10,4 +10,4 @@ public:
 
 private:
 	Day days[7];
-}
+};

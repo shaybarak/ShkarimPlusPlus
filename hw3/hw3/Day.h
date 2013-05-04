@@ -25,4 +25,4 @@ private:
 
 	// Maps appointment start time to appointment
 	map<Appointment::DayTime, Appointment*> appointments;
-}
+};

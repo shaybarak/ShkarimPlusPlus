@@ -13,8 +13,8 @@ public:
 	void destroy() const { delete this; }
 
 	const string& getSubject() const { return subject; }
-	DayTime getStartTime() const { return startTime; }
-	DayTime getEndTime() const { return endTime; }
+	DayTime getStartTime() const { return start; }
+	DayTime getEndTime() const { return end; }
 
 protected:
 	// Disallow stack allocation
@@ -22,6 +22,6 @@ protected:
 
 private:
 	const string subject;
-	const DayTime startTime;
-	const DayTime endTime;
-}
+	const DayTime start;
+	const DayTime end;
+};
