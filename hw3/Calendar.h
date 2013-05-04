@@ -7,7 +7,7 @@ public:
 	void addAppointment(Day::WeekDay weekDay, const Appointment& appointment);
 	void removeAppointment(Day::WeekDay weekDay, const Appointment::DayTime& startTime);
 	const Appointment& findAppointment(Day::WeekDay weekDay, const Appointment::DayTime& startTime) const;
-	void print();
+	void print() const;
 
 private:
 	Day days[7];
