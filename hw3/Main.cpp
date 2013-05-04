@@ -12,16 +12,16 @@ int main() {
 	string subject;
 	unsigned int c;
 
-	cout << "Welcome to appointent dairy! Got milk?   " << endl; //TODO remove, maybe
-	cout <<	"	                           ____       " << endl
-		 <<	"	.        .                / ._ \      " << endl
+	cout << "Welcome to appinment dairy! Got milk?    " << endl; //TODO remove, maybe
+	cout <<	"                              ____       " << endl
+		 <<	"   .        .                / ._ \      " << endl
 		 <<	"   |\_,--._/|               / /  \OOO    " << endl
 		 <<	"    \_/..\_/      *MOOOW*   | |  _OOO_   " << endl
-		 <<	"      )oo(                  | | / | | \  " << endl
-		 <<	"      \\//                  | | |     |  " << endl
-		 <<	"		||__________        / /  +-30  |  " << endl
-		 <<	"		|          \`.     / /   |     |  " << endl
-		 <<	"		\  )        ) \   / /    +-20  |  " << endl
+		 <<	"      )oo(                | | / | | \    " << endl
+		 <<	"      \\//                 | | |     |   " << endl
+		 <<	"       ||__________        / /  +-30  |  " << endl
+		 <<	"       |          \`.     / /   |     |  " << endl
+		 <<	"       \  )        ) \   / /    +-20  |  " << endl
 		 <<	"        ||`---(  || /|\ / /     |     |  " << endl
 		 <<	"        ||     OO||----' /      +-10  |  " << endl
 		 <<	"        ||     '.||-----'      /       \ " << endl
@@ -33,8 +33,8 @@ int main() {
 			 << "	0: Add Appointment"		<< endl
 			 << "	1: Remove Appointment"	<< endl
 			 << "	2: Find Appointment"	<< endl
-			 << "   3: Move appointment"	<< endl
-			 << "   4: Print Calendar"		<< endl
+			 << "	3: Move appointment"	<< endl
+			 << "	4: Print Calendar"		<< endl
 			 << "Enter your choice: ";
 		cin >> c;
 
@@ -56,7 +56,13 @@ int main() {
 				calendar->addAppointment(weekDay, app);
 				break;
 			case 1:
-				
+				cout << "Enter day for appointment, 1=Sunday...7-saturday" << endl;
+				cin >> weekDay;
+				cout << "Enter start hour for appointment [0-23]" << endl;
+				cin >> startTime.first;
+				cout << "Enter start minute for appointment [0-59]" << endl;
+				calendar->removeAppointment(weekDay, startTime); //TODO rtry and catch
+				calendar->addAppointment(weekDay, app);
 				break;
 
 //noam hear!
