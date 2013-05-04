@@ -3,6 +3,8 @@
 #include <iostream>
 #include "Calendar.h"
 
+#define COLUMN_SIZE 10
+
 void Calendar::addAppointment(int weekDay, const Appointment* appointment) {
 	days[weekDay-1].addAppointment(appointment);
 }
@@ -17,28 +19,30 @@ const Appointment* Calendar::findAppointment(int weekDay, const Appointment::Day
 
 void Calendar::print() const{
 	set<Appointment::DayTime> allTimes;
-	unsigned int maxSubjectLen = 0;
 
 	//find all appointments times
 	for (int i = 0; i < 7; i++) {
 		const Day::Appointments& appMap = days[i].getAllAppointments();
 		for (Day::Appointments::const_iterator iter = appMap.begin(); iter != appMap.end(); ++iter) {
 			allTimes.insert(iter->first);
-			maxSubjectLen = max(maxSubjectLen, iter->second->getSubject().length());
 		}
 	}
 
 	//print all lines
 	string subject;
+	cout << setw(7 * (COLUMN_SIZE + 2)) << setfill('-') << "" << endl;
+	cout << "     |SUNDAY    |MONDAY    |TUESDAY   |WEDNESDAY |THURSDAY  |FIRDAY   |SATURDAY  |" << endl;
 	for (set<Appointment::DayTime>::iterator iter = allTimes.begin(); iter != allTimes.end(); iter++) {
-		cout << setw(7 * (maxSubjectLen + 2)) << setfill('-') << "" << endl;
-		cout << setw(maxSubjectLen) << setfill(' ');
+		cout << setw(7 * (COLUMN_SIZE + 2)) << setfill('-') << "" << endl;
+
+		cout << setw(2) << setfill('0') << iter->first << ":" << setw(2) << setfill('0') << iter->second;
+
 		for (int i = 0; i < 7; i++) {
 			const Appointment* app = days[i].findAppointment(*iter);
 			subject = (app == NULL ? "" : app->getSubject());
 			cout << left << "|" << subject << "|" << endl;
 		}
 	}
-	cout << setw(7 * (maxSubjectLen + 2)) << setfill('-') << "" << endl;
+	cout << setw(7 * (COLUMN_SIZE + 2)) << setfill('-') << "" << endl;
 }
 
