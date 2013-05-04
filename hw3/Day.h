@@ -14,6 +14,8 @@ public:
 		SATURDAY,
 	};
 
+	typedef map<Appointment::DayTime, Appointment*> appMap;
+
 	Day() {}
 	void addAppointment(const Appointment& appointment);
 	void removeAppointment(const Appointment::DayTime& startTime);

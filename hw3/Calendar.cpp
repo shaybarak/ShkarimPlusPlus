@@ -1,8 +1,10 @@
+#include <set>
 #include "Calendar.h"
 
 void Calendar::print() {
-	vector<Appointment::DayTime> allDayTimes;
-	for (Day::WeekDay i = Day::SUNDAY; i <= Day::SATURDAY; i++) {
-
+	set<Appointment::DayTime> allTimes;
+	for (int i = 0; i < 7; i++) {
+		
 	}
+	while(
 }
