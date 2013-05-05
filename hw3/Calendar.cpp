@@ -3,7 +3,10 @@
 #include <iostream>
 #include "Calendar.h"
 
-#define COLUMN_SIZE 10
+#define COLUMN_SIZE 15
+#define TIME_SIZE 5
+#define PRINT_DAY(x) setw(COLUMN_SIZE+1) << setfill(' ') << x
+#define PRINT_LINE setw(7 * (COLUMN_SIZE + 1) + TIME_SIZE + 1) << setfill('-') << ""
 
 void Calendar::addAppointment(int weekDay, const Appointment* appointment) {
 	days[weekDay-1].addAppointment(appointment);
@@ -30,19 +33,22 @@ void Calendar::print() const{
 
 	//print all lines
 	string subject;
-	cout << setw(7 * (COLUMN_SIZE + 2)) << setfill('-') << "" << endl;
-	cout << "     |SUNDAY    |MONDAY    |TUESDAY   |WEDNESDAY |THURSDAY  |FIRDAY   |SATURDAY  |" << endl;
-	for (set<Appointment::DayTime>::iterator iter = allTimes.begin(); iter != allTimes.end(); iter++) {
-		cout << setw(7 * (COLUMN_SIZE + 2)) << setfill('-') << "" << endl;
+	cout << PRINT_LINE << endl;
+	cout << left << setw(TIME_SIZE) << setfill(' ') << "" 
+		<< PRINT_DAY("|SUNDAY") << PRINT_DAY("|MONDAY") << PRINT_DAY("|TUESDAY") << PRINT_DAY("|WEDNESDAY")
+		<< PRINT_DAY("|THURSDAY") << PRINT_DAY("|FRIDAY") << PRINT_DAY("|SATURDAY") << "|" << endl;
 
-		cout << setw(2) << setfill('0') << iter->first << ":" << setw(2) << setfill('0') << iter->second;
+	for (set<Appointment::DayTime>::iterator iter = allTimes.begin(); iter != allTimes.end(); iter++) {
+		cout << PRINT_LINE << endl;
+		cout << right << setw(2) << setfill('0') << iter->first << ":" << setw(2) << setfill('0') << iter->second;
 
 		for (int i = 0; i < 7; i++) {
 			const Appointment* app = days[i].findAppointment(*iter);
-			subject = (app == NULL ? "" : app->getSubject());
-			cout << left << "|" << subject << "|" << endl;
+			subject = (app == NULL ? "" : "NOSHA:" + app->getSubject());
+			cout << left << "|" << setw(COLUMN_SIZE) << setfill(' ') << subject;
 		}
+		cout << "|" << endl;
 	}
-	cout << setw(7 * (COLUMN_SIZE + 2)) << setfill('-') << "" << endl;
+	cout << PRINT_LINE << endl << endl;
 }
 
