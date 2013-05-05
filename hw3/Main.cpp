@@ -52,7 +52,8 @@ int main() {
 				cout << "Enter end minute for appointment [0-59]" << endl;
 				cin >> endTime.second;
 				cout << "Enter subject for appointment" << endl;
-				cin >> subject;
+				cin.ignore();
+				getline(cin, subject);
 				app = new Appointment(subject, startTime, endTime);
 				calendar->addAppointment(weekDay, app);
 				break;
