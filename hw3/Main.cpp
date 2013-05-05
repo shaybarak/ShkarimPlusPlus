@@ -30,7 +30,7 @@ int main() {
 
 
 	while (cont) {
-		cout << "	What you want to do?"	<< endl //TODO re-phrase
+		cout << "	User! What you want to do?"	<< endl //TODO re-phrase
 			 << "	0: Add Appointment"		<< endl
 			 << "	1: Remove Appointment"	<< endl
 			 << "	2: Find Appointment"	<< endl
