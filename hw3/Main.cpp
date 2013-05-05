@@ -41,7 +41,7 @@ int main() {
 
 		switch (c) {
 			case 0:
-				cout << "Enter day for appointment, 1=Sunday...7-saturday" << endl;
+				cout << "Enter day for appointment, 1-Sunday...7-saturday" << endl;
 				cin >> weekDay;
 				cout << "Enter start hour for appointment [0-23]" << endl;
 				cin >> startTime.first;
