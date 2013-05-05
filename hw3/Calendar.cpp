@@ -5,6 +5,7 @@
 
 #define COLUMN_SIZE 15
 #define TIME_SIZE 5
+#define SUBJECT_PROMPT "NOSHA:" //TODO change to subject
 #define PRINT_DAY(x) setw(COLUMN_SIZE+1) << setfill(' ') << x
 #define PRINT_LINE setw(7 * (COLUMN_SIZE + 1) + TIME_SIZE + 1) << setfill('-') << ""
 
@@ -44,7 +45,10 @@ void Calendar::print() const{
 
 		for (int i = 0; i < 7; i++) {
 			const Appointment* app = days[i].findAppointment(*iter);
-			subject = (app == NULL ? "" : "NOSHA:" + app->getSubject());
+			subject = (app == NULL ? "" : SUBJECT_PROMPT + app->getSubject());
+			if (subject.length() > COLUMN_SIZE) {
+				subject = subject.substr(0, COLUMN_SIZE-3) + "...";
+			}
 			cout << left << "|" << setw(COLUMN_SIZE) << setfill(' ') << subject;
 		}
 		cout << "|" << endl;
