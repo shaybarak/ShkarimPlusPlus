@@ -10,14 +10,23 @@
 #define PRINT_LINE setw(7 * (COLUMN_SIZE + 1) + TIME_SIZE + 1) << setfill('-') << ""
 
 void Calendar::addAppointment(int weekDay, const Appointment* appointment) {
+	if (weekDay < 1 || weekDay > 7) {
+		throw "Week day out of range!";
+	}
 	days[weekDay-1].addAppointment(appointment);
 }
 
 void Calendar::removeAppointment(int weekDay, const Appointment::DayTime& startTime) {
+	if (weekDay < 1 || weekDay > 7) {
+		throw "Week day out of range!";
+	}
 	days[weekDay-1].removeAppointment(startTime);
 }
 
 const Appointment* Calendar::findAppointment(int weekDay, const Appointment::DayTime& startTime) const {
+	if (weekDay < 1 || weekDay > 7) {
+		throw "Week day out of range!";
+	}
 	return days[weekDay-1].findAppointment(startTime);
 }
 
