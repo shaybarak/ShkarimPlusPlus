@@ -8,8 +8,7 @@ int main() {
 	//unsigned int weekDay;
 	int weekDay, newWeekDay;
 	const Appointment* app;
-	const Appointment* newApp;
-	Appointment::DayTime startTime, endTime;
+	Appointment::DayTime startTime, endTime, newStartTime, newEndTime;
 	string subject;
 	unsigned int c;
 
@@ -92,33 +91,23 @@ int main() {
 				break;
 
 			case 3:
-				// Find existing appointment
-				cout << "Enter day for appointment, 1=Sunday...7-saturday" << endl;
+				cout << "Enter current day for appointment, 1=Sunday...7-saturday" << endl;
 				cin >> weekDay;
-				cout << "Enter start hour for appointment [0-23]" << endl;
+				cout << "Enter current start hour for appointment [0-23]" << endl;
 				cin >> startTime.first;
-				cout << "Enter start minute for appointment [0-59]" << endl;
+				cout << "Enter current start minute for appointment [0-59]" << endl;
 				cin >> startTime.second;
-				app = calendar->findAppointment(weekDay, startTime);
-				if (app == NULL) {
-					cout << "Appointment not found!" << endl;
-					break;
-				}
-				// Create new appointment
 				cout << "Enter new day for appointment, 1=Sunday...7-saturday" << endl;
 				cin >> newWeekDay;
 				cout << "Enter new start hour for appointment [0-23]" << endl;
-				cin >> startTime.first;
+				cin >> newStartTime.first;
 				cout << "Enter new start minute for appointment [0-59]" << endl;
-				cin >> startTime.second;
+				cin >> newStartTime.second;
 				cout << "Enter new end hour for appointment [0-23]" << endl;
-				cin >> endTime.first;
+				cin >> newEndTime.first;
 				cout << "Enter new end minute for appointment [0-59]" << endl;
-				cin >> endTime.second;
-				newApp = new Appointment(app->getSubject(), startTime, endTime);
-				// Replace existing appointment with new appointment
-				calendar->removeAppointment(weekDay, app->getStartTime());
-				calendar->addAppointment(newWeekDay, newApp);
+				cin >> newEndTime.second;
+				calendar->duplicateAppointment(weekDay, startTime, newWeekDay, newStartTime, newEndTime);
 				break;
 
 			case 4:

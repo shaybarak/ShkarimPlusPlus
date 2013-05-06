@@ -56,3 +56,15 @@ void Calendar::print() const{
 	cout << PRINT_LINE << endl << endl;
 }
 
+const Appointment* Calendar::duplicateAppointment(
+	int currentWeekDay, const Appointment::DayTime& currentStartTime, int newWeekDay,
+	const Appointment::DayTime& newStartTime, const Appointment::DayTime& newEndTime) {
+
+	const Appointment* currentAppointment = findAppointment(currentWeekDay, currentStartTime);
+	if (currentAppointment == NULL) {
+		throw "Current appointment not found!";
+	}
+	Appointment* newAppointment = new Appointment(currentAppointment->getSubject(), newStartTime, newEndTime);
+	addAppointment(newWeekDay, newAppointment);
+	return newAppointment;
+}
