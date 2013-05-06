@@ -55,7 +55,12 @@ int main() {
 				cin.ignore();
 				getline(cin, subject);
 				app = new Appointment(subject, startTime, endTime);
-				calendar->addAppointment(weekDay, app);
+				try {
+					calendar->addAppointment(weekDay, app);
+				} catch(string strEx) {
+					cout << strEx;
+				}
+
 				break;
 			case 1:
 				cout << "Enter day for appointment, 1=Sunday...7-saturday" << endl;
@@ -63,9 +68,12 @@ int main() {
 				cout << "Enter start hour for appointment [0-23]" << endl;
 				cin >> startTime.first;
 				cout << "Enter start minute for appointment [0-59]" << endl;
-				calendar->removeAppointment(weekDay, startTime); //TODO rtry and catch
-				calendar->addAppointment(weekDay, app);
-				break;
+				try {
+					calendar->removeAppointment(weekDay, startTime); //TODO rtry and catch
+				} catch (string strEx) {
+					cout << strEx;
+				} 
+				
 
 			case 2:
 				// Find appointment
