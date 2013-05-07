@@ -5,7 +5,7 @@
 
 #define COLUMN_SIZE 15
 #define TIME_SIZE 5
-#define SUBJECT_PROMPT "NOSHA:" //TODO change to subject
+#define SUBJECT_PROMPT "Subject:"
 #define PRINT_DAY(x) setw(COLUMN_SIZE+1) << setfill(' ') << x
 #define PRINT_LINE setw(7 * (COLUMN_SIZE + 1) + TIME_SIZE + 1) << setfill('-') << ""
 
@@ -30,7 +30,7 @@ const Appointment* Calendar::findAppointment(int weekDay, const Appointment::Day
 	return days[weekDay-1].findAppointment(startTime);
 }
 
-void Calendar::print() const{
+ostream& Calendar::print(ostream& os) const{
 	set<Appointment::DayTime> allTimes;
 
 	//find all appointments times
@@ -43,14 +43,14 @@ void Calendar::print() const{
 
 	//print all lines
 	string subject;
-	cout << PRINT_LINE << endl;
-	cout << left << setw(TIME_SIZE) << setfill(' ') << "" 
+	os << PRINT_LINE << endl;
+	os << left << setw(TIME_SIZE) << setfill(' ') << "" 
 		<< PRINT_DAY("|SUNDAY") << PRINT_DAY("|MONDAY") << PRINT_DAY("|TUESDAY") << PRINT_DAY("|WEDNESDAY")
 		<< PRINT_DAY("|THURSDAY") << PRINT_DAY("|FRIDAY") << PRINT_DAY("|SATURDAY") << "|" << endl;
 
 	for (set<Appointment::DayTime>::iterator iter = allTimes.begin(); iter != allTimes.end(); iter++) {
-		cout << PRINT_LINE << endl;
-		cout << right << setw(2) << setfill('0') << iter->first << ":" << setw(2) << setfill('0') << iter->second;
+		os << PRINT_LINE << endl;
+		os << right << setw(2) << setfill('0') << iter->first << ":" << setw(2) << setfill('0') << iter->second;
 
 		for (int i = 0; i < 7; i++) {
 			const Appointment* app = days[i].findAppointment(*iter);
@@ -58,11 +58,11 @@ void Calendar::print() const{
 			if (subject.length() > COLUMN_SIZE) {
 				subject = subject.substr(0, COLUMN_SIZE-3) + "...";
 			}
-			cout << left << "|" << setw(COLUMN_SIZE) << setfill(' ') << subject;
+			os << left << "|" << setw(COLUMN_SIZE) << setfill(' ') << subject;
 		}
-		cout << "|" << endl;
+		os << "|" << endl;
 	}
-	cout << PRINT_LINE << endl << endl;
+	return os << PRINT_LINE << endl << endl;
 }
 
 const Appointment* Calendar::duplicateAppointment(
@@ -76,4 +76,8 @@ const Appointment* Calendar::duplicateAppointment(
 	Appointment* newAppointment = new Appointment(currentAppointment->getSubject(), newStartTime, newEndTime);
 	addAppointment(newWeekDay, newAppointment);
 	return newAppointment;
+}
+
+ostream& operator<<(ostream& os, Calendar& calendar) {
+	return calendar.print(os);
 }

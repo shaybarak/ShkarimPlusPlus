@@ -112,7 +112,7 @@ int main() {
     				break;
     
     			case 4:
-    				calendar->print();
+    				cout << *calendar;
     				break;
     
     			default:

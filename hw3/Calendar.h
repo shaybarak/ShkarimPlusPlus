@@ -13,10 +13,12 @@ public:
 	virtual const Appointment* duplicateAppointment(
 		int currentWeekDay, const Appointment::DayTime& currentStartTime, int newWeekDay,
 		const Appointment::DayTime& newStartTime, const Appointment::DayTime& newEndTime);
-	virtual void print() const;
+	virtual ostream& print(ostream& os) const;
 
 private:
 	Day days[7];
 };
+
+ostream& operator<<(ostream& os, Calendar& calendar);
 
 #endif
