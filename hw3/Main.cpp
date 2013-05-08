@@ -58,6 +58,7 @@ int main() {
     				cout << "Enter start hour for appointment [0-23]" << endl;
     				cin >> startTime.first;
     				cout << "Enter start minute for appointment [0-59]" << endl;
+					cin >> startTime.second;
     				try {
     					calendar->removeAppointment(weekDay, startTime);
 						cout << "Appointment removed successfully!" << endl;
