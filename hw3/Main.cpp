@@ -26,7 +26,7 @@ int main() {
 	string subject;
 	unsigned int c;
 
-	cout << "Welcome to apointment diary!" << endl;
+	cout << "Welcome to appointment diary!" << endl;
 
 	while (cont) {
 		cout << "	0: Add Appointment"		<< endl
