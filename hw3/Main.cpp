@@ -12,6 +12,8 @@ int main() {
 	string subject;
 	unsigned int c;
 
+	cout << "Welcome to apointment diary!" << endl;
+
 	while (cont) {
 		cout << "	0: Add Appointment"		<< endl
 			 << "	1: Remove Appointment"	<< endl
@@ -35,6 +37,11 @@ int main() {
     				cout << "Enter end minute for appointment [0-59]" << endl;
     				cin >> endTime.second;
     				cout << "Enter subject for appointment" << endl;
+					if (endTime <= startTime) {
+						cout << "Error! appointment end time " << endTime 
+							<< "must be more than start time " << startTime << endl;
+						break;
+					}
     				cin.ignore();
     				getline(cin, subject);
     				app = new Appointment(subject, startTime, endTime);
@@ -46,7 +53,7 @@ int main() {
     
     				break;
     			case 1:
-    				cout << "Enter day for appointment, 1=Sunday...7-saturday" << endl;
+    				cout << "Enter day for appointment, 1-Sunday...7-saturday" << endl;
     				cin >> weekDay;
     				cout << "Enter start hour for appointment [0-23]" << endl;
     				cin >> startTime.first;
@@ -60,7 +67,7 @@ int main() {
     
     			case 2:
     				// Find appointment
-    				cout << "Enter day for appointment, 1=Sunday...7-saturday" << endl;
+    				cout << "Enter day for appointment, 1-Sunday...7-saturday" << endl;
     				cin >> weekDay;
     				cout << "Enter start hour for appointment [0-23]" << endl;
     				cin >> startTime.first;
@@ -75,7 +82,7 @@ int main() {
     				break;
     
     			case 3:
-    				cout << "Enter current day for appointment, 1=Sunday...7-saturday" << endl;
+    				cout << "Enter current day for appointment, 1-Sunday...7-saturday" << endl;
     				cin >> weekDay;
     				cout << "Enter current start hour for appointment [0-23]" << endl;
     				cin >> startTime.first;
