@@ -10,6 +10,7 @@ class Appointment {
 public:
 	typedef pair<int, int> DayTime;
 
+	//endTime must be greater than startTime, client must verify this
 	Appointment(const string& subject, const DayTime& startTime, const DayTime& endTime);
 	virtual void destroy() const { delete this; }
 	
@@ -29,5 +30,7 @@ private:
 	const DayTime startTime;
 	const DayTime endTime;
 };
+
+ostream& operator<<(ostream& os, const Appointment::DayTime& dayTime);
 
 #endif
