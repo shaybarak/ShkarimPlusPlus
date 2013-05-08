@@ -59,7 +59,7 @@ int main() {
     				cin >> startTime.first;
     				cout << "Enter start minute for appointment [0-59]" << endl;
     				try {
-    					calendar->removeAppointment(weekDay, startTime); //TODO rtry and catch
+    					calendar->removeAppointment(weekDay, startTime);
     				} catch (string strEx) {
     					cout << strEx;
     				} 
