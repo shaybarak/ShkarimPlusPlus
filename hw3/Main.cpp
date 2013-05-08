@@ -49,9 +49,9 @@ int main() {
     					calendar->addAppointment(weekDay, app);
     				} catch(string strEx) {
     					cout << strEx;
-    				}
-    
+    				}    
     				break;
+
     			case 1:
     				cout << "Enter day for appointment, 1-Sunday...7-saturday" << endl;
     				cin >> weekDay;
@@ -60,10 +60,12 @@ int main() {
     				cout << "Enter start minute for appointment [0-59]" << endl;
     				try {
     					calendar->removeAppointment(weekDay, startTime);
+						cout << "Appointment removed successfully!" << endl;
     				} catch (string strEx) {
     					cout << strEx;
+						break;
     				} 
-    				
+    				break;
     
     			case 2:
     				// Find appointment
