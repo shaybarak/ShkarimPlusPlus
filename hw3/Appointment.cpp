@@ -15,8 +15,7 @@ bool Appointment::operator==(const Appointment& rhs) const {
 
 ostream& operator<<(ostream& os, const Appointment& appointment) {
 	os << appointment.getSubject() << " - "
-		<< appointment.getStartTime().first << ":" << appointment.getStartTime().second << "-"
-		<< appointment.getEndTime().first << ":" << appointment.getEndTime().second;
+		<< appointment.getStartTime() << "-" << appointment.getEndTime();
 	return os;
 }
 
