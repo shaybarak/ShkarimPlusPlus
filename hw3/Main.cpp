@@ -88,7 +88,7 @@ int main() {
     				cin >> startTime.first;
     				cout << "Enter current start minute for appointment [0-59]" << endl;
     				cin >> startTime.second;
-    				cout << "Enter new day for appointment, 1=Sunday...7-saturday" << endl;
+    				cout << "Enter new day for appointment, 1-Sunday...7-saturday" << endl;
     				cin >> newWeekDay;
     				cout << "Enter new start hour for appointment [0-23]" << endl;
     				cin >> newStartTime.first;
