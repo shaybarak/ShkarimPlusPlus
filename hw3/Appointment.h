@@ -31,6 +31,7 @@ private:
 	const DayTime endTime;
 };
 
+ostream& operator<<(ostream& os, const Appointment& appointment);
 ostream& operator<<(ostream& os, const Appointment::DayTime& dayTime);
 
 #endif
