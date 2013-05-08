@@ -12,25 +12,8 @@ int main() {
 	string subject;
 	unsigned int c;
 
-	cout << "Welcome to appinment dairy! Got milk?    " << endl; //TODO remove, maybe
-	cout <<	"                                   ____      " << endl;
-	cout <<	"        .        .                / ._ \\     " << endl;
-	cout <<	"        |\\_,--._/|               / /  \\OOO   " << endl;
-	cout <<	"         \\_/..\\_/      *MOOOW*   | |  _OOO_  " << endl;
-	cout <<	"           )oo(                  | | / | | \\ " << endl;
-	cout <<	"           \\\\//                  | | |     | " << endl;
-	cout <<	"            ||__________        / /  +-30  | " << endl;
-	cout <<	"            |          \\`.     / /   |     | " << endl;
-	cout <<	"            \\  )        ) \\   / /    +-20  | " << endl;
-	cout <<	"             ||`---(  || /|\\ / /     |     | " << endl;
-	cout <<	"             ||     OO||----' /      +-10  | " << endl;
-	cout <<	"             ||     '.||-----'      /       \\" << endl;
-	cout <<	"            /__\\     /__\\           \\._____./" << endl;
-
-
 	while (cont) {
-		cout << "	User! What you want to do?"	<< endl //TODO re-phrase
-			 << "	0: Add Appointment"		<< endl
+		cout << "	0: Add Appointment"		<< endl
 			 << "	1: Remove Appointment"	<< endl
 			 << "	2: Find Appointment"	<< endl
 			 << "	3: Move appointment"	<< endl
