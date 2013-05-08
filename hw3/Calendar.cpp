@@ -78,6 +78,6 @@ const Appointment* Calendar::duplicateAppointment(
 	return newAppointment;
 }
 
-ostream& operator<<(ostream& os, Calendar& calendar) {
+ostream& operator<<(ostream& os, const Calendar& calendar) {
 	return calendar.print(os);
 }

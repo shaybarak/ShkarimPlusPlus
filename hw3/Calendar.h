@@ -19,6 +19,6 @@ private:
 	Day days[7];
 };
 
-ostream& operator<<(ostream& os, Calendar& calendar);
+ostream& operator<<(ostream& os, const Calendar& calendar);
 
 #endif
