@@ -27,8 +27,8 @@ void Day::removeAppointment(const Appointment::DayTime& startTime) {
 	if (it == appointments.end()) {
 		throw "Appointment not found!";
 	}
-	appointments.erase(it);
 	it->second->destroy();
+	appointments.erase(it);
 }
 
 const Appointment* Day::findAppointment(const Appointment::DayTime& startTime) const {
