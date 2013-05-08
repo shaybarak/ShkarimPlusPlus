@@ -75,7 +75,7 @@ int main() {
     				cin >> startTime.second;
     				app = calendar->findAppointment(weekDay, startTime);
     				if (app != NULL) {
-    					cout << app << endl;
+    					cout << *app << endl;
     				} else {
     					cout << "Appointment not found!" << endl;
     				}
