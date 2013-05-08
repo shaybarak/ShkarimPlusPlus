@@ -1,6 +1,20 @@
 #include "Calendar.h"
 #include <iostream>
 
+//validate that values for day time are in valid range [00-23]:[00-59]
+bool validateTime(Appointment::DayTime dayTime) {
+	bool res = true;
+	if (dayTime.first < 0 || dayTime.first > 23) {
+		cout << "Illegal hour! " << dayTime.first << " must be in range [0-23]" << endl;
+		res = false;
+	}
+	if (dayTime.second < 0 || dayTime.second > 59) {
+		cout << "Illegal minute! " << dayTime.second << " must be in range [0-59]" << endl;
+		res = false;
+	}
+	return res;
+}
+
 int main() {
 	
 	Calendar* calendar = new Calendar();
@@ -32,10 +46,12 @@ int main() {
     				cin >> startTime.first;
     				cout << "Enter start minute for appointment [0-59]" << endl;
     				cin >> startTime.second;
+					if (!validateTime(startTime)) { break; }
     				cout << "Enter end hour for appointment [0-23]" << endl;
     				cin >> endTime.first;
     				cout << "Enter end minute for appointment [0-59]" << endl;
     				cin >> endTime.second;
+					if (!validateTime(endTime)) { break; }
     				cout << "Enter subject for appointment" << endl;
 					if (endTime <= startTime) {
 						cout << "Error! appointment end time " << endTime 
@@ -59,6 +75,7 @@ int main() {
     				cin >> startTime.first;
     				cout << "Enter start minute for appointment [0-59]" << endl;
 					cin >> startTime.second;
+					if (!validateTime(startTime)) { break; }
     				try {
     					calendar->removeAppointment(weekDay, startTime);
 						cout << "Appointment removed successfully!" << endl;
@@ -76,6 +93,7 @@ int main() {
     				cin >> startTime.first;
     				cout << "Enter start minute for appointment [0-59]" << endl;
     				cin >> startTime.second;
+					if (!validateTime(startTime)) { break; }
     				app = calendar->findAppointment(weekDay, startTime);
     				if (app != NULL) {
     					cout << *app << endl;
@@ -91,16 +109,19 @@ int main() {
     				cin >> startTime.first;
     				cout << "Enter current start minute for appointment [0-59]" << endl;
     				cin >> startTime.second;
+					if (!validateTime(startTime)) { break; }
     				cout << "Enter new day for appointment, 1-Sunday...7-saturday" << endl;
     				cin >> newWeekDay;
     				cout << "Enter new start hour for appointment [0-23]" << endl;
     				cin >> newStartTime.first;
     				cout << "Enter new start minute for appointment [0-59]" << endl;
     				cin >> newStartTime.second;
+					if (!validateTime(newStartTime)) { break; }
     				cout << "Enter new end hour for appointment [0-23]" << endl;
     				cin >> newEndTime.first;
     				cout << "Enter new end minute for appointment [0-59]" << endl;
     				cin >> newEndTime.second;
+					if (!validateTime(newEndTime)) { break; }
     				calendar->duplicateAppointment(weekDay, startTime, newWeekDay, newStartTime, newEndTime);
     				break;
     
