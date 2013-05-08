@@ -50,7 +50,7 @@ ostream& Calendar::print(ostream& os) const{
 
 	for (set<Appointment::DayTime>::iterator iter = allTimes.begin(); iter != allTimes.end(); iter++) {
 		os << PRINT_LINE << endl;
-		os << right << setw(2) << setfill('0') << iter->first << ":" << setw(2) << setfill('0') << iter->second;
+		os << right << (*iter);
 
 		for (int i = 0; i < 7; i++) {
 			const Appointment* app = days[i].findAppointment(*iter);
