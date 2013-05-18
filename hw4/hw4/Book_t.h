@@ -35,7 +35,7 @@ private:
 	const string name;
 	const string author;
 	const ISBN isbn;
-	const unsigned int availableCopies;
+	unsigned int availableCopies;
 	list<const BorrowerId> lenders;
 	list<const BorrowerId> waitingList;
 };
