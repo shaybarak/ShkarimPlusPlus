@@ -1,6 +1,7 @@
 #include "IDs.h"
 #include <string>
 #include <list>
+#include <queue>
 
 using namespace std;
 
@@ -15,7 +16,7 @@ public:
 	const ISBN& getIsbn() const { return isbn; }
 	unsigned int getAvailableCopies() const { return availableCopies; }
 	const list<const BorrowerId>& getLenders() const { return lenders; }
-	const list<const BorrowerId>& getWaitingList() const { return waitingList; }
+	const queue<const BorrowerId>& getWaitingQueue() const { return waitingQueue; }
 
 	/** Derived queries. */
 	// Is there at least one free copy of this book
@@ -37,5 +38,5 @@ private:
 	const ISBN isbn;
 	unsigned int availableCopies;
 	list<const BorrowerId> lenders;
-	list<const BorrowerId> waitingList;
+	queue<const BorrowerId> waitingQueue;
 };
