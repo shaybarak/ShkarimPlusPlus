@@ -13,3 +13,6 @@ void Borrower_t::returnBook(ISBN isbn) {
 	}
 	borrowedBooks.erase(it);
 }
+
+// First BorrowerId value to provision
+BorrowerId Borrower_t::nextBorrowerId = 1;

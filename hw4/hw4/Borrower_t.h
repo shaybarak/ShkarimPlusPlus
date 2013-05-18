@@ -6,8 +6,8 @@ using namespace std;
 
 class Borrower_t {
 public:
-	Borrower_t(const string& name, const BorrowerId borrowerId)
-	: name(name), borrowerId(borrowerId){}
+	Borrower_t(const string& name)
+	: name(name), borrowerId(newBorrowerId()){}
 
 	/** Basic queries. */
 	const BorrowerId getBorrowerId() const { return borrowerId; }
@@ -21,6 +21,9 @@ public:
 	void returnBook(ISBN isbn);
 
 private:
+	static BorrowerId newBorrowerId() { return nextBorrowerId++; }
+	static BorrowerId nextBorrowerId;
+
 	const string name;
 	BorrowerId borrowerId;
 	list<const ISBN> borrowedBooks;
