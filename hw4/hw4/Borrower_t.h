@@ -1,0 +1,3 @@
+class Borrower_t {
+
+};
