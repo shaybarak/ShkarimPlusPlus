@@ -41,17 +41,37 @@ void Library_t::removeBorrower(BorrowerId borrowerId) {
 }
 
 void Library_t::registerBorrow(BorrowerId borrowerId, ISBN isbn) {
-	map<BorrowerId, Borrower_t*>::iterator it = borrowers.find(borrowerId);
-	if (it == borrowers.end()) {
+	map<BorrowerId, Borrower_t*>::iterator borrowerIt = borrowers.find(borrowerId);
+	if (borrowerIt == borrowers.end()) {
 		throw "Borrower not found!";
 	}
-	// TODO
+	Borrower_t* borrower = borrowerIt->second;
+	map<ISBN, Book_t*>::iterator bookIt = books.find(isbn);
+	if (bookIt == books.end()) {
+		throw "Book not found!";
+	}
+	Book_t* book = bookIt->second;
+	if (book->isAvailable()) {
+		// If book is available, lend it immediately
+		// TODO
+	} else {
+		// Add to back of waiting queue
+	}
 }
 
 void Library_t::registerReturn(BorrowerId borrowerId, ISBN isbn) {
-	map<BorrowerId, Borrower_t*>::iterator it = borrowers.find(borrowerId);
-	if (it == borrowers.end()) {
+	map<BorrowerId, Borrower_t*>::iterator borrowerIt = borrowers.find(borrowerId);
+	if (borrowerIt == borrowers.end()) {
 		throw "Borrower not found!";
 	}
-	// TODO
+	Borrower_t* borrower = borrowerIt->second;
+	map<ISBN, Book_t*>::iterator bookIt = books.find(isbn);
+	if (bookIt == books.end()) {
+		throw "Book not found!";
+	}
+	Book_t* book = bookIt->second;
+	// TODO verify that borrower has book
+	// TODO remove book from borrower, borrower from book
+	// TODO if nobody is waiting for the book, increment available copies
+	// TODO else give to first in queue
 }
