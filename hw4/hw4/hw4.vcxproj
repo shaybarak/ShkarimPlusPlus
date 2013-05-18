@@ -74,6 +74,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Book_t.h" />
+    <ClInclude Include="Borrower_t.h" />
+    <ClInclude Include="IDs.h" />
+    <ClInclude Include="Library_t.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
