@@ -12,6 +12,10 @@ public:
 	void addBook(Book_t* book);
 	// Removes a book from the library; throws if there are borrowed copies of the book
 	void removeBook(ISBN isbn);
+	// Adds a borrower to the library (takes ownership); throws if the borrower is already registered
+	void addBorrower(Borrower_t* borrower);
+	// Removes a borrower from the library; throws if there are borrowed books by the borrower
+	void removeBorrower(BorrowerId isbn);
 
 	/** Borrower operations. */
 	// Registers a borrower's intent to borrow a book.
