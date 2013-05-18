@@ -20,8 +20,6 @@ public:
 	/** Derived queries. */
 	// Is there at least one free copy of this book
 	bool isAvailable() const { return availableCopies > 0; }
-	// Returns the next borrower in this book's waiting list or INVALID_BORROWER_ID
-	BorrowerId getFirstInLine() const;
 
 	/** Mutators. */
 	// Lends book to borrower; throws if no free copies remain
@@ -30,6 +28,8 @@ public:
 	void reserveFor(BorrowerId borrower);
 	// Registers that a borrower returned a single copy of the book; throws if borrower not registered as lender
 	void returnFrom(BorrowerId borrower);
+	// Pops and returns the next borrower in this book's waiting list or INVALID_BORROWER_ID
+	BorrowerId getFirstInLine();
 
 private:
 	const string name;
