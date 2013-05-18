@@ -17,7 +17,7 @@ public:
 	/** Mutators. */
 	// borrow a book
 	void borrowBook(ISBN isbn);
-	// Registers that a borrower returned a single copy of the book; throws if borrower not registered as lender
+	// Return a book
 	void returnBook(ISBN isbn);
 
 private:
