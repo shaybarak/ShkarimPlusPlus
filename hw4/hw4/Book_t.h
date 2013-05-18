@@ -7,12 +7,12 @@ using namespace std;
 class Book_t {
 public:
 	Book_t(const string& name, const string& author, const ISBN& isbn, unsigned int copies)
-		: name(name), author(author), isbn(isbn), availableCopies(0) {}
+		: name(name), author(author), isbn(isbn), availableCopies(copies) {}
 
 	/** Basic queries. */
 	const string& getName() const { return name; }
 	const string& getAuthor() const { return author; }
-	const string& getIsbn() const { return isbn; }
+	const ISBN& getIsbn() const { return isbn; }
 	unsigned int getAvailableCopies() const { return availableCopies; }
 	const list<const BorrowerId>& getLenders() const { return lenders; }
 	const list<const BorrowerId>& getWaitingList() const { return waitingList; }
