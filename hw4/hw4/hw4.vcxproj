@@ -80,6 +80,7 @@
     <ClInclude Include="Library_t.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Book_t.cpp" />
     <ClCompile Include="Borrower_t.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

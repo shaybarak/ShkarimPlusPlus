@@ -30,7 +30,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Borrower_t.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Book_t.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
