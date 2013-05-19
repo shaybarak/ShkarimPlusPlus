@@ -2,6 +2,7 @@
 #include "IDs.h"
 #include <algorithm>
 #include <iostream>
+#include <list>
 
 using namespace std;
 
@@ -17,7 +18,7 @@ void Book_t::reserveFor(BorrowerId borrower) {
 	if (isAvailable()) {
 		throw "Cannot reserve a book if it's available for immediate rental!";
 	}
-	waitingQueue.push(borrower);
+	waitingQueue.push_back(borrower);
 }
 
 void Book_t::returnFrom(BorrowerId borrower) {
@@ -35,7 +36,7 @@ BorrowerId Book_t::getFirstInLine() {
 		return INVALID_BORROWER_ID;
 	}
 	BorrowerId next = waitingQueue.front();
-	waitingQueue.pop();
+	waitingQueue.pop_front();
 	return next;
 }
 
@@ -44,4 +45,16 @@ ostream& Book_t::report(ostream& os) const {
 	   << "Author: " << getAuthor() << endl
 	   << "ISBN: " << getIsbn() << endl
 	   << "Available copies: " << getAvailableCopies() << endl;
+	if (!lenders.empty()) {
+		os << "Lenders:" << endl;
+	}
+	for (list<const BorrowerId>::const_iterator it = lenders.begin(); it != lenders.end(); it++) {
+		os << "\t" << *it << endl;
+	}
+	if (!waitingQueue.empty()) {
+		os << "Waiting queue:" << endl;
+	}
+	for (list<const BorrowerId>::const_iterator it = waitingQueue.begin(); it != waitingQueue.end(); it++) {
+		os << "\t" << *it << endl;
+	}
 }

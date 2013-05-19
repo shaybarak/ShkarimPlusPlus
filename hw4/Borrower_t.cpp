@@ -22,9 +22,11 @@ void Borrower_t::returnBook(ISBN isbn) {
 
 ostream& Borrower_t::report(ostream& os) const {
 	os << "Name: " << getName() << endl
-	   << "ID: " << getBorrowerId() << endl
-	   << "Books:" << endl;
-	for (list<ISBN>::const_iterator it = borrowedBooks.begin(); it != borrowedBooks.end(); it++) {
+	   << "ID: " << getBorrowerId() << endl;
+	if (!borrowedBooks.empty()) {
+		os << "Books:" << endl;
+	}
+	for (list<const ISBN>::const_iterator it = borrowedBooks.begin(); it != borrowedBooks.end(); it++) {
 		os << "\t" << *it << endl;
 	}
 	return os;

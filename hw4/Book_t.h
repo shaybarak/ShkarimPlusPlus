@@ -18,7 +18,7 @@ public:
 	const ISBN& getIsbn() const { return isbn; }
 	unsigned int getAvailableCopies() const { return availableCopies; }
 	const list<const BorrowerId>& getLenders() const { return lenders; }
-	const queue<const BorrowerId>& getWaitingQueue() const { return waitingQueue; }
+	const list<const BorrowerId>& getWaitingQueue() const { return waitingQueue; }
 
 	/** Derived queries. */
 	// Is there at least one free copy of this book
@@ -43,5 +43,5 @@ private:
 	const ISBN isbn;
 	unsigned int availableCopies;
 	list<const BorrowerId> lenders;
-	queue<const BorrowerId> waitingQueue;
+	list<const BorrowerId> waitingQueue;
 };
