@@ -57,4 +57,5 @@ ostream& Book_t::report(ostream& os) const {
 	for (list<const BorrowerId>::const_iterator it = waitingQueue.begin(); it != waitingQueue.end(); it++) {
 		os << "\t" << *it << endl;
 	}
+	return os;
 }
