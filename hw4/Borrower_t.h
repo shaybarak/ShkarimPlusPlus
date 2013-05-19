@@ -1,3 +1,4 @@
+#pragma once
 #include "IDs.h"
 #include <iostream>
 #include <string>
@@ -25,7 +26,7 @@ public:
 	void returnBook(ISBN isbn);
 	
 	/** Text representation. */
-	ostream& print(ostream& os) const;
+	ostream& report(ostream& os) const;
 
 private:
 	static BorrowerId newBorrowerId() { return nextBorrowerId++; }

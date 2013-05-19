@@ -1,3 +1,4 @@
+#pragma once
 #include "Book_t.h"
 #include "Borrower_t.h"
 #include "IDs.h"

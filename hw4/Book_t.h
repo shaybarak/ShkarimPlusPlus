@@ -1,3 +1,4 @@
+#pragma once
 #include "IDs.h"
 #include <string>
 #include <list>
@@ -34,7 +35,7 @@ public:
 	BorrowerId getFirstInLine();
 	
 	/** Text representation. */
-	ostream& print(ostream& os) const;
+	ostream& report(ostream& os) const;
 
 private:
 	const string name;
