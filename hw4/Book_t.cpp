@@ -40,8 +40,8 @@ BorrowerId Book_t::getFirstInLine() {
 }
 
 ostream& Book_t::report(ostream& os) {
-    os << "Name: " << getName() << endl
-       << "Author: " << getAuthor() << endl
-       << "ISBN: " << getIsbn() << endl
-       << "Available copies: " << getAvailableCopies() << endl;
+	os << "Name: " << getName() << endl
+	   << "Author: " << getAuthor() << endl
+	   << "ISBN: " << getIsbn() << endl
+	   << "Available copies: " << getAvailableCopies() << endl;
 }

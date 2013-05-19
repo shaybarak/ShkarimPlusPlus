@@ -15,12 +15,12 @@ void Borrower_t::returnBook(ISBN isbn) {
 }
 
 ostream& Borrower_t::report(ostream& os) {
-    os << "Name: " << getName() << endl
-       << "ID: " << getBorrowerId() << endl
-       << "Books:" << endl;
-    for (map<ISBN, Book_t*>::iterator it = books.begin(); it != books.end(); it++) {
-        it->second->report(os);
-    }
+	os << "Name: " << getName() << endl
+	   << "ID: " << getBorrowerId() << endl
+	   << "Books:" << endl;
+	for (map<ISBN, Book_t*>::iterator it = books.begin(); it != books.end(); it++) {
+		it->second->report(os);
+	}
 }
 
 // First BorrowerId value to provision

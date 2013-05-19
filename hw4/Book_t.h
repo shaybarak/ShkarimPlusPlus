@@ -32,9 +32,9 @@ public:
 	void returnFrom(BorrowerId borrower);
 	// Pops and returns the next borrower in this book's waiting list or INVALID_BORROWER_ID
 	BorrowerId getFirstInLine();
-    
-    /** Text representation. */
-    ostream& print(ostream& os);
+	
+	/** Text representation. */
+	ostream& print(ostream& os);
 
 private:
 	const string name;
