@@ -30,8 +30,8 @@ public:
 	void registerReturn(BorrowerId borrower, ISBN book);
 
 	/** Reports. */
-	ostream& reportBooks(ostream& os);
-	ostream& reportBorrowers(ostream& os);
+	ostream& reportBooks(ostream& os) const;
+	ostream& reportBorrowers(ostream& os) const;
 
 private:
 	map<ISBN, Book_t*> books;

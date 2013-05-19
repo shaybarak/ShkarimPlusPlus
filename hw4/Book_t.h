@@ -34,7 +34,7 @@ public:
 	BorrowerId getFirstInLine();
 	
 	/** Text representation. */
-	ostream& print(ostream& os);
+	ostream& print(ostream& os) const;
 
 private:
 	const string name;

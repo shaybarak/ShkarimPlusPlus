@@ -17,7 +17,7 @@ void Book_t::reserveFor(BorrowerId borrower) {
 	if (isAvailable()) {
 		throw "Cannot reserve a book if it's available for immediate rental!";
 	}
-	waitingList.push_back(borrower);
+	waitingQueue.push(borrower);
 }
 
 void Book_t::returnFrom(BorrowerId borrower) {
@@ -31,15 +31,15 @@ void Book_t::returnFrom(BorrowerId borrower) {
 }
 
 BorrowerId Book_t::getFirstInLine() {
-	if (waitingList.empty()) {
+	if (waitingQueue.empty()) {
 		return INVALID_BORROWER_ID;
 	}
-	BorrowerId next = waitingList.front();
-	waitingList.pop_front();
+	BorrowerId next = waitingQueue.front();
+	waitingQueue.pop();
 	return next;
 }
 
-ostream& Book_t::report(ostream& os) {
+ostream& Book_t::report(ostream& os) const {
 	os << "Name: " << getName() << endl
 	   << "Author: " << getAuthor() << endl
 	   << "ISBN: " << getIsbn() << endl
