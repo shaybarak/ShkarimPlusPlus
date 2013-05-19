@@ -7,6 +7,9 @@ Library_t::~Library_t() {
     for (map<ISBN, Book_t*>::iterator it = books.begin(); it != books.end(); it++) {
         delete it->second;
     }
+    for (map<BorrowerId, Borrower_t*>::iterator it = borrowers.begin(); it != borrowers.end(); it++) {
+        delete it->second;
+    }
 }
 
 void Library_t::addBook(Book_t* book) {
