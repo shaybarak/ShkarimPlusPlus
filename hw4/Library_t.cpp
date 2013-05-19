@@ -53,9 +53,10 @@ void Library_t::registerBorrow(BorrowerId borrowerId, ISBN isbn) {
 	Book_t* book = bookIt->second;
 	if (book->isAvailable()) {
 		// If book is available, lend it immediately
-		// TODO
+		book->lendTo(borrowerId);
+        borrower->borrowBook(isbn);
 	} else {
-		// Add to back of waiting queue
+		book->reserveFor(borrowerId);
 	}
 }
 
@@ -70,8 +71,21 @@ void Library_t::registerReturn(BorrowerId borrowerId, ISBN isbn) {
 		throw "Book not found!";
 	}
 	Book_t* book = bookIt->second;
-	// TODO verify that borrower has book
-	// TODO remove book from borrower, borrower from book
-	// TODO if nobody is waiting for the book, increment available copies
-	// TODO else give to first in queue
+    // Verify that borrower has book
+    if (!borrower->has(isbn)) {
+        throw "Borrower does not have the specified book!";
+    }
+    borrower->returnBook(isbn);
+    book->returnedFrom(borrowerId);
+    BorrowerId nextBorrowerId = book->getFirstInLine();
+    if (nextBorrowerId != INVALID_BORROWER_ID) {
+        // Give the newly-returned copy to the first borrower in line
+        borrowerIt = borrowers.find(nextBorrowerId);
+        if (borrowerIt == borrowers.end()) {
+		    throw "Next borrower not found!";
+        }
+        Borrower_t* nextBorrower = borrowerIt->second;
+        nextBorrower->borrowBook(isbn);
+        book->lendTo(nextBorrowerId);
+	}
 }
