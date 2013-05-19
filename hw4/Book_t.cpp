@@ -1,6 +1,7 @@
 #include "Book_t.h"
 #include "IDs.h"
 #include <algorithm>
+#include <iostream>
 
 using namespace std;
 
@@ -36,4 +37,11 @@ BorrowerId Book_t::getFirstInLine() {
 	BorrowerId next = waitingList.front();
 	waitingList.pop_front();
 	return next;
+}
+
+ostream& Book_t::report(ostream& os) {
+    os << "Name: " << getName() << endl
+       << "Author: " << getAuthor() << endl
+       << "ISBN: " << getIsbn() << endl
+       << "Available copies: " << getAvailableCopies() << endl;
 }

@@ -99,3 +99,22 @@ void Library_t::registerReturn(BorrowerId borrowerId, ISBN isbn) {
         book->lendTo(nextBorrowerId);
 	}
 }
+
+ostream& Library_t::reportBooks(ostream& os) {
+    os << "Books report:" << endl
+       << "=============" << endl;
+    Book_t* book;
+    for (map<ISBN, Book_t*>::iterator it = books.begin(); it != books.end(); it++) {
+        it->second->report(os);
+        os << endl;
+    }
+}
+
+ostream& Library_t::reportBorrowers(ostream& os) {
+    os << "Borrowers report:" << endl;
+    os << "=================" << endl;
+    Borrower_t* borrower;
+    for (map<BorrowerId, Borrower_t*>::iterator it = borrowers.begin(); it != borrowers.end(); it++) {
+        it->second->report(os);
+    }
+}

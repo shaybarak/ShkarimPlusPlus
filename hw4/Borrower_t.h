@@ -1,6 +1,7 @@
+#include "IDs.h"
+#include <iostream>
 #include <string>
 #include <list>
-#include "IDs.h"
 
 using namespace std;
 
@@ -19,6 +20,9 @@ public:
 	void borrowBook(ISBN isbn);
 	// Return a book
 	void returnBook(ISBN isbn);
+    
+    /** Text representation. */
+    ostream& print(ostream& os);
 
 private:
 	static BorrowerId newBorrowerId() { return nextBorrowerId++; }
