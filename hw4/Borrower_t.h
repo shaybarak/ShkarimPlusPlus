@@ -17,6 +17,7 @@ public:
 	const list<const ISBN>& getBorrowedBooks() const { return borrowedBooks; }
 
 	/** Derived queries. */
+	// Whether the borrower has at least one copy of a book by its ISBN
 	bool has(ISBN isbn) const;
 
 	/** Mutators. */

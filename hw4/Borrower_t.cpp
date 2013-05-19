@@ -4,7 +4,12 @@
 #include <map>
 
 bool Borrower_t::has(ISBN isbn) const {
-	
+	for (list<const ISBN>::const_iterator it = borrowedBooks.begin(); it != borrowedBooks.end(); it++) {
+		if (*it == isbn) {
+			return true;
+		}
+	}
+	return false;
 }
 
 void Borrower_t::borrowBook(ISBN isbn) {
