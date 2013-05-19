@@ -7,6 +7,8 @@ using namespace std;
 
 class Library_t {
 public:
+    ~Library_t();
+
 	/** Mutators. */
 	// Adds a book to the library (takes ownership); throws if the book is already registered
 	void addBook(Book_t* book);

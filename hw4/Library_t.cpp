@@ -2,6 +2,13 @@
 
 using namespace std;
 
+Library_t::~Library_t() {
+    // Since we take ownership of books and borrowers, delete these objects
+    for (map<ISBN, Book_t*>::iterator it = books.begin(); it != books.end(); it++) {
+        delete it->second;
+    }
+}
+
 void Library_t::addBook(Book_t* book) {
 	// On insertion, check if the book was already registered
 	if (books.insert(make_pair(book->getIsbn(), book)).second) {
