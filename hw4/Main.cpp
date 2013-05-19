@@ -3,6 +3,8 @@
 #include "Borrower_t.h"
 #include <iostream>
 
+using namespace std;
+
 int main() {
     Library library;
     bool cont = true;    		// trigger to stop loop
@@ -44,9 +46,11 @@ int main() {
                     break;
                     
                 case 6:
+                    library.reportBooks(cout);
                     break;
                     
                 case 7:
+                    library.reportBorrowers(cout);
                     break;
             }
         } catch (char* message) {
