@@ -103,7 +103,6 @@ void Library_t::registerReturn(BorrowerId borrowerId, ISBN isbn) {
 ostream& Library_t::reportBooks(ostream& os) const {
 	os << "Books report:" << endl
 	   << "=============" << endl;
-	Book_t* book;
 	for (map<ISBN, Book_t*>::const_iterator it = books.begin(); it != books.end(); it++) {
 		it->second->report(os);
 		os << endl;
@@ -114,7 +113,6 @@ ostream& Library_t::reportBooks(ostream& os) const {
 ostream& Library_t::reportBorrowers(ostream& os) const {
 	os << "Borrowers report:" << endl;
 	os << "=================" << endl;
-	Borrower_t* borrower;
 	for (map<BorrowerId, Borrower_t*>::const_iterator it = borrowers.begin(); it != borrowers.end(); it++) {
 		it->second->report(os);
 	}
