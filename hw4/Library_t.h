@@ -1,3 +1,4 @@
+#pragma once
 #include "Book_t.h"
 #include "Borrower_t.h"
 #include "IDs.h"
@@ -7,7 +8,7 @@ using namespace std;
 
 class Library_t {
 public:
-    ~Library_t();
+	~Library_t();
 
 	/** Mutators. */
 	// Adds a book to the library (takes ownership); throws if the book is already registered
@@ -30,8 +31,8 @@ public:
 	void registerReturn(BorrowerId borrower, ISBN book);
 
 	/** Reports. */
-	ostream& reportBooks(ostream& os);
-	ostream& reportBorrowers(ostream& os);
+	ostream& reportBooks(ostream& os) const;
+	ostream& reportBorrowers(ostream& os) const;
 
 private:
 	map<ISBN, Book_t*> books;

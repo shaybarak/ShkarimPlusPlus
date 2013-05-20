@@ -2,6 +2,7 @@
 #include "IDs.h"
 #include <algorithm>
 #include <iostream>
+#include <list>
 
 using namespace std;
 
@@ -17,7 +18,7 @@ void Book_t::reserveFor(BorrowerId borrower) {
 	if (isAvailable()) {
 		throw "Cannot reserve a book if it's available for immediate rental!";
 	}
-	waitingList.push_back(borrower);
+	waitingQueue.push_back(borrower);
 }
 
 void Book_t::returnFrom(BorrowerId borrower) {
@@ -31,17 +32,30 @@ void Book_t::returnFrom(BorrowerId borrower) {
 }
 
 BorrowerId Book_t::getFirstInLine() {
-	if (waitingList.empty()) {
+	if (waitingQueue.empty()) {
 		return INVALID_BORROWER_ID;
 	}
-	BorrowerId next = waitingList.front();
-	waitingList.pop_front();
+	BorrowerId next = waitingQueue.front();
+	waitingQueue.pop_front();
 	return next;
 }
 
-ostream& Book_t::report(ostream& os) {
-    os << "Name: " << getName() << endl
-       << "Author: " << getAuthor() << endl
-       << "ISBN: " << getIsbn() << endl
-       << "Available copies: " << getAvailableCopies() << endl;
+ostream& Book_t::report(ostream& os) const {
+	os << "Name: " << getName() << endl
+	   << "Author: " << getAuthor() << endl
+	   << "ISBN: " << getIsbn() << endl
+	   << "Available copies: " << getAvailableCopies() << endl;
+	if (!lenders.empty()) {
+		os << "Lenders:" << endl;
+	}
+	for (list<const BorrowerId>::const_iterator it = lenders.begin(); it != lenders.end(); it++) {
+		os << "\t" << *it << endl;
+	}
+	if (!waitingQueue.empty()) {
+		os << "Waiting queue:" << endl;
+	}
+	for (list<const BorrowerId>::const_iterator it = waitingQueue.begin(); it != waitingQueue.end(); it++) {
+		os << "\t" << *it << endl;
+	}
+	return os;
 }

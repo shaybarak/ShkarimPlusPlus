@@ -1,3 +1,4 @@
+#pragma once
 #include "IDs.h"
 #include <string>
 #include <list>
@@ -17,7 +18,7 @@ public:
 	const ISBN& getIsbn() const { return isbn; }
 	unsigned int getAvailableCopies() const { return availableCopies; }
 	const list<const BorrowerId>& getLenders() const { return lenders; }
-	const queue<const BorrowerId>& getWaitingQueue() const { return waitingQueue; }
+	const list<const BorrowerId>& getWaitingQueue() const { return waitingQueue; }
 
 	/** Derived queries. */
 	// Is there at least one free copy of this book
@@ -32,9 +33,9 @@ public:
 	void returnFrom(BorrowerId borrower);
 	// Pops and returns the next borrower in this book's waiting list or INVALID_BORROWER_ID
 	BorrowerId getFirstInLine();
-    
-    /** Text representation. */
-    ostream& print(ostream& os);
+	
+	/** Text representation. */
+	ostream& report(ostream& os) const;
 
 private:
 	const string name;
@@ -42,5 +43,5 @@ private:
 	const ISBN isbn;
 	unsigned int availableCopies;
 	list<const BorrowerId> lenders;
-	queue<const BorrowerId> waitingQueue;
+	list<const BorrowerId> waitingQueue;
 };

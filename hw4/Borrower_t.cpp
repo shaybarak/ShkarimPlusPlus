@@ -1,5 +1,16 @@
 #include "Borrower_t.h"
 #include <algorithm>
+#include <ostream>
+#include <map>
+
+bool Borrower_t::has(ISBN isbn) const {
+	for (list<const ISBN>::const_iterator it = borrowedBooks.begin(); it != borrowedBooks.end(); it++) {
+		if (*it == isbn) {
+			return true;
+		}
+	}
+	return false;
+}
 
 void Borrower_t::borrowBook(ISBN isbn) {
 	borrowedBooks.push_back(isbn);
@@ -14,13 +25,16 @@ void Borrower_t::returnBook(ISBN isbn) {
 	borrowedBooks.erase(it);
 }
 
-ostream& Borrower_t::report(ostream& os) {
-    os << "Name: " << getName() << endl
-       << "ID: " << getBorrowerId() << endl
-       << "Books:" << endl;
-    for (map<ISBN, Book_t*>::iterator it = books.begin(); it != books.end(); it++) {
-        it->second->report(os);
-    }
+ostream& Borrower_t::report(ostream& os) const {
+	os << "Name: " << getName() << endl
+	   << "ID: " << getBorrowerId() << endl;
+	if (!borrowedBooks.empty()) {
+		os << "Books:" << endl;
+	}
+	for (list<const ISBN>::const_iterator it = borrowedBooks.begin(); it != borrowedBooks.end(); it++) {
+		os << "\t" << *it << endl;
+	}
+	return os;
 }
 
 // First BorrowerId value to provision
