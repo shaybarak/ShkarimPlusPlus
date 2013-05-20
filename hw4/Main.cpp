@@ -20,14 +20,14 @@ int main() {
     cout << "Please remain quiet for the duration of your visit." << endl;
     
     while (cont) {
-    	cout << "	0: Add book"    		    << endl
-			 << "	1: Remove book"	            << endl
-			 << "	2: Add borrower"            << endl
-			 << "	3: Remove borrower"         << endl
-			 << "	4: Register a borrow"       << endl
-             << "   5: Register a return"       << endl
-             << "   6: Print books report"      << endl
-             << "   7: Print borrowers report"  << endl
+    	cout << "  0: Add book"    		    << endl
+			 << "  1: Remove book"	            << endl
+			 << "  2: Add borrower"            << endl
+			 << "  3: Remove borrower"         << endl
+			 << "  4: Register a borrow"       << endl
+             << "  5: Register a return"       << endl
+             << "  6: Print books report"      << endl
+             << "  7: Print borrowers report"  << endl
 			 << "Enter your choice: ";
 		cin >> choice;
         
@@ -96,6 +96,9 @@ int main() {
                 case 7:
                     library.reportBorrowers(cout);
                     break;
+
+				default:
+					cont = false;
             }
         } catch (char* message) {
             cerr << "Error: " << message << endl;
