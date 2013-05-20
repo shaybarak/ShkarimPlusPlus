@@ -116,5 +116,6 @@ ostream& Library_t::reportBorrowers(ostream& os) {
     Borrower_t* borrower;
     for (map<BorrowerId, Borrower_t*>::iterator it = borrowers.begin(); it != borrowers.end(); it++) {
         it->second->report(os);
+        os << endl;
     }
 }

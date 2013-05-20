@@ -2,6 +2,7 @@
 #include "Book_t.h"
 #include "Borrower_t.h"
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -28,21 +29,70 @@ int main() {
         try {
             switch (choice) {
                 case 0:
+                    string name;
+                    cout << "Name: ";
+                    cin > name;
+                    string author;
+                    cout << "Author: ";
+                    cin >> author;
+                    string isbn;
+                    cout << "ISBN: ";
+                    cin >> isbn;
+                    unsigned int copies;
+                    cout << "Copies: ";
+                    cin >> copies;
+                    Book_t* book = new Book_t(name, author, isbn, copies);
+                    library.addBook(book);
+                    cout << "Book added." << endl;
                     break;
                 
                 case 1:
+                    string isbn;
+                    cout << "ISBN: ";
+                    cin >> isbn;
+                    library.removeBook(isbn);
+                    cout << "Removed." << endl;
                     break;
                     
                 case 2:
+                    string name;
+                    cout << "Name: ";
+                    cin >> name;
+                    Borrower_t* borrower = new Borrower_t(name);
+                    cout << "Created new borrower with ID "
+                         << borrower->getBorrowerId() << endl;
+                    library.addBorrower(borrower);
+                    cout << "Borrower added." << endl;
                     break;
                     
                 case 3:
+                    string borrowerId;
+                    cout << "Borrower ID: ";
+                    cin >> borrowerId;
+                    library.removeBorrower(borrowerId);
+                    cout << "Borrower removed." << endl;
                     break;
                     
                 case 4:
+                    string borrowerId;
+                    cout << "Borrower ID: ";
+                    cin >> borrowerId;
+                    string isbn;
+                    cout << "ISBN: ";
+                    cin >> isbn;
+                    library.registerBorrow(borrowerId, isbn);
+                    cout << "Registered borrow." << endl;
                     break;
                     
                 case 5:
+                    string borrowerId;
+                    cout << "Borrower ID: ";
+                    cin >> borrowerId;
+                    string isbn;
+                    cout << "ISBN: ";
+                    cin >> isbn;
+                    library.registerReturn(borrowerId, isbn);
+                    cout << "Registered return." << endl;
                     break;
                     
                 case 6:
