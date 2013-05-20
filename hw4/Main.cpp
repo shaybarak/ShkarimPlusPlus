@@ -38,8 +38,7 @@ int main() {
                     cin.ignore();
                     getline(cin, name);
                     cout << "Author: ";
-                    cin.ignore();
-                    getline(cin, name);
+                    getline(cin, author);
                     cout << "ISBN: ";
                     cin >> isbn;
                     cout << "Copies: ";
