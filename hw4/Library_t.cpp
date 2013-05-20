@@ -13,6 +13,9 @@ Library_t::~Library_t() {
 }
 
 void Library_t::addBook(Book_t* book) {
+	if (book->isAvailable()) {
+		throw "Cannot add zero copies of a book!";
+	}
 	// On insertion, check if the book was already registered
 	if (!(books.insert(make_pair(book->getIsbn(), book)).second)) {
 		throw "Book already registered!";
