@@ -86,7 +86,7 @@ void Library_t::registerReturn(BorrowerId borrowerId, ISBN isbn) {
         throw "Borrower does not have the specified book!";
     }
     borrower->returnBook(isbn);
-    book->returnedFrom(borrowerId);
+    book->returnFrom(borrowerId);
     BorrowerId nextBorrowerId = book->getFirstInLine();
     if (nextBorrowerId != INVALID_BORROWER_ID) {
         // Give the newly-returned copy to the first borrower in line
@@ -110,11 +110,10 @@ ostream& Library_t::reportBooks(ostream& os) const {
 	return os;
 }
 
-ostream& Library_t::reportBorrowers(ostream& os) {
+ostream& Library_t::reportBorrowers(ostream& os) const {
     os << "Borrowers report:" << endl;
     os << "=================" << endl;
-    Borrower_t* borrower;
-    for (map<BorrowerId, Borrower_t*>::iterator it = borrowers.begin(); it != borrowers.end(); it++) {
+    for (map<BorrowerId, Borrower_t*>::const_iterator it = borrowers.begin(); it != borrowers.end(); it++) {
         it->second->report(os);
         os << endl;
     }

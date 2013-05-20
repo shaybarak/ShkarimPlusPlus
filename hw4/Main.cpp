@@ -7,9 +7,14 @@
 using namespace std;
 
 int main() {
-    Library library;
+    Library_t library;
     bool cont = true;    		// trigger to stop loop
     unsigned int choice;
+	string name, author, isbn;
+	BorrowerId borrowerId;
+	unsigned int copies;
+	Book_t* book;
+	Borrower_t* borrower;
     
     cout << "Sssshhhh!! Welcome to the library." << endl;
     cout << "Please remain quiet for the duration of your visit." << endl;
@@ -29,25 +34,20 @@ int main() {
         try {
             switch (choice) {
                 case 0:
-                    string name;
                     cout << "Name: ";
-                    cin > name;
-                    string author;
+                    cin >> name;
                     cout << "Author: ";
                     cin >> author;
-                    string isbn;
                     cout << "ISBN: ";
                     cin >> isbn;
-                    unsigned int copies;
                     cout << "Copies: ";
                     cin >> copies;
-                    Book_t* book = new Book_t(name, author, isbn, copies);
+                    book = new Book_t(name, author, isbn, copies);
                     library.addBook(book);
                     cout << "Book added." << endl;
                     break;
                 
                 case 1:
-                    string isbn;
                     cout << "ISBN: ";
                     cin >> isbn;
                     library.removeBook(isbn);
@@ -55,10 +55,9 @@ int main() {
                     break;
                     
                 case 2:
-                    string name;
                     cout << "Name: ";
                     cin >> name;
-                    Borrower_t* borrower = new Borrower_t(name);
+                    borrower = new Borrower_t(name);
                     cout << "Created new borrower with ID "
                          << borrower->getBorrowerId() << endl;
                     library.addBorrower(borrower);
@@ -66,7 +65,6 @@ int main() {
                     break;
                     
                 case 3:
-                    string borrowerId;
                     cout << "Borrower ID: ";
                     cin >> borrowerId;
                     library.removeBorrower(borrowerId);
@@ -74,10 +72,8 @@ int main() {
                     break;
                     
                 case 4:
-                    string borrowerId;
                     cout << "Borrower ID: ";
                     cin >> borrowerId;
-                    string isbn;
                     cout << "ISBN: ";
                     cin >> isbn;
                     library.registerBorrow(borrowerId, isbn);
@@ -85,10 +81,8 @@ int main() {
                     break;
                     
                 case 5:
-                    string borrowerId;
                     cout << "Borrower ID: ";
                     cin >> borrowerId;
-                    string isbn;
                     cout << "ISBN: ";
                     cin >> isbn;
                     library.registerReturn(borrowerId, isbn);
