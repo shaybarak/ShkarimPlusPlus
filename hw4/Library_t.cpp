@@ -33,7 +33,7 @@ void Library_t::removeBook(ISBN isbn) {
 
 void Library_t::addBorrower(Borrower_t* borrower) {
 	// On insertion, check if the book was already registered
-	if (borrowers.insert(make_pair(borrower->getBorrowerId(), borrower)).second) {
+	if (!(borrowers.insert(make_pair(borrower->getBorrowerId(), borrower)).second)) {
 		throw "Borrower already registered!";
 	}
 }
