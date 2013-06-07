@@ -7,14 +7,15 @@ using namespace std;
 
 class Subject {
 public:
-    virtual ~Subject() {};
-    void register_observer(Observer* o);
+	virtual ~Subject() {};
 
+	virtual void Attach(Observer*);
+	virtual void Detach(Observer*);
+	virtual void Notify();
 protected:
-    void notify_observers();
-
+	Subject() {}
 private:
-    std::vector observers;
+	vector<Observer*> m_observers; 
 };
 
 #endif

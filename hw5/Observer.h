@@ -5,8 +5,11 @@
 
 class Observer {
 public:
-    virtual void notify(Subject* s) = 0;
-    virtual ~Observer() {};
+	virtual			~Observer() {}
+	virtual void	Update(Subject* ChngSubject) = 0;
+protected:
+	Observer() {}
+	Subject* sbj;
 };
 
 #endif
