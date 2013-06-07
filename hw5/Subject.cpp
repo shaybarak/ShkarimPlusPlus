@@ -18,6 +18,6 @@ void Subject::detach(Observer* ob) {
 
 void Subject::notify() { 
 	for (unsigned int i = 0; i < m_observers.size(); i++) {
-		(m_observers[i])->Update(this);
+		(m_observers[i])->update(this);
 	}
 }
