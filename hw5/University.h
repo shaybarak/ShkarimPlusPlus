@@ -1,5 +1,4 @@
-#ifndef UNIVERSITY_H
-#define UNIVERSITY_H
+#pragma once
 
 #include "Subject.h"
 
@@ -14,5 +13,3 @@ private:
 
 	static University instance;
 };
-
-#endif

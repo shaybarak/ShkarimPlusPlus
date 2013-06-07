@@ -1,5 +1,4 @@
-#ifndef SUBJECT_H
-#define SUBJECT_H
+#pragma once
 
 #include <vector>
 
@@ -19,5 +18,3 @@ protected:
 private:
 	vector<Observer*> m_observers; 
 };
-
-#endif

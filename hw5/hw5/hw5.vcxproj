@@ -92,6 +92,8 @@
     <ClInclude Include="..\StudentImpl.h" />
     <ClInclude Include="..\Subject.h" />
     <ClInclude Include="..\University.h" />
+    <ClInclude Include="ESFFaculty.h" />
+    <ClInclude Include="Faculty.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

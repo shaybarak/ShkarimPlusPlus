@@ -65,5 +65,11 @@
     <ClInclude Include="..\University.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Faculty.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ESFFaculty.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
