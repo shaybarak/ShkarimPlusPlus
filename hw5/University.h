@@ -4,6 +4,6 @@
 class University {
 public:
     static University& getInstance();
-}
+};
 
 #endif
