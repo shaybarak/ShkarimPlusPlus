@@ -39,6 +39,9 @@
     <ClCompile Include="..\University.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Faculty.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ESFStudent.h">
@@ -65,13 +68,13 @@
     <ClInclude Include="..\University.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Faculty.h">
+    <ClInclude Include="..\ESFFaculty.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ESFFaculty.h">
+    <ClInclude Include="..\Faculty.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FOHFaculty.h">
+    <ClInclude Include="..\FOHFaculty.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
