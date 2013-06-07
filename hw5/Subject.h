@@ -13,8 +13,10 @@ public:
 	virtual void attach(Observer*);
 	virtual void detach(Observer*);
 	virtual void notify();
+
 protected:
 	Subject() {}
+
 private:
 	vector<Observer*> m_observers; 
 };
