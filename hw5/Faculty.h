@@ -9,4 +9,8 @@ public:
 	Faculty();
 	University::MessageType getLastChangeType() const;
 	unsigned int getTuition() const;
+
+protected:
+	// Message filter, returns true to pass to students
+	virtual bool isRelevant(University::MessageType messageType) const = 0;
 };
