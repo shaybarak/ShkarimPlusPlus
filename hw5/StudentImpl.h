@@ -1,7 +1,14 @@
 #pragma once
 
 #include "Student.h"
+#include <string>
 
-class StudentImpl : public Student {
+using namespace std;
 
+class StudentFactory;
+class Faculty;
+
+class StudentImpl {
+public:
+	void announceUpdate(const string& name) const;
 };
