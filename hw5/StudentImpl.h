@@ -6,9 +6,11 @@
 using namespace std;
 
 class StudentFactory;
-class Faculty;
 
 class StudentImpl {
 public:
 	void announceUpdate(const string& name) const;
+
+private:
+	const string& name;
 };

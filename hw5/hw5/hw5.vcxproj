@@ -79,7 +79,7 @@
     <ClCompile Include="..\FOHFaculty.cpp" />
     <ClCompile Include="..\main.cpp" />
     <ClCompile Include="..\Student.cpp" />
-    <ClCompile Include="..\StudentFactory.cpp" />
+    <ClCompile Include="..\StudentImplFactory.cpp" />
     <ClCompile Include="..\StudentImpl.cpp" />
     <ClCompile Include="..\Subject.cpp" />
     <ClCompile Include="..\University.cpp" />
@@ -90,7 +90,7 @@
     <ClInclude Include="..\FOHFaculty.h" />
     <ClInclude Include="..\Observer.h" />
     <ClInclude Include="..\Student.h" />
-    <ClInclude Include="..\StudentFactory.h" />
+    <ClInclude Include="..\StudentImplFactory.h" />
     <ClInclude Include="..\StudentImpl.h" />
     <ClInclude Include="..\Subject.h" />
     <ClInclude Include="..\University.h" />

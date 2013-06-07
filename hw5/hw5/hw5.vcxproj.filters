@@ -21,9 +21,6 @@
     <ClCompile Include="..\Student.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\StudentFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\StudentImpl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -42,15 +39,15 @@
     <ClCompile Include="..\FOHFaculty.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\StudentImplFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Observer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Student.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\StudentFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\StudentImpl.h">
@@ -69,6 +66,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\FOHFaculty.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\StudentImplFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
