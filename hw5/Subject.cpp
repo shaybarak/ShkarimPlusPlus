@@ -15,7 +15,6 @@ void Subject::detach(Observer* ob) {
 	m_observers.erase(m_observers.begin() + i); 
 } 
 
-
 void Subject::notify() { 
 	for (unsigned int i = 0; i < m_observers.size(); i++) {
 		(m_observers[i])->update(this);
