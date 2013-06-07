@@ -3,5 +3,5 @@
 
 bool FOHFaculty::isRelevant(University::MessageType messageType) const {
 	// Pass these types of messages to the students
-	return messageType == University::MessageType.TUITION;
+	return messageType == University::TUITION;
 }

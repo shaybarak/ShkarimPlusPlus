@@ -3,6 +3,6 @@
 
 bool ESFFaculty::isRelevant(University::MessageType messageType) const {
 	// Pass these types of messages to the students
-	return messageType == University::MessageType.TUITION ||
-		   messageType == University::MessageType.LECTURE_CANCELLED;
+	return messageType == University::TUITION ||
+		   messageType == University::LECTURE_CANCELLED;
 }
