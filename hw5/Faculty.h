@@ -10,9 +10,10 @@ public:
 	University::MessageType getLastChangeType() const;
 	unsigned int getTuition() const;
 
-	void update(Subject* subject);
-
 protected:
 	// Message filter, returns true to pass to students
 	virtual bool isRelevant(University::MessageType messageType) const = 0;
+
+private:
+	void update(Subject* subject);
 };
