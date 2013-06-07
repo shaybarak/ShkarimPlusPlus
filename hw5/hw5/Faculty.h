@@ -1,5 +1,5 @@
 #pragma once
 
-class Student {
+class Faculty {
 
 };
