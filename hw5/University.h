@@ -20,12 +20,11 @@ public:
 	void cancelTomorrowsLecture();
 
 private:
-	University() : lastChange(NONE), tuition(DEFAULT_TUITION) {}
+	University(unsigned int tuition) : lastChange(NONE), tuition(tuition) {}
 	University(const University&);
 	void operator=(University& rhs);
 
 	static University instance;
-	static const unsigned int DEFAULT_TUITION = 10000;
 
 	MessageType lastChange;
 	unsigned int tuition;
