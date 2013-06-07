@@ -3,15 +3,17 @@
 
 #include <vector>
 
+class Observer;
+
 using namespace std;
 
 class Subject {
 public:
 	virtual ~Subject() {};
 
-	virtual void Attach(Observer*);
-	virtual void Detach(Observer*);
-	virtual void Notify();
+	virtual void attach(Observer*);
+	virtual void detach(Observer*);
+	virtual void notify();
 protected:
 	Subject() {}
 private:
