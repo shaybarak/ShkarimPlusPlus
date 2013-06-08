@@ -7,7 +7,7 @@
 using namespace std;
 
 void StudentImpl::announceUpdate(Faculty* faculty) const {
-	cout << name << " was notified of ";
+	cout << getTypeStr() << " Student: " << name << " was notified of ";
 	switch (faculty->getLastChangeType()) {
 	
 	case University::TUITION:

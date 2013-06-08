@@ -38,17 +38,20 @@ int main() {
 					getline(cin, name);
 					newStudent = new Student(name, fOHFaculty);
 					cout << "Student created" << endl;
-					break;				
+					break;
+
 				case 1:
 					cout << "Name: ";
 					cin.ignore();
 					getline(cin, name);
 					newStudent = new Student(name, eSFFaculty);
 					cout << "Student created" << endl;
-					break;				
+					break;
+
 				case 2:
 					cout << "Canceling tommorow ESF lecture" << endl;
 					university.cancelTomorrowsLecture();
+					break;
 
 				case 3:
 					cout << "New tuition: " << endl;
