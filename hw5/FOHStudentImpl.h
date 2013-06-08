@@ -2,6 +2,8 @@
 
 #include "StudentImpl.h"
 
-class FOHStudentImpl {
+class FOHStudentImpl : public StudentImpl {
 
+public:
+	FOHStudentImpl(const string& name) :  StudentImpl(name) {};
 };
