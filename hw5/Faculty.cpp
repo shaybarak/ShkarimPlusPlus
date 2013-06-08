@@ -1,21 +1,27 @@
 #include "Faculty.h"
 #include "University.h"
 
-Faculty::Faculty() {
-	University::getInstance().attach(this);
+Faculty::Faculty(University* university) {
+	sbj = university;
+	sbj->attach(this);
+}
+
+Faculty::~Faculty() {
+	sbj->detach(this);
 }
 
 University::MessageType Faculty::getLastChangeType() const {
-	return University::getInstance().getLastChangeType();
+	return dynamic_cast<University*>(sbj)->getLastChangeType();
 }
 
 unsigned int Faculty::getTuition() const {
-	return University::getInstance().getTuition();
+	return dynamic_cast<University*>(sbj)->getTuition();
 }
 
-void Faculty::update(Subject* university) {
-	if (isRelevant(University::getInstance().getLastChangeType())) {
-		// Notify all students of relevant messages
-		notify();
+void Faculty::update(Subject* sbj) {
+	if (sbj == this->sbj) {
+		if (isRelevant(dynamic_cast<University*>(sbj)->getLastChangeType())) {
+			notify();
+		}
 	}
 }

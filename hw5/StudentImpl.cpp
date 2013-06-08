@@ -1,20 +1,22 @@
 #include "StudentImpl.h"
 #include "University.h"
+#include "Faculty.h"
 #include <iostream>
 #include <assert.h>
 
 using namespace std;
 
-void StudentImpl::announceUpdate() const {
+void StudentImpl::announceUpdate(Faculty* faculty) const {
 	cout << name << " was notified of ";
-	switch (University::getInstance().getLastChangeType()) {
+	switch (faculty->getLastChangeType()) {
 	
 	case University::TUITION:
-		cout << "tuition change to " << University::getInstance().getTuition() << "." << endl;
+		cout << "tuition change to " << faculty->getTuition() << "." << endl;
 		break;
 
 	case University::LECTURE_CANCELLED:
 		cout << "lecture cancellation." << endl;
+		break;
 
 	default:
 		assert(false);

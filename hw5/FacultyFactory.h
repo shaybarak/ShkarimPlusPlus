@@ -4,7 +4,7 @@
 
 class FacultyFactory {
 public:
-	static Faculty* create(University::FacultyType type);
+	static Faculty* create(University* university, University::FacultyType type);
 
 private:
 	~FacultyFactory();

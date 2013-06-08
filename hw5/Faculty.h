@@ -6,10 +6,11 @@
 
 class Faculty : public Observer, public Subject {
 public:
-	Faculty();
+	Faculty(University* university);
+	~Faculty();
 	University::MessageType getLastChangeType() const;
 	unsigned int getTuition() const;
-	virtual University::FacultyType getType() const = 0;
+	virtual University::FacultyType getType() const = 0;	
 
 protected:
 	// Message filter, returns true to pass to students
