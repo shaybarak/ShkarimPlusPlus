@@ -8,5 +8,5 @@ bool ESFFaculty::isRelevant(University::MessageType messageType) const {
 }
 
 University::FacultyType ESFFaculty::getType() const {
-	return University::FOH;
+	return University::ESF;
 }
