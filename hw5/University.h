@@ -12,6 +12,12 @@ public:
 		LECTURE_CANCELLED,
 	};
 
+	enum FacultyType {
+		FOH,
+		ESF,
+	};
+
+
 	static University& getInstance() { return instance; }
 
 	MessageType getLastChangeType() const { return lastChange; }

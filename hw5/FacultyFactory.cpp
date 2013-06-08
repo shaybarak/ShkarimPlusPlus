@@ -2,12 +2,12 @@
 #include "FOHFaculty.h"
 #include "ESFFaculty.h"
 
-Faculty* FacultyFactory::create(FacultyType type) {
+Faculty* FacultyFactory::create(University::FacultyType type) {
 	Faculty* faculty = NULL;
 	switch (type) {
-	case FOH:
+	case University::FOH:
 		faculty = new FOHFaculty();
-	case ESF:
+	case University::ESF:
 		faculty = new ESFFaculty();
 	}
 	return faculty;

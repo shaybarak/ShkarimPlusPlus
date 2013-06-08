@@ -4,12 +4,7 @@
 
 class FacultyFactory {
 public:
-	enum FacultyType {
-		FOH,
-		ESF,
-	};
-
-	static Faculty* create(FacultyType type);
+	static Faculty* create(University::FacultyType type);
 
 private:
 	~FacultyFactory();
