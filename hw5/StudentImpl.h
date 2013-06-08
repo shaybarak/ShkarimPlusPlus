@@ -12,6 +12,6 @@ public:
 	StudentImpl(const string& name) : name(name) {};
 	void announceUpdate(const string& name) const;
 
-private:
+protected:
 	const string& name;
 };
