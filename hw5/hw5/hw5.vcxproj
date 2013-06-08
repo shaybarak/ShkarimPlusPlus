@@ -87,9 +87,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ESFFaculty.h" />
+    <ClInclude Include="..\ESFStudentImpl.h" />
     <ClInclude Include="..\Faculty.h" />
     <ClInclude Include="..\FacultyFactory.h" />
     <ClInclude Include="..\FOHFaculty.h" />
+    <ClInclude Include="..\FOHStudentImpl.h" />
     <ClInclude Include="..\Observer.h" />
     <ClInclude Include="..\Student.h" />
     <ClInclude Include="..\StudentImplFactory.h" />
