@@ -1,7 +1,9 @@
 #pragma once
 
 #include "Observer.h"
+#include "StudentImplFactory.h"
 #include <string>
+
 
 using namespace std;
 
@@ -11,7 +13,7 @@ class Faculty;
 
 class Student : public Observer {
 public:
-	Student(const string& name, const string& faculty);
+	Student(const string& name, Faculty& faculty);
 
 private:
 	const StudentImpl* impl;

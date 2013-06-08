@@ -1,5 +1,6 @@
 #include "Student.h"
+#include "Faculty.h"
 
-Student::Student(const string& name, const string& faculty) {
-	studentImpl = StudentFactory.create(name, faculty);
+Student::Student(const string& name, Faculty& faculty) {
+	impl = StudentImplFactory::create(name, faculty.getType());
 }
