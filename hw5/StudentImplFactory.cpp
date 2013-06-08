@@ -7,8 +7,10 @@ StudentImpl* StudentImplFactory::create(const string& name, University::FacultyT
 	switch (facultyType) {
 	case University::ESF:
 		impl = new ESFStudentImpl(name);
+		break;
 	case University::FOH:
 		impl = new FOHStudentImpl(name);
+		break;
 	}
 	return impl;
 }
