@@ -15,8 +15,9 @@ int main() {
 	//	StudentsImpl will be created using StudentImplFactory called in constructor of Student. The type will be derived from the faculty.
 	//	This is good, since cannot register student to faculty whom it's type does not exist.
 	
-	bool cont = false;
+	bool cont = true;
 	unsigned int choice;
+	unsigned int newTuition;
 	string name;
 	Student* newStudent;
 
@@ -45,6 +46,22 @@ int main() {
 					newStudent = new Student(name, fOHFaculty);
 					cout << "Student created" << endl;
 					break;				
+				case 1:
+					cout << "Name: ";
+					cin.ignore();
+					getline(cin, name);
+					newStudent = new Student(name, eSFFaculty);
+					cout << "Student created" << endl;
+					break;				
+				case 2:
+					cout << "Canceling tommorow ESF lecture" << endl;
+					university.cancelTomorrowsLecture();
+
+				case 3:
+					cout << "New tuition: " << endl;
+					cin >> newTuition;
+					university.changeTuition(newTuition);
+					break;
 				
 				default:
 					cont = false;
