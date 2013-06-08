@@ -76,6 +76,7 @@
   <ItemGroup>
     <ClCompile Include="..\ESFFaculty.cpp" />
     <ClCompile Include="..\Faculty.cpp" />
+    <ClCompile Include="..\FacultyFactory.cpp" />
     <ClCompile Include="..\FOHFaculty.cpp" />
     <ClCompile Include="..\main.cpp" />
     <ClCompile Include="..\Student.cpp" />
@@ -87,6 +88,7 @@
   <ItemGroup>
     <ClInclude Include="..\ESFFaculty.h" />
     <ClInclude Include="..\Faculty.h" />
+    <ClInclude Include="..\FacultyFactory.h" />
     <ClInclude Include="..\FOHFaculty.h" />
     <ClInclude Include="..\Observer.h" />
     <ClInclude Include="..\Student.h" />
