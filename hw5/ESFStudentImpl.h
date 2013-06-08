@@ -1,5 +1,7 @@
 #pragma once
 
-class ESFStudentImpl {
+#include "StudentImpl.h"
+
+class ESFStudentImpl : public StudentImpl{
 
 };
