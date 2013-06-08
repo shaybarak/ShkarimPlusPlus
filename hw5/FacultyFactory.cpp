@@ -1,7 +1,6 @@
 #include "FacultyFactory.h"
 #include "FOHFaculty.h"
 #include "ESFFaculty.h"
-#include <assert.h>
 
 Faculty* FacultyFactory::create(University* university, University::FacultyType type) {
 	Faculty* faculty = NULL;
@@ -12,8 +11,6 @@ Faculty* FacultyFactory::create(University* university, University::FacultyType 
 	case University::ESF:
 		faculty = new ESFFaculty(university);
 		break;
-	default:
-		assert(false);
 	}
 	return faculty;
 }
