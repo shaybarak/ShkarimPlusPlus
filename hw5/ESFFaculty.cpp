@@ -6,3 +6,7 @@ bool ESFFaculty::isRelevant(University::MessageType messageType) const {
 	return messageType == University::TUITION ||
 		   messageType == University::LECTURE_CANCELLED;
 }
+
+University::FacultyType ESFFaculty::getType() const {
+	return University::FOH;
+}

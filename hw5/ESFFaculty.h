@@ -6,4 +6,5 @@ class ESFFaculty : public Faculty {
 protected:
 	// The ESF Faculty passes both tuition and lecture cancellation messages to students
 	bool isRelevant(University::MessageType messageType) const;
+	University::FacultyType ESFFaculty::getType() const;
 };

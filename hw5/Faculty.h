@@ -9,6 +9,7 @@ public:
 	Faculty();
 	University::MessageType getLastChangeType() const;
 	unsigned int getTuition() const;
+	virtual University::FacultyType getType() const = 0;
 
 protected:
 	// Message filter, returns true to pass to students
