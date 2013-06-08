@@ -10,7 +10,7 @@ class StudentFactory;
 class StudentImpl {
 public:
 	StudentImpl(const string& name) : name(name) {};
-	void announceUpdate(const string& name) const;
+	void announceUpdate() const;
 
 protected:
 	const string& name;

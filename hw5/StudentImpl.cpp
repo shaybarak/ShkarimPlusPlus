@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void StudentImpl::announceUpdate(const string& name) const {
+void StudentImpl::announceUpdate() const {
 	cout << name << " was notified of ";
 	switch (University::getInstance().getLastChangeType()) {
 	
