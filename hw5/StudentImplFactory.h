@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include "University.h"
 
 using namespace std;
 
@@ -9,7 +10,7 @@ class Faculty;
 
 class StudentImplFactory {
 public:
-	static StudentImpl* create(const string& name, const Faculty& faculty);
+	static StudentImpl* create(const string& name, University::FacultyType facultyType);
 
 private:
 	// Disallow instantiation and copying

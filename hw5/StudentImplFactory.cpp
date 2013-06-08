@@ -1,11 +1,12 @@
 #include "StudentImplFactory.h"
 #include "StudentImpl.h"
 
-Student* StudentImplFactory::create(const string& name, const string& faculty) {
+Student* StudentImplFactory::create(const string& name, University::FacultyType facultyType) {
 	StudentImpl* impl = NULL;
-	if (faculty == "ESF") {
+	switch (facultyType) {
+	case University::ESF:
 		impl = new StudentImpl(name, University::getESFFaculty());
-	} else if (faculty == "FOH") {
+	case University::FOH:
 		impl = new StudentImpl(name, University::getFOHFaculty());
 	}
 	return impl;
