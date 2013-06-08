@@ -5,9 +5,9 @@ Student* StudentImplFactory::create(const string& name, University::FacultyType 
 	StudentImpl* impl = NULL;
 	switch (facultyType) {
 	case University::ESF:
-		impl = new StudentImpl(name, University::getESFFaculty());
+		impl = new StudentImpl(name, facultyType);
 	case University::FOH:
-		impl = new StudentImpl(name, University::getFOHFaculty());
+		impl = new StudentImpl(name, facultyType);
 	}
 	return impl;
 }
